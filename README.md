@@ -5,5 +5,3 @@ Le GOAT_ENGINE est un moteur de jeu développé par Chad Gauthier et Louka Gauth
 
 ## Installation
 Étant donné que l'engin n'existe pas, il est impossible de l'installer pour l'instant. Merci de votre compréhension :)
-
-## Wiki
