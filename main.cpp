@@ -13,8 +13,6 @@
 #include "Texture.h"
 #include "Camera.h"
 
-#include "Color.h"
-
 
 int main() {
 	const unsigned int WIN_HEIGHT = 800;
@@ -34,6 +32,32 @@ int main() {
 		0.5f, 0.0f, -0.5f,		0.83f, 0.7f, 0.44f,		0.0f, 0.0f,
 		0.5f, 0.0f, 0.5f,		0.83f, 0.7f, 0.44f,		5.0f, 0.0f,
 		0.0f, 0.8f, 0.0f,		0.92f, 0.86f, 0.76f,	2.5f, 5.0f
+	};
+
+	GLfloat lightVertices[] = 
+	{
+		-0.1f, -0.1f, 0.1f,
+		-0.1f, -0.1f, -0.1f,
+		0.1f, -0.1f, -0.1f,
+		0.1f, -0.1f, 0.1f,
+		-0.1f, 0.1f, 0.1f,
+
+	};
+
+	GLuint cubeIndices[] =
+	{
+		0, 1, 3,
+		0, 3, 2,
+		0, 5, 1,
+		0, 4, 5,
+		0, 6, 2,
+		0, 4, 6,
+		3, 5, 7,
+		3, 1, 5,
+		3, 6, 7,
+		3, 2, 6,
+		4, 7, 6, 
+		4, 5, 7
 	};
 
 	GLuint indices[] =
@@ -94,7 +118,9 @@ int main() {
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		shaderProgram.Activate();
 
-		camera.Matrix(45.0f, 0.1f, 100.0f, shaderProgram, "camMatrix");
+		camera.Inputs(window);
+		camera.updateMatrix(45.0f, 0.1f, 100.0f);
+		camera.Matrix(shaderProgram, "camMatrix");
 
 		img.Bind();
 		VAO1.Bind();
