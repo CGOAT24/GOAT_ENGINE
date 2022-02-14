@@ -12,10 +12,15 @@
 #include "EBO.h"
 #include "Texture.h"
 #include "Camera.h"
+#include "GameWindow.h"
 
 
 int main() {
-	const unsigned int WIN_HEIGHT = 800;
+	GameWindow gameWindow(800, 800);
+	gameWindow.createWindow();
+
+	
+	/*const unsigned int WIN_HEIGHT = 800;
 	const unsigned int WIN_WIDTH = 800;
 	const float MIN_DRAW_DISTANCE = 1.0f;
 	const float MAX_DRAW_DISTANCE = 100.0f;
@@ -138,5 +143,5 @@ int main() {
 
 	glfwDestroyWindow(window);
 	glfwTerminate();
-	return 0;
+	return 0;*/
 }
