@@ -9,7 +9,7 @@
 #include <glm/gtc/type_ptr.hpp>
 #include <chrono>
 #include <ctime>
-#include <windows.h>
+#include <thread>
 
 #include "shaderClass.h"
 #include "VAO.h"
@@ -28,6 +28,10 @@ public:
 	GameWindow(unsigned int _width, unsigned _height);
 
 	int createWindow();
+
+	void update();
+	
+	void draw();
 };
 
 #endif
