@@ -6,17 +6,23 @@ using std::chrono::milliseconds;
 using std::chrono::seconds;
 using std::chrono::system_clock;
 
-GameWindow::GameWindow(unsigned int _width, unsigned _height) {
+
+GameWindow::GameWindow(unsigned int _width, unsigned _height, Scene _scene) {
 	
 	width = _width;
 	height = _height;
 	currentFps = 0;
 	maxFps = 60;
 	timeBetweenFrame = 1000000 / maxFps;
+	currentScene = _scene;
 }
 
-
+/// <summary>
+/// Créer la fenêtre et démarer le jeux
+/// </summary>
+/// <returns>Code de réponse</returns>
 int GameWindow::createWindow() {
+	//Créer la fenêtre
 	glfwInit();
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
@@ -24,6 +30,7 @@ int GameWindow::createWindow() {
 
 	GLFWwindow* window = glfwCreateWindow(width, height, "GOAT_ENGINE", NULL, NULL);
 
+	//Si erreur durant la création de la fenêtre
 	if (window == NULL) {
 		std::cout << "Failed to create Window" << std::endl;
 		glfwTerminate();
@@ -34,19 +41,21 @@ int GameWindow::createWindow() {
 
 	gladLoadGL();
 	glViewport(0, 0, width, height);
-
+	
+	//GameLoop
 	auto lastFpsUpdate = std::chrono::high_resolution_clock::now();
 
 	unsigned int frame = 0;
-	long renderTime = 0;
 
 	while (!glfwWindowShouldClose(window)) {
 		auto startFrame = std::chrono::high_resolution_clock::now();
 
 		glfwPollEvents();
 		
-		update();
-		draw();
+		//Update et render la scène
+		currentScene.update();
+		currentScene.draw();
+
 		frame++;
 
 		auto elapsed = std::chrono::high_resolution_clock::now() - lastFpsUpdate;
@@ -81,10 +90,3 @@ int GameWindow::createWindow() {
 	return 0;
 }
 
-void GameWindow::update() {
-
-}
-
-void GameWindow::draw() {
-
-}

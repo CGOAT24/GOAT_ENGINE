@@ -11,6 +11,7 @@
 #include <ctime>
 #include <thread>
 
+#include "Scene.h"
 #include "shaderClass.h"
 #include "VAO.h"
 #include "VBO.h"
@@ -23,15 +24,12 @@ class GameWindow
 private:
 	unsigned int width, height, currentFps, maxFps;
 	unsigned long timeBetweenFrame;
+	Scene currentScene;
 public:
 	
-	GameWindow(unsigned int _width, unsigned _height);
+	GameWindow(unsigned int _width, unsigned _height, Scene _scene);
 
 	int createWindow();
-
-	void update();
-	
-	void draw();
 };
 
 #endif
