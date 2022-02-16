@@ -1,4 +1,4 @@
 #include <vector>
 #include "VBO.h"
 
-std::vector<Vertex> v2ToVertex(std::vector<glm::vec2> position);
+void v2ToVertex(std::vector<glm::vec2> position, std::vector<glm::vec2> texCoord, Vertex (&output)[4]);

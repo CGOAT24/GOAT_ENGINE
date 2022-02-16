@@ -26,7 +26,7 @@ private:
 	unsigned long timeBetweenFrame;
 	Scene currentScene;
 public:
-	
+	GameWindow();
 	GameWindow(unsigned int _width, unsigned _height, Scene _scene);
 
 	int createWindow();

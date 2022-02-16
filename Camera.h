@@ -18,8 +18,7 @@ public:
 	glm::mat4 cameraMatrix = glm::mat4(1.0f);
 	int width;
 	int height;
-	float speed = 0.1f;
-	float sensitivity = 100.0f;
+	float speed = 0.001f;
 
 	Camera(int width, int height, glm::vec3 position);
 	void updateMatrix(float FOVdeg, float nearPlane, float farPlane);

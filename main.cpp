@@ -13,14 +13,15 @@
 #include "Texture.h"
 #include "Camera.h"
 #include "GameWindow.h"
-
+#include "GameObject.h"
 #include "Mesh.h"
 #include "Functions.h"
 
 int main() {
+	/*
 	GameWindow gameWindow(800, 800);
 	gameWindow.createWindow();
-
+	*/
 	
 	const unsigned int WIN_HEIGHT = 800;
 	const unsigned int WIN_WIDTH = 800;
@@ -32,15 +33,29 @@ int main() {
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-
-	Vertex vertices[] =
-	{
-		//Position								//Normal						//Color							//Texture Coordinates
-		Vertex{glm::vec3(-1.0f, 1.0f, 0.0f),	glm::vec3(0.0f, 0.0f, 1.0f),	glm::vec3(0.0f, 0.0f, 0.0f),	glm::vec2(0.0f, 0.0f)},
-		Vertex{glm::vec3(-1.0f, -1.0f, 0.0f),	glm::vec3(0.0f, 0.0f, 1.0f),	glm::vec3(0.0f, 0.0f, 0.0f),	glm::vec2(0.0f, 1.0f)},
-		Vertex{glm::vec3(1.0f, -1.0f, 0.0f),	glm::vec3(0.0f, 0.0f, 1.0f),	glm::vec3(0.0f, 0.0f, 0.0f),	glm::vec2(1.0f, 1.0f)},
-		Vertex{glm::vec3(1.0f, 1.0f, 0.0f),		glm::vec3(0.0f, 0.0f, 1.0f),	glm::vec3(0.0f, 0.0f, 0.0f),	glm::vec2(1.0f, 0.0f)}
+	std::vector<glm::vec2> positions = {
+		glm::vec2(-1.0f, 1.0f),
+		glm::vec2(-1.0f, -1.0f),
+		glm::vec2(1.0f, -1.0f),
+		glm::vec2(1.0f, 1.0f)
 	};
+
+	std::vector<glm::vec2> texCoords = {
+		glm::vec2(0.0f, 0.0f),
+		glm::vec2(0.0f, 1.0f),
+		glm::vec2(1.0f, 1.0f),
+		glm::vec2(1.0f, 0.0f)
+	};
+
+	Vertex vertices[4];
+	v2ToVertex(positions, texCoords, vertices);
+
+	Texture textures[] = {
+		Texture("planks.png", "diffuse", 0, GL_RGBA, GL_UNSIGNED_BYTE),
+		Texture("planksSpec.png", "specular", 1, GL_RED, GL_UNSIGNED_BYTE)
+	};
+
+	GameObject plank(glm::vec2(0.0f, 0.0f), glm::vec2(1.0f, 1.0f), glm::vec2(0.0f, 0.0f), textures);
 
 	GLuint indices[] =
 	{
@@ -76,10 +91,7 @@ int main() {
 	gladLoadGL();
 	glViewport(0, 0, WIN_WIDTH, WIN_HEIGHT);
 
-	Texture textures[] = {
-		Texture("planks.png", "diffuse", 0, GL_RGBA, GL_UNSIGNED_BYTE),
-		Texture("planksSpec.png", "specular", 1, GL_RED, GL_UNSIGNED_BYTE)
-	};
+	
 
 	Shader shaderProgram("default.vert", "default.frag");
 	
@@ -90,7 +102,7 @@ int main() {
 
 	Shader lightShader("light.vert", "light.frag");
 
-	std::vector<Vertex> lightVerts(lightVertices, lightVertices + sizeof(lightVertices) / sizeof(Vertex));
+	std::vector<Vertex> lightVerts(vertices, vertices + sizeof(vertices) / sizeof(Vertex));
 	std::vector<GLuint> lightInd(lightIndices, lightIndices + sizeof(lightIndices) / sizeof(GLuint));
 	Mesh light(lightVerts, lightInd, tex);
 
@@ -128,7 +140,7 @@ int main() {
 		camera.updateMatrix(90.0f, MIN_DRAW_DISTANCE, MAX_DRAW_DISTANCE);
 
 		floor.Draw(shaderProgram, camera);
-		light.Draw(shaderProgram, camera);
+		//light.Draw(shaderProgram, camera);
 
 		glfwSwapBuffers(window);
 
@@ -139,5 +151,6 @@ int main() {
 	lightShader.Delete();
 	glfwDestroyWindow(window);
 	glfwTerminate();
+
 	return 0;
 }

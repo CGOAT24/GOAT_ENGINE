@@ -6,12 +6,9 @@
 #include "GameObject.h"
 
 
-class Scene
-{
+class Scene {
 private:
 	std::vector<GameObject> gameObjets;
-
-	
 
 public:
 	Scene();
