@@ -22,7 +22,7 @@ int main() {
 	gameWindow.createWindow();
 
 	
-	/*const unsigned int WIN_HEIGHT = 800;
+	const unsigned int WIN_HEIGHT = 800;
 	const unsigned int WIN_WIDTH = 800;
 	const float MIN_DRAW_DISTANCE = 1.0f;
 	const float MAX_DRAW_DISTANCE = 100.0f;
@@ -139,5 +139,5 @@ int main() {
 	lightShader.Delete();
 	glfwDestroyWindow(window);
 	glfwTerminate();
-	return 0;*/
+	return 0;
 }
