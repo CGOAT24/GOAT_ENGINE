@@ -80,8 +80,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\Users\Chad\Documents\Projects\GOAT_ENGINE\GOAT_ENGINE\Libraries\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\Chad\Documents\Projects\GOAT_ENGINE\GOAT_ENGINE\Libraries\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Users\1952754\source\repos\GOAT_ENGINE\Libraries\include;C:\Users\Chad\Documents\Projects\GOAT_ENGINE\GOAT_ENGINE\Libraries\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\1952754\source\repos\GOAT_ENGINE\Libraries\lib;C:\Users\Chad\Documents\Projects\GOAT_ENGINE\GOAT_ENGINE\Libraries\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
@@ -147,6 +147,11 @@
   <ItemGroup>
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="EBO.cpp" />
+    <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="GameWindow.cpp" />
+    <ClCompile Include="glad.c" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Scene.cpp" />
     <ClCompile Include="Functions.cpp" />
     <ClCompile Include="glad.c" />
     <ClCompile Include="main.cpp" />
@@ -160,6 +165,9 @@
   <ItemGroup>
     <ClInclude Include="Camera.h" />
     <ClInclude Include="EBO.h" />
+    <ClInclude Include="GameObject.h" />
+    <ClInclude Include="GameWindow.h" />
+    <ClInclude Include="Scene.h" />
     <ClInclude Include="Functions.h" />
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="shaderClass.h" />
