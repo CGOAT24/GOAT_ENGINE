@@ -55,6 +55,10 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Scene.cpp">
+    <ClCompile Include="Mesh.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Functions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -84,6 +88,10 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Scene.h">
+    <ClInclude Include="Mesh.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Functions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -94,12 +102,18 @@
     <None Include="default.frag">
       <Filter>Resource Files\Shader</Filter>
     </None>
+    <None Include="light.frag">
+      <Filter>Resource Files\Shader</Filter>
+    </None>
+    <None Include="light.vert">
+      <Filter>Resource Files\Shader</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="img.png">
+    <Image Include="planks.png">
       <Filter>Resource Files\Textures</Filter>
     </Image>
-    <Image Include="suit.png">
+    <Image Include="planksSpec.png">
       <Filter>Resource Files\Textures</Filter>
     </Image>
   </ItemGroup>
