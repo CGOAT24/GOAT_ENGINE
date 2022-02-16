@@ -1,18 +1,5 @@
-#include <iostream>
-#include <glad/glad.h>
-#include <GLFW/glfw3.h>
-#include <stb/stb_image.h>
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
-#include <glm/gtc/type_ptr.hpp>
-
-#include "shaderClass.h"
-#include "VAO.h"
-#include "VBO.h"
-#include "EBO.h"
-#include "Texture.h"
-#include "Camera.h"
-
+#include "Mesh.h"
+#include "Functions.h"
 
 int main() {
 	const unsigned int WIN_HEIGHT = 800;
@@ -25,49 +12,35 @@ int main() {
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-	GLfloat vertices[] =
-	{	//Coordinates			//Colors				//TexCoord
-		-0.5f, 0.0f, 0.5f,		0.83f, 0.7f, 0.44f,		0.0f, 0.0f,
-		-0.5f, 0.0f, -0.5f,		0.83f, 0.7f, 0.44f,		5.0f, 0.0f,
-		0.5f, 0.0f, -0.5f,		0.83f, 0.7f, 0.44f,		0.0f, 0.0f,
-		0.5f, 0.0f, 0.5f,		0.83f, 0.7f, 0.44f,		5.0f, 0.0f,
-		0.0f, 0.8f, 0.0f,		0.92f, 0.86f, 0.76f,	2.5f, 5.0f
-	};
 
-	GLfloat lightVertices[] = 
+	Vertex vertices[] =
 	{
-		-0.1f, -0.1f, 0.1f,
-		-0.1f, -0.1f, -0.1f,
-		0.1f, -0.1f, -0.1f,
-		0.1f, -0.1f, 0.1f,
-		-0.1f, 0.1f, 0.1f,
-
-	};
-
-	GLuint cubeIndices[] =
-	{
-		0, 1, 3,
-		0, 3, 2,
-		0, 5, 1,
-		0, 4, 5,
-		0, 6, 2,
-		0, 4, 6,
-		3, 5, 7,
-		3, 1, 5,
-		3, 6, 7,
-		3, 2, 6,
-		4, 7, 6, 
-		4, 5, 7
+		//Position								//Normal						//Color							//Texture Coordinates
+		Vertex{glm::vec3(-1.0f, 1.0f, 0.0f),	glm::vec3(0.0f, 0.0f, 1.0f),	glm::vec3(0.0f, 0.0f, 0.0f),	glm::vec2(0.0f, 0.0f)},
+		Vertex{glm::vec3(-1.0f, -1.0f, 0.0f),	glm::vec3(0.0f, 0.0f, 1.0f),	glm::vec3(0.0f, 0.0f, 0.0f),	glm::vec2(0.0f, 1.0f)},
+		Vertex{glm::vec3(1.0f, -1.0f, 0.0f),	glm::vec3(0.0f, 0.0f, 1.0f),	glm::vec3(0.0f, 0.0f, 0.0f),	glm::vec2(1.0f, 1.0f)},
+		Vertex{glm::vec3(1.0f, 1.0f, 0.0f),		glm::vec3(0.0f, 0.0f, 1.0f),	glm::vec3(0.0f, 0.0f, 0.0f),	glm::vec2(1.0f, 0.0f)}
 	};
 
 	GLuint indices[] =
 	{
 		0, 1, 2,
-		0, 2, 3,
-		0, 1, 4,
-		1, 2, 4,
-		2, 3, 4,
-		3, 0, 4
+		0, 2, 3
+	};
+
+	Vertex lightVertices[] = 
+	{
+		//Position								//Normal						//Color							//Texture Coorddinates
+		Vertex{glm::vec3(-1.0f, 1.0f, 0.0f),	glm::vec3(0.0f, 0.0f, 1.0f),	glm::vec3(0.0f, 0.0f, 0.0f),	glm::vec2(0.0f, 0.0f)},
+		Vertex{glm::vec3(-1.0f, -1.0f, 0.0f),	glm::vec3(0.0f, 0.0f, 1.0f),	glm::vec3(0.0f, 0.0f, 0.0f),	glm::vec2(0.0f, 1.0f)},
+		Vertex{glm::vec3(1.0f, -1.0f, 0.0f),	glm::vec3(0.0f, 0.0f, 1.0f),	glm::vec3(0.0f, 0.0f, 0.0f),	glm::vec2(1.0f, 1.0f)},
+		Vertex{glm::vec3(1.0f, 1.0f, 0.0f),		glm::vec3(0.0f, 0.0f, 1.0f),	glm::vec3(0.0f, 0.0f, 0.0f),	glm::vec2(1.0f, 0.0f)}
+	};
+
+	GLuint lightIndices[] =
+	{
+		0, 1, 2,
+		0, 2, 3
 	};
 
 	GLFWwindow* window = glfwCreateWindow(WIN_WIDTH, WIN_HEIGHT, "GOAT_ENGINE", NULL, NULL);
@@ -83,59 +56,67 @@ int main() {
 	gladLoadGL();
 	glViewport(0, 0, WIN_WIDTH, WIN_HEIGHT);
 
-	//Generate Shader object using shaders default.vert and default.frag
+	Texture textures[] = {
+		Texture("planks.png", "diffuse", 0, GL_RGBA, GL_UNSIGNED_BYTE),
+		Texture("planksSpec.png", "specular", 1, GL_RED, GL_UNSIGNED_BYTE)
+	};
+
 	Shader shaderProgram("default.vert", "default.frag");
+	
+	std::vector<Vertex> verts(vertices, vertices + sizeof(vertices) / sizeof(Vertex));
+	std::vector<GLuint> ind(indices, indices + sizeof(indices) / sizeof(GLuint));
+	std::vector<Texture> tex(textures, textures + sizeof(textures) / sizeof(Texture));
+	Mesh floor(verts, ind, tex);
 
-	//Generate VertexArray Object and binds it
-	VAO VAO1;
-	VAO1.Bind();
+	Shader lightShader("light.vert", "light.frag");
 
-	//Generate Vertex Buffer Object and link it to vertices
-	VBO VBO1(vertices, sizeof(vertices));
-	//Generate Element Buffer Object and link it to indices
-	EBO EBO1(indices, sizeof(indices));
+	std::vector<Vertex> lightVerts(lightVertices, lightVertices + sizeof(lightVertices) / sizeof(Vertex));
+	std::vector<GLuint> lightInd(lightIndices, lightIndices + sizeof(lightIndices) / sizeof(GLuint));
+	Mesh light(lightVerts, lightInd, tex);
 
-	//Link VBO to VAO
-	VAO1.LinkAttrib(VBO1, 0, 3, GL_FLOAT, 8 * sizeof(float), (void*)0);
-	VAO1.LinkAttrib(VBO1, 1, 3, GL_FLOAT, 8 * sizeof(float), (void*)(3 * sizeof(float)));
-	VAO1.LinkAttrib(VBO1, 2, 2, GL_FLOAT, 8 * sizeof(float), (void*)(6 * sizeof(float)));
-	//Unbind every object
-	VAO1.Unbind();
-	VBO1.Unbind();
-	EBO1.Unbind();
+	glm::vec4 lightColor = glm::vec4(1.0f, 1.0f, 1.0f, 1.0f);
 
-	Texture img("suit.png", GL_TEXTURE_2D, GL_TEXTURE0, GL_RGBA, GL_UNSIGNED_BYTE);
 
-	img.texUnit(shaderProgram, "tex0", 0);
+	glm::vec3 lightPos = glm::vec3(0.5f, 0.5f, 0.5f);
+	glm::mat4 lightModel = glm::mat4(1.0f);
+	lightModel = glm::translate(lightModel, lightPos);
+
+	glm::vec3 pyramidPos = glm::vec3(0.0f, 0.0f, 0.0f);
+	glm::mat4 pyramidModel = glm::mat4(1.0f);
+	pyramidModel = glm::translate(pyramidModel, pyramidPos);
+
+	lightShader.Activate();
+	glUniformMatrix4fv(glGetUniformLocation(lightShader.ID, "model"), 1, GL_FALSE, glm::value_ptr(lightModel));
+	glUniform4f(glGetUniformLocation(lightShader.ID, "lightColor"), lightColor.x, lightColor.y, lightColor.z, lightColor.w);
+
+	shaderProgram.Activate();
+	glUniformMatrix4fv(glGetUniformLocation(shaderProgram.ID, "model"), 1, GL_FALSE, glm::value_ptr(pyramidModel));
+	glUniform4f(glGetUniformLocation(shaderProgram.ID, "lightColor"), lightColor.x, lightColor.y, lightColor.z, lightColor.w);
+	glUniform3f(glGetUniformLocation(shaderProgram.ID, "lightPos"), lightPos.x, lightPos.y, lightPos.z);
 
 	glfwSwapBuffers(window);
 	glEnable(GL_DEPTH_TEST);
 
-	Camera camera(WIN_WIDTH, WIN_HEIGHT, glm::vec3(0.0f, 0.0f, 2.0f));
+	Camera camera(WIN_WIDTH, WIN_HEIGHT, glm::vec3(0.0f, 0.0f, 5.0f));
 
+	//Main loop
 	while (!glfwWindowShouldClose(window)) {
 		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-		shaderProgram.Activate();
 
 		camera.Inputs(window);
-		camera.updateMatrix(45.0f, 0.1f, 100.0f);
-		camera.Matrix(shaderProgram, "camMatrix");
+		camera.updateMatrix(90.0f, MIN_DRAW_DISTANCE, MAX_DRAW_DISTANCE);
 
-		img.Bind();
-		VAO1.Bind();
-		glDrawElements(GL_TRIANGLES, sizeof(indices)/sizeof(int), GL_UNSIGNED_INT, 0);
+		floor.Draw(shaderProgram, camera);
+		light.Draw(shaderProgram, camera);
+
 		glfwSwapBuffers(window);
 
 		glfwPollEvents();
 	}
 
-	VAO1.Delete();
-	VBO1.Delete();
-	EBO1.Delete();
-	img.Delete();
 	shaderProgram.Delete();
-
+	lightShader.Delete();
 	glfwDestroyWindow(window);
 	glfwTerminate();
 	return 0;
