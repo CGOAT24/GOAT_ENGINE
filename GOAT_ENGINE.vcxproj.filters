@@ -48,6 +48,12 @@
     <ClCompile Include="Camera.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Mesh.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Functions.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="shaderClass.h">
@@ -68,6 +74,12 @@
     <ClInclude Include="Camera.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Mesh.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Functions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="default.vert">
@@ -76,12 +88,18 @@
     <None Include="default.frag">
       <Filter>Resource Files\Shader</Filter>
     </None>
+    <None Include="light.frag">
+      <Filter>Resource Files\Shader</Filter>
+    </None>
+    <None Include="light.vert">
+      <Filter>Resource Files\Shader</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="img.png">
+    <Image Include="planks.png">
       <Filter>Resource Files\Textures</Filter>
     </Image>
-    <Image Include="suit.png">
+    <Image Include="planksSpec.png">
       <Filter>Resource Files\Textures</Filter>
     </Image>
   </ItemGroup>

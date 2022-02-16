@@ -1,2 +1,6 @@
-﻿  Camera.cpp
+﻿  main.cpp
+  Mesh.cpp
+C:\Users\Chad\Documents\Projects\GOAT_ENGINE\GOAT_ENGINE\Mesh.cpp(35,8): warning C4834: discarding return value of function with 'nodiscard' attribute
+C:\Users\Chad\Documents\Projects\GOAT_ENGINE\GOAT_ENGINE\Mesh.cpp(46,65): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
+  Generating Code...
   GOAT_ENGINE.vcxproj -> C:\Users\Chad\Documents\Projects\GOAT_ENGINE\GOAT_ENGINE\x64\Debug\GOAT_ENGINE.exe
