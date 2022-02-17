@@ -1,9 +1,11 @@
 #include "Mesh.h"
 
-Mesh::Mesh(): vertices(), indices(), textures() {
+
+Mesh::Mesh(): vertices(), indices(), texture() {
 }
 
-Mesh::Mesh(std::vector<Vertex>& _vertices, std::vector<GLuint>& _indices, std::vector<Texture>& _textures): vertices(_vertices), indices(_indices), textures(_textures) {
+
+Mesh::Mesh(std::vector<Vertex>& _vertices, std::vector<GLuint>& _indices, Texture& _texture): vertices(_vertices), indices(_indices), texture(_texture) {
 	
 	VAO.Bind();
 
@@ -31,11 +33,24 @@ void Mesh::Draw(Shader& shader, Camera& camera) {
 	unsigned int numDiffuse = 0;
 	unsigned int numSpecular = 0;
 
+	
+	std::string num;
+	std::string type = texture.type;
+	if(type == "diffuse") {
+		num = std::to_string(numDiffuse++);
+	}
+	else if(type == "specular") {
+		num = std::to_string(numSpecular++);
+	}
+	texture.texUnit(shader, (type + num).c_str(), 0);
+	texture.Bind();
+
+	/*
 	for(unsigned int i = 0; i < textures.size(); i++) {
 		std::string num;
 		std::string type = textures[i].type;
 		if(type == "diffuse") {
-			num == std::to_string(numDiffuse++);
+			num = std::to_string(numDiffuse++);
 		}
 		else if(type == "specular") {
 			num = std::to_string(numSpecular++);
@@ -43,6 +58,9 @@ void Mesh::Draw(Shader& shader, Camera& camera) {
 		textures[i].texUnit(shader, (type + num).c_str(), i);
 		textures[i].Bind();
 	}
+	*/
+
+	
 	glUniform3f(glGetUniformLocation(shader.ID, "camPos"), camera.Position.x, camera.Position.y, camera.Position.z);
 	camera.Matrix(shader, "camMatrix");
 

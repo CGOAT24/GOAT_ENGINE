@@ -5,13 +5,13 @@
 class GameObject {
 protected:
 	Mesh mesh;
-	Texture textures[2];
+	Texture texture;
 
 	glm::vec2 position;
-	glm::vec2 size;
+	glm::vec2 scale;
 	glm::vec2 rotation;
 
 public:
-	GameObject(glm::vec2 _position, glm::vec2 _size, glm::vec2 _rotation, Texture _textures[2]);
+	GameObject(glm::vec2 _position, glm::vec2 _scale, glm::vec2 _rotation, const Texture _textures);
 };
 

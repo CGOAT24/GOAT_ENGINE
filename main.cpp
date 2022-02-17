@@ -50,12 +50,15 @@ int main() {
 	Vertex vertices[4];
 	v2ToVertex(positions, texCoords, vertices);
 
+	/*
 	Texture textures[] = {
 		Texture("planks.png", "diffuse", 0, GL_RGBA, GL_UNSIGNED_BYTE),
 		Texture("planksSpec.png", "specular", 1, GL_RED, GL_UNSIGNED_BYTE)
 	};
 
-	GameObject plank(glm::vec2(0.0f, 0.0f), glm::vec2(1.0f, 1.0f), glm::vec2(0.0f, 0.0f), textures);
+	*/
+	Texture plankTex("planks.png", "diffuse", 0, GL_RGB, GL_UNSIGNED_BYTE);
+	GameObject plank(glm::vec2(0.0f, 0.0f), glm::vec2(1.0f, 1.0f), glm::vec2(0.0f, 0.0f), plankTex);
 
 	GLuint indices[] =
 	{
@@ -94,7 +97,7 @@ int main() {
 	
 
 	Shader shaderProgram("default.vert", "default.frag");
-	
+	/*
 	std::vector<Vertex> verts(vertices, vertices + sizeof(vertices) / sizeof(Vertex));
 	std::vector<GLuint> ind(indices, indices + sizeof(indices) / sizeof(GLuint));
 	std::vector<Texture> tex(textures, textures + sizeof(textures) / sizeof(Texture));
@@ -125,7 +128,7 @@ int main() {
 	glUniformMatrix4fv(glGetUniformLocation(shaderProgram.ID, "model"), 1, GL_FALSE, glm::value_ptr(pyramidModel));
 	glUniform4f(glGetUniformLocation(shaderProgram.ID, "lightColor"), lightColor.x, lightColor.y, lightColor.z, lightColor.w);
 	glUniform3f(glGetUniformLocation(shaderProgram.ID, "lightPos"), lightPos.x, lightPos.y, lightPos.z);
-
+	*/
 	glfwSwapBuffers(window);
 	glEnable(GL_DEPTH_TEST);
 
@@ -139,7 +142,7 @@ int main() {
 		camera.Inputs(window);
 		camera.updateMatrix(90.0f, MIN_DRAW_DISTANCE, MAX_DRAW_DISTANCE);
 
-		floor.Draw(shaderProgram, camera);
+		//floor.Draw(shaderProgram, camera);
 		//light.Draw(shaderProgram, camera);
 
 		glfwSwapBuffers(window);
@@ -148,7 +151,7 @@ int main() {
 	}
 
 	shaderProgram.Delete();
-	lightShader.Delete();
+	//lightShader.Delete();
 	glfwDestroyWindow(window);
 	glfwTerminate();
 

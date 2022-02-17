@@ -1,5 +1,8 @@
 #include "Texture.h"
 
+Texture::Texture() {
+}
+
 Texture::Texture(const char* image, const char* texType, GLuint slot, GLenum format, GLenum pixelType) {
 	type = texType;
 	int widthImg, heightImg, numColCh;
