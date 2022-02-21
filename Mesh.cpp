@@ -1,7 +1,30 @@
 #include "Mesh.h"
 
 
-Mesh::Mesh(): vertices(), indices(), texture() {
+Mesh::Mesh() : texture("planks.png", "diffuse", 0, GL_UNSIGNED_BYTE), vertices({
+		{glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 0.0f, -1.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec2(0.0f, 0.0f)},
+		{glm::vec3(1.0f, 0.0f, 0.0f), glm::vec3(0.0f, 0.0f, -1.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec2(1.0f, 0.0f)},
+		{glm::vec3(0.0f, 1.0f, 0.0f), glm::vec3(0.0f, 0.0f, -1.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec2(0.0f, 1.0f)},
+		{glm::vec3(1.0f, 1.0f, 0.0f), glm::vec3(0.0f, 0.0f, -1.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec2(1.0f, 1.0f)}
+		}), indices({ 0, 1, 2, 1, 2, 3 }) {
+	
+	VAO.Bind();
+
+	//Generate Vertex Buffer Object and link it to vertices
+	VBO VBO(vertices);
+	//Generate Element Buffer Object and link it to indices
+	EBO EBO(indices);
+
+	//Link VBO to VAO
+	VAO.LinkAttrib(VBO, 0, 3, GL_FLOAT, sizeof(Vertex), (void*)0);
+	VAO.LinkAttrib(VBO, 1, 3, GL_FLOAT, sizeof(Vertex), (void*)(3 * sizeof(float)));
+	VAO.LinkAttrib(VBO, 2, 3, GL_FLOAT, sizeof(Vertex), (void*)(6 * sizeof(float)));
+	VAO.LinkAttrib(VBO, 3, 2, GL_FLOAT, sizeof(Vertex), (void*)(9 * sizeof(float)));
+
+	//Unbind every object
+	VAO.Unbind();
+	VBO.Unbind();
+	EBO.Unbind();
 }
 
 
@@ -44,22 +67,6 @@ void Mesh::Draw(Shader& shader, Camera& camera) {
 	}
 	texture.texUnit(shader, (type + num).c_str(), 0);
 	texture.Bind();
-
-	/*
-	for(unsigned int i = 0; i < textures.size(); i++) {
-		std::string num;
-		std::string type = textures[i].type;
-		if(type == "diffuse") {
-			num = std::to_string(numDiffuse++);
-		}
-		else if(type == "specular") {
-			num = std::to_string(numSpecular++);
-		}
-		textures[i].texUnit(shader, (type + num).c_str(), i);
-		textures[i].Bind();
-	}
-	*/
-
 	
 	glUniform3f(glGetUniformLocation(shader.ID, "camPos"), camera.Position.x, camera.Position.y, camera.Position.z);
 	camera.Matrix(shader, "camMatrix");

@@ -1,8 +1,6 @@
 #include "GameObject.h"
-#include "Functions.h"
 
-GameObject::GameObject(glm::vec2 _position, glm::vec2 _scale, glm::vec2 _rotation, const Texture& _texture): position(_position), scale(_scale), rotation(_rotation), texture(_texture.image, ) {
-
+GameObject::GameObject(glm::vec2 _position, glm::vec2 _scale, glm::vec2 _rotation, const char* _texName): position(_position), scale(_scale), rotation(_rotation), texture(_texName, "diffuse", 0, GL_UNSIGNED_BYTE), mesh() {
 	Vertex vertices[4];
 	
 	std::vector<glm::vec2> vertPos = {
@@ -13,13 +11,20 @@ GameObject::GameObject(glm::vec2 _position, glm::vec2 _scale, glm::vec2 _rotatio
 	};
 
 	std::vector<glm::vec2> texCoords = {
-		glm::vec2(0.0f, 0.0f),												//bottom left
-		glm::vec2(1.0f, 0.0f),												//bottom right
-		glm::vec2(1.0f, 1.0f),												//top right
-		glm::vec2(0.0f, 1.0f)												//top left
+		glm::vec2(0.0f, 0.0f),													//bottom left
+		glm::vec2(1.0f, 0.0f),													//bottom right
+		glm::vec2(1.0f, 1.0f),													//top right
+		glm::vec2(0.0f, 1.0f)													//top left
 	};
-	
-	v2ToVertex(vertPos, texCoords, vertices);
+
+	for(int i(0); i < vertPos.size(); i++) {
+		glm::vec3 position(vertPos.at(i).x, vertPos.at(i).y, 0.0f);
+		glm::vec3 normal(0.0f, 0.0f, 1.0f);
+		glm::vec3 color(1.0f, 1.0f, 1.0f);
+
+		Vertex vi{ position, normal, color, texCoords.at(i) };
+		vertices[i] = vi;
+	}
 
 	GLuint indices[] = {
 		0, 1, 2,
@@ -28,8 +33,10 @@ GameObject::GameObject(glm::vec2 _position, glm::vec2 _scale, glm::vec2 _rotatio
 
 	std::vector<Vertex> verts(vertices, vertices + sizeof(vertices) / sizeof(Vertex));
 	std::vector<GLuint> ind(indices, indices + sizeof(indices) / sizeof(GLuint));
-	/*std::vector<Texture> tex(texture, texture + sizeof(texture) / sizeof(Texture));*/
 
+	mesh = Mesh(verts, ind, texture);
+}
 
-	mesh = Mesh(verts, ind, _texture);
+void GameObject::render(Shader& shader, Camera& camera) {
+	this->mesh.Draw(shader, camera);
 }
