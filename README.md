@@ -45,40 +45,40 @@
   <summary>Table des matières</summary>
   <ol>
     <li>
-      <a href="#about-the-project">À propos du projet</a>
+      <a href="#à-propos-du-projet">À propos du projet</a>
       <ul>
-        <li><a href="#built-with">Construit avec</a></li>
+        <li><a href="#construit-avec">Construit avec</a></li>
       </ul>
     </li>
     <li>
-      <a href="#getting-started">Commencer</a>
+      <a href="#commencer">Commencer</a>
       <ul>
-        <li><a href="#prerequisites">Conditions préalables</a></li>
+        <li><a href="#préalables">Préalables</a></li>
         <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
-    <li><a href="#contributing">Contribué</a></li>
+    <li><a href="#contribution">Contribution</a></li>
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgments">Remerciements</a></li>
+    <li><a href="#remerciements">Remerciements</a></li>
   </ol>
 </details>
 
 
 
 <!-- ABOUT THE PROJECT -->
-## About The Project
+## À propos du projet
 
 [![Product Name Screen Shot][product-screenshot]](https://example.com)
 
-Here's a blank template to get started: To avoid retyping too much info. Do a search and replace with your text editor for the following: `github_username`, `repo_name`, `twitter_handle`, `linkedin_username`, `email`, `email_client`, `project_title`, `project_description`
+Utiliser la puissance de OpenGL et du c++ pour créer votre jeux vidéo sans la complexité d'openGl. Goat engine vous fournis une structure simple a utiliser sans sacrifier de la puissance. 
 
-<p align="right">(<a href="#top">back to top</a>)</p>
+<p align="right">(<a href="#top">retour au début</a>)</p>
 
 
 
-### Built With
+### Construit avec
 
 * [GLFW](https://www.glfw.org/)
 * [GLAD](https://github.com/Dav1dde/glad)
@@ -86,17 +86,17 @@ Here's a blank template to get started: To avoid retyping too much info. Do a se
 * [OpenGL Mathematics (GLM)](https://github.com/g-truc/glm)
 * [STB](https://github.com/nothings/stb)
 
-<p align="right">(<a href="#top">back to top</a>)</p>
+<p align="right">(<a href="#top">retour au début</a>)</p>
 
 
 
 <!-- GETTING STARTED -->
-## Getting Started
+## Commencer
 
 This is an example of how you may give instructions on setting up your project locally.
 To get a local copy up and running follow these simple example steps.
 
-### Prerequisites
+### Préalables
 
 This is an example of how to list things you need to use the software and how to install them.
 * npm
@@ -120,7 +120,7 @@ This is an example of how to list things you need to use the software and how to
    const API_KEY = 'ENTER YOUR API';
    ```
 
-<p align="right">(<a href="#top">back to top</a>)</p>
+<p align="right">(<a href="#top">retour au début</a>)</p>
 
 
 
@@ -129,72 +129,59 @@ This is an example of how to list things you need to use the software and how to
 
 Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
 
-_For more examples, please refer to the [Documentation](https://example.com)_
+_Pour plus d'exemples, veuillez consulter la [Documentation](https://github.com/CGOAT24/GOAT_ENGINE/wiki)_
 
-<p align="right">(<a href="#top">back to top</a>)</p>
-
-
-
-<!-- ROADMAP -->
-## Roadmap
-
-- [ ] Feature 1
-- [ ] Feature 2
-- [ ] Feature 3
-    - [ ] Nested Feature
-
-See the [open issues](https://github.com/github_username/repo_name/issues) for a full list of proposed features (and known issues).
-
-<p align="right">(<a href="#top">back to top</a>)</p>
-
+<p align="right">(<a href="#top">retour au début</a>)</p>
 
 
 <!-- CONTRIBUTING -->
-## Contributing
+## Contribution
 
-Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+Les contributions sont ce qui fait de la communauté open source un endroit incroyable pour apprendre, inspirer et créer. Toutes les contributions que vous faites sont ** grandement appréciées **.
 
-If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
-Don't forget to give the project a star! Thanks again!
+Si vous avez une suggestion qui améliorerait cela, veuillez fork le dépôt et créer une pull request. Vous pouvez aussi simplement ouvrir un ticket avec le tag "amélioration".
+N'oubliez pas de mettre une étoile au projet ! Merci encore!
 
-1. Fork the Project
+1. Fork le projet
 2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+3. Créez votre branche de fonctionnalité (`git commit -m 'Add some AmazingFeature'`)
+4. Pousser vers la branche (`git push origin feature/AmazingFeature`)
+5. Ouvrer une Pull Request
 
-<p align="right">(<a href="#top">back to top</a>)</p>
+<p align="right">(<a href="#top">retour au début</a>)</p>
 
 
 
 <!-- LICENSE -->
 ## License
 
-Distributed under the MIT License. See `LICENSE.txt` for more information.
+Distribué sous la licence Apache 2.0. Voir `LICENSE.txt` pour plus d'informations.
 
-<p align="right">(<a href="#top">back to top</a>)</p>
+<p align="right">(<a href="#top">retour au début</a>)</p>
 
 
 
 <!-- CONTACT -->
 ## Contact
 
-Your Name - [@twitter_handle](https://twitter.com/twitter_handle) - email@email_client.com
+Chad Gauthier - chad.gauthier32@gmail.com
 
-Project Link: [https://github.com/github_username/repo_name](https://github.com/github_username/repo_name)
+Louka Gauthier - [@loukag05](https://twitter.com/loukag05) - loukagauthier55@gmail.com
 
-<p align="right">(<a href="#top">back to top</a>)</p>
+Lien du projet: [https://github.com/CGOAT24/GOAT_ENGINE/](https://github.com/CGOAT24/GOAT_ENGINE/)
+
+<p align="right">(<a href="#top">retour au début</a>)</p>
 
 
 
 <!-- ACKNOWLEDGMENTS -->
-## Acknowledgments
+## Remerciements
 
 * []()
 * []()
 * []()
 
-<p align="right">(<a href="#top">back to top</a>)</p>
+<p align="right">(<a href="#top">retour au début</a>)</p>
 
 
 
