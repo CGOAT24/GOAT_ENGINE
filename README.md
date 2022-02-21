@@ -18,23 +18,23 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/github_username/repo_name">
+  <a href="https://github.com/GOAT_ENGINE/repo_name">
     <img src="images/logo.png" alt="Logo" width="80" height="80">
   </a>
 
 <h3 align="center">GOAT ENGINE</h3>
 
   <p align="center">
-    project_description
+    Bééééhhhhh
     <br />
     <a href="https://github.com/CGOAT24/GOAT_ENGINE/wiki"><strong>Explorer la docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/github_username/repo_name">View Demo</a>
+    <a href="https://github.com/CGOAT24/GOAT_ENGINE">Voir la démo</a>
     ·
-    <a href="https://github.com/github_username/repo_name/issues">Report Bug</a>
+    <a href="https://github.com/CGOAT24/GOAT_ENGINE/issues">Rapportez une erreur</a>
     ·
-    <a href="https://github.com/github_username/repo_name/issues">Request Feature</a>
+    <a href="https://github.com/CGOAT24/GOAT_ENGINE/issues">Demander une fonctionnalité</a>
   </p>
 </div>
 
@@ -58,11 +58,10 @@
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
+    <li><a href="#contributing">Contribué</a></li>
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
+    <li><a href="#acknowledgments">Remerciements</a></li>
   </ol>
 </details>
 
