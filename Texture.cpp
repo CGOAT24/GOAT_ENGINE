@@ -1,17 +1,31 @@
 #include "Texture.h"
 
-Texture::Texture() {
-}
-
-Texture::Texture(const char* image, const char* texType, GLuint slot, GLenum format, GLenum pixelType) {
-	type = texType;
+Texture::Texture(const char* image, const char* texType, GLuint slot, GLenum pixelType) {
+	GLenum format;
 	int widthImg, heightImg, numColCh;
+	type = texType;
+	unit = slot;
 	stbi_set_flip_vertically_on_load(true);
 	unsigned char* bytes = stbi_load(image, &widthImg, &heightImg, &numColCh, 0);
 
+	switch(numColCh) {
+		case 1:
+			format = GL_RED;
+			break;
+		case 3:
+			format = GL_RGB;
+			break;
+		case 4:
+			format = GL_RGBA;
+			break;
+		default:
+			throw std::invalid_argument("le type de texture n'a pas pu être reconnu");	//Message d'erreur à revoir
+			break;
+	}
+
 	glGenTextures(1, &ID);
-	glActiveTexture(GL_TEXTURE0 + slot);
-	unit = slot;
+	glActiveTexture(GL_TEXTURE + slot);
+	
 	glBindTexture(GL_TEXTURE_2D, ID);
 
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);

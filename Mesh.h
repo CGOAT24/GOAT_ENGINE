@@ -18,6 +18,5 @@ public:
 	Mesh(std::vector<Vertex>& vertices, std::vector<GLuint>& indices, Texture& textures);
 
 	void Draw(Shader& shader, Camera& camera);
-
 };
 #endif

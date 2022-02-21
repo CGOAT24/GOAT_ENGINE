@@ -12,6 +12,7 @@ protected:
 	glm::vec2 rotation;
 
 public:
-	GameObject(glm::vec2 _position, glm::vec2 _scale, glm::vec2 _rotation, const Texture _textures);
+	GameObject(glm::vec2 _position, glm::vec2 _scale, glm::vec2 _rotation, const char* _texName);
+	void render(Shader& shader, Camera& camera);
 };
 

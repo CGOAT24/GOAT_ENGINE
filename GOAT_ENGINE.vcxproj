@@ -151,7 +151,6 @@
     <ClCompile Include="GameWindow.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Scene.cpp" />
-    <ClCompile Include="Functions.cpp" />
     <ClCompile Include="glad.c" />
     <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="shaderClass.cpp" />
@@ -166,7 +165,6 @@
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameWindow.h" />
     <ClInclude Include="Scene.h" />
-    <ClInclude Include="Functions.h" />
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="shaderClass.h" />
     <ClInclude Include="Texture.h" />
@@ -180,6 +178,7 @@
     <None Include="light.vert" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="background.png" />
     <Image Include="planks.png" />
     <Image Include="planksSpec.png" />
   </ItemGroup>
