@@ -19,6 +19,8 @@ public:
 	void render(Camera& camera);
 	~GameObject();
 	void translate(glm::mat4 mat);
+	void setScale(glm::vec2 scaleMult);
+	void rotate(glm::vec2 rotation);
 };
 
 #endif

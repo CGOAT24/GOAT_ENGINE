@@ -43,10 +43,10 @@ void Camera::Matrix(Shader& shader, const char* uniform) {
 /// <param name="window"></param>
 void Camera::Inputs(GLFWwindow* window) {
 	if(glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS) {
-		speed = 0.004f;
+		speed = 0.04f;
 	}
 	else if(glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) == GLFW_RELEASE) {
-		speed = 0.0001f;
+		speed = 0.01f;
 	}
 
 	if(glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS) {
