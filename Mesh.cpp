@@ -10,40 +10,31 @@ Mesh::Mesh() : texture("planks.png", "diffuse", 0, GL_UNSIGNED_BYTE), vertices({
 	
 	VAO.Bind();
 
-	//Generate Vertex Buffer Object and link it to vertices
 	VBO VBO(vertices);
-	//Generate Element Buffer Object and link it to indices
 	EBO EBO(indices);
 
-	//Link VBO to VAO
 	VAO.LinkAttrib(VBO, 0, 3, GL_FLOAT, sizeof(Vertex), (void*)0);
 	VAO.LinkAttrib(VBO, 1, 3, GL_FLOAT, sizeof(Vertex), (void*)(3 * sizeof(float)));
 	VAO.LinkAttrib(VBO, 2, 3, GL_FLOAT, sizeof(Vertex), (void*)(6 * sizeof(float)));
 	VAO.LinkAttrib(VBO, 3, 2, GL_FLOAT, sizeof(Vertex), (void*)(9 * sizeof(float)));
 
-	//Unbind every object
 	VAO.Unbind();
 	VBO.Unbind();
 	EBO.Unbind();
 }
 
-
 Mesh::Mesh(std::vector<Vertex>& _vertices, std::vector<GLuint>& _indices, Texture& _texture): vertices(_vertices), indices(_indices), texture(_texture) {
 	
 	VAO.Bind();
 
-	//Generate Vertex Buffer Object and link it to vertices
 	VBO VBO(vertices);
-	//Generate Element Buffer Object and link it to indices
 	EBO EBO(indices);
 
-	//Link VBO to VAO
 	VAO.LinkAttrib(VBO, 0, 3, GL_FLOAT, sizeof(Vertex), (void*)0);
 	VAO.LinkAttrib(VBO, 1, 3, GL_FLOAT, sizeof(Vertex), (void*)(3 * sizeof(float)));
 	VAO.LinkAttrib(VBO, 2, 3, GL_FLOAT, sizeof(Vertex), (void*)(6 * sizeof(float)));
 	VAO.LinkAttrib(VBO, 3, 2, GL_FLOAT, sizeof(Vertex), (void*)(9 * sizeof(float)));
 
-	//Unbind every object
 	VAO.Unbind();
 	VBO.Unbind();
 	EBO.Unbind();
@@ -55,7 +46,6 @@ void Mesh::Draw(Shader& shader, Camera& camera) {
 
 	unsigned int numDiffuse = 0;
 	unsigned int numSpecular = 0;
-
 	
 	std::string num;
 	std::string type = texture.type;

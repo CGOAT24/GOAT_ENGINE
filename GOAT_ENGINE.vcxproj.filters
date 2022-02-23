@@ -16,9 +16,6 @@
     <Filter Include="Resource Files\Shader">
       <UniqueIdentifier>{69bc2515-5959-4be7-8d7f-dee11a1be70d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Resource Files\Textures">
-      <UniqueIdentifier>{82a1728b-6ac6-4247-9294-c655097b1ad9}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="glad.c">
@@ -60,6 +57,9 @@
     <ClCompile Include="Mesh.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Light.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="shaderClass.h">
@@ -92,6 +92,9 @@
     <ClInclude Include="Mesh.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Light.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="default.vert">
@@ -106,16 +109,5 @@
     <None Include="light.vert">
       <Filter>Resource Files\Shader</Filter>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="planks.png">
-      <Filter>Resource Files\Textures</Filter>
-    </Image>
-    <Image Include="planksSpec.png">
-      <Filter>Resource Files\Textures</Filter>
-    </Image>
-    <Image Include="background.png">
-      <Filter>Resource Files\Textures</Filter>
-    </Image>
   </ItemGroup>
 </Project>

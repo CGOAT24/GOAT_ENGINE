@@ -121,6 +121,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -149,6 +150,7 @@
     <ClCompile Include="EBO.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GameWindow.cpp" />
+    <ClCompile Include="Light.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="glad.c" />
@@ -164,6 +166,7 @@
     <ClInclude Include="EBO.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameWindow.h" />
+    <ClInclude Include="Light.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="shaderClass.h" />
@@ -176,11 +179,6 @@
     <None Include="default.vert" />
     <None Include="light.frag" />
     <None Include="light.vert" />
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="background.png" />
-    <Image Include="planks.png" />
-    <Image Include="planksSpec.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
