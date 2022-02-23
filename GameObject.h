@@ -1,11 +1,14 @@
-#pragma once
+#ifndef GAMEOBJECT_CLASS_H
+#define GAMEOBJECT_CLASS_H
 
-#include "Mesh.h"
+#include "Light.h"
 
 class GameObject {
 protected:
 	Mesh mesh;
 	Texture texture;
+	Shader shader;
+	Light light;
 
 	glm::vec2 position;
 	glm::vec2 scale;
@@ -13,6 +16,9 @@ protected:
 
 public:
 	GameObject(glm::vec2 _position, glm::vec2 _scale, glm::vec2 _rotation, const char* _texName);
-	void render(Shader& shader, Camera& camera);
+	void render(Camera& camera);
+	~GameObject();
+	void translate(glm::mat4 mat);
 };
 
+#endif

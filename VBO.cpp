@@ -1,9 +1,5 @@
 #include "VBO.h"
 
-/// <summary>
-/// Constructeur pour le Vertex Buffer Object
-/// </summary>
-/// <param name="vertices"></param>
 VBO::VBO(std::vector<Vertex>& vertices) {
 	glGenBuffers(1, &this->ID);
 	glBindBuffer(GL_ARRAY_BUFFER, this->ID);
