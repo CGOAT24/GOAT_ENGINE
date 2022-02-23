@@ -51,3 +51,9 @@ GameObject::~GameObject() {
 void GameObject::translate(glm::mat4 mat) {
 
 }
+
+void GameObject::setScale(glm::vec2 scaleMult) {
+}
+
+void GameObject::rotate(glm::vec2 rotation) {
+}

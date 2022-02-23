@@ -9,10 +9,6 @@
 #include "GameObject.h"
 
 int main() {
-	/*
-	GameWindow gameWindow(800, 800);
-	gameWindow.createWindow();
-	*/
 
 	const unsigned int WIN_HEIGHT(800);
 	const unsigned int WIN_WIDTH(800);
