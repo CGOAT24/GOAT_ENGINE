@@ -31,7 +31,8 @@ int main() {
 	gladLoadGL();
 	glViewport(0, 0, WIN_WIDTH, WIN_HEIGHT);
 
-	GameObject plank(glm::vec2(0.0f, 0.0f), glm::vec2(1.0f, 1.0f), glm::vec2(0.0f, 0.0f), "planks.png");
+	GameObject plank(glm::vec2(0.0f, 0.0f), glm::vec2(1.0f, 1.0f), glm::vec3(0.0f, 0.0f, 0.0f), "planks.png");
+	GameObject fella(glm::vec2(1.0f, 1.0f), glm::vec2(1.0f, 2.0f), glm::vec3(0.0f, 0.0f, 0.0f), "character.png");
 	Camera camera(WIN_WIDTH, WIN_HEIGHT, glm::vec3(0.0f, 0.0f, 5.0f));
 
 	glfwSwapBuffers(window);
@@ -43,8 +44,9 @@ int main() {
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 		camera.Inputs(window);
-		camera.updateMatrix(90.0f, MIN_DRAW_DISTANCE, MAX_DRAW_DISTANCE);
-
+		camera.updateMatrix(60.0f, MIN_DRAW_DISTANCE, MAX_DRAW_DISTANCE);
+		
+		fella.render(camera);
 		plank.render(camera);
 
 		glfwSwapBuffers(window);

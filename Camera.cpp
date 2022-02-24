@@ -1,23 +1,11 @@
 #include "Camera.h"
 
-/// <summary>
-/// Constructeur pour la classe caméra
-/// </summary>
-/// <param name="width">largeur de la caméra. Il est recommandé d'utilisateur la largeur de la fenêtre</param>
-/// <param name="height">Hauteur de la caméra. Il est recommandé d'utilisateur la hauteur de la fenêtre</param>
-/// <param name="position">Position de la caméra</param>
 Camera::Camera(int width, int height, glm::vec3 position) {
 	Camera::width = width;
 	Camera::height = height;
 	Position = position;
 }
 
-/// <summary>
-///	
-/// </summary>
-/// <param name="FOVdeg">L'angle du champ de vision de la caméra</param>
-/// <param name="nearPlane">Distance minimale où la caméra va rendre les modèles</param>
-/// <param name="farPlane">Distance maximale où la caméra va rendre les modèles</param>
 void Camera::updateMatrix(float FOVdeg, float nearPlane, float farPlane) {
 	glm::mat4 view = glm::mat4(1.0f);
 	glm::mat4 projection = glm::mat4(1.0f);
@@ -28,19 +16,10 @@ void Camera::updateMatrix(float FOVdeg, float nearPlane, float farPlane) {
 	cameraMatrix = projection * view;
 }
 
-/// <summary>
-/// 
-/// </summary>
-/// <param name="shader"></param>
-/// <param name="uniform"></param>
 void Camera::Matrix(Shader& shader, const char* uniform) {
 	glUniformMatrix4fv(glGetUniformLocation(shader.ID, uniform), 1, GL_FALSE, glm::value_ptr(cameraMatrix));
 }
 
-/// <summary>
-/// 
-/// </summary>
-/// <param name="window"></param>
 void Camera::Inputs(GLFWwindow* window) {
 	if(glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS) {
 		speed = 0.04f;

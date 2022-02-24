@@ -11,8 +11,8 @@ public:
 	Shader shader;
 	Mesh light;
 	
-	Light();
-	Light(glm::vec4 _color);
+	Light(glm::vec3 _position);
+	Light(glm::vec3 _position, glm::vec4 _color);
 	void Activate(Shader objShader);
 };
 
