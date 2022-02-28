@@ -47,6 +47,8 @@ int main() {
 		camera.updateMatrix(60.0f, MIN_DRAW_DISTANCE, MAX_DRAW_DISTANCE);
 		
 		fella.render(camera);
+
+		plank.setScale(glm::vec3(0.1f, 2.0f, 1.0f));
 		plank.render(camera);
 
 		glfwSwapBuffers(window);
