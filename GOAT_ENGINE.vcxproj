@@ -164,9 +164,11 @@
   <ItemGroup>
     <ClInclude Include="Camera.h" />
     <ClInclude Include="EBO.h" />
+    <ClInclude Include="Event.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameWindow.h" />
     <ClInclude Include="Light.h" />
+    <ClInclude Include="MouseEvent.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="shaderClass.h" />
