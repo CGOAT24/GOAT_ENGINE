@@ -1,6 +1,6 @@
 #include "GameObject.h"
 
-GameObject::GameObject(glm::vec2 _position, glm::vec2 _scale, glm::vec3 _rotation, const char* _texName): translation(_position.x, _position.y, 0.0f), scale(_scale.x, _scale.y, 0.0f), rotation(_rotation), texture(_texName, "diffuse", 0, GL_UNSIGNED_BYTE), mesh(), shader("default.vert", "default.frag"), light(glm::vec3(_position.x, _position.y, 0.0f)) {
+GameObject::GameObject(glm::vec2 _position, glm::vec2 _scale, glm::vec3 _rotation, const char* _texName): position(_position.x, _position.y, 0.0f), scale(_scale.x, _scale.y, 0.0f), rotation(_rotation), texture(_texName, "diffuse", 0, GL_UNSIGNED_BYTE), mesh(), shader("default.vert", "default.frag"), light(glm::vec3(_position.x, _position.y, 0.0f)) {
 	Vertex vertices[4];
 
 	std::vector<glm::vec2> vertPos = {
@@ -36,14 +36,23 @@ GameObject::GameObject(glm::vec2 _position, glm::vec2 _scale, glm::vec3 _rotatio
 
 	this->mesh = Mesh(verts, ind, texture);
 	this->light.Activate(shader);
+
+	this->rotateX(_rotation.x);
+	this->rotateY(_rotation.y);
+	this->rotateZ(_rotation.z);
 }
 
 glm::vec3 GameObject::getPosition() const {
-	return this->translation;
+	return this->position;
 }
 
-glm::vec3 GameObject::getScale() const {
-	return glm::vec3();
+glm::vec2 GameObject::getScale() const {
+	return glm::vec2(this->scale.x, this->scale.y);
+}
+
+glm::vec3 GameObject::getRotation() const
+{
+	return this->rotation;
 }
 
 void GameObject::render(Camera& camera) {
@@ -51,17 +60,17 @@ void GameObject::render(Camera& camera) {
 }
 
 void GameObject::translate(glm::vec2 movement) {
-	this->translation.x += movement.x / 1000;
-	this->translation.y += movement.y / 1000;
+	this->position.x += movement.x / 1000;
+	this->position.y += movement.y / 1000;
 	glm::mat4 model(1.0f);
 
-	model = glm::translate(model, this->translation);
+	model = glm::translate(model, this->position);
 	shader.Activate();
 	glUniformMatrix4fv(glGetUniformLocation(shader.ID, "model"), 1, GL_FALSE, glm::value_ptr(model));
 }
 
-void GameObject::setScale(glm::vec3 mult) {
-	this->scale = mult;
+void GameObject::setScale(glm::vec2 scale) {
+	this->scale = glm::vec3(scale.x, scale.y, 1.0f);	//à tester
 	glm::mat4 model(1.0f);
 	model = glm::scale(model, this->scale);
 	shader.Activate();

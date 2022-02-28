@@ -6,15 +6,7 @@ using std::chrono::milliseconds;
 using std::chrono::seconds;
 using std::chrono::system_clock;
 
-
-GameWindow::GameWindow(unsigned int _width, unsigned _height, Scene _scene) {
-	
-	width = _width;
-	height = _height;
-	currentFps = 0;
-	maxFps = 60;
-	timeBetweenFrame = 1000000 / maxFps;
-	currentScene = _scene;
+GameWindow::GameWindow(unsigned int _width, unsigned _height, Scene _scene): width(_width), height(_height), currentFps(0), maxFps(60), timeBetweenFrame(1000000 / maxFps), currentScene(_scene){
 }
 
 /// <summary>
@@ -64,7 +56,7 @@ int GameWindow::createWindow() {
 			currentFps = frame;
 			frame = 0;
 			lastFpsUpdate = std::chrono::high_resolution_clock::now();
-			cout << currentFps << " fps"<<std::endl;
+			cout << currentFps << " fps" << std::endl;
 			elapsed = std::chrono::high_resolution_clock::now() - lastFpsUpdate;
 		}
 		unsigned long nextFrame;
