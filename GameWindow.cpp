@@ -10,7 +10,7 @@ GameWindow::GameWindow(unsigned int _width, unsigned _height, Scene _scene) : wi
 	isRunning = true;
 	thread = std::thread(&GameWindow::createWindow,this);
 	isStart = false;
-	while(isStart)
+	while(!isStart)
 		std::this_thread::sleep_for(std::chrono::microseconds(100));
 }
 

@@ -10,13 +10,12 @@
 class Scene {
 private:
 	std::vector<GameObject> gameObjets[10];
-	Camera camera;
 
 public:
 	Scene();
-	void draw();
+	void draw(Camera &camera);
 	void update();
-	void addGameObject(GameObject obj, unsigned int layer);
+	void addGameObject(GameObject& obj, unsigned int layer);
 };
 
 #endif

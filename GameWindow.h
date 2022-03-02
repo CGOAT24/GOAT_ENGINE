@@ -33,7 +33,7 @@ public:
 	Scene currentScene;
 	void createWindow();
 	bool isRunning, isStart;
-	GLFWwindow glfwwindow;
+	GLFWwindow* glfwwindow;
 	
 };
 

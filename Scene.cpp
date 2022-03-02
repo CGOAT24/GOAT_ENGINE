@@ -1,12 +1,19 @@
 #include "Scene.h"
 
+Scene::Scene() {
+
+}
 
 
-void Scene::draw() {
-	for(int layer=9;layer>0;layer--)
+void Scene::draw(Camera &camera) {
+	
+	for (int layer = 9; layer >= 0; layer--) {
+		
 		for (GameObject& obj : gameObjets[layer]) {
-			//obj.render();
+			
+			obj.render(camera);
 		}
+	}
 		
 	
 }
@@ -14,11 +21,12 @@ void Scene::draw() {
 void Scene::update() {
 	for (int layer = 0; layer < 10; layer++)
 		for (GameObject& obj : gameObjets[layer]) {
-			//update
+			
 		}
 		
 }
 
-void Scene::addGameObject(GameObject obj, unsigned int layer) {
+void Scene::addGameObject(GameObject& obj, unsigned int layer) {
+	std::cout << "new obj ";
 	gameObjets[layer].push_back(obj);
 }
