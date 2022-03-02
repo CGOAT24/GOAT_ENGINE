@@ -24,11 +24,17 @@ class GameWindow
 private:
 	unsigned int width, height, currentFps, maxFps;
 	unsigned long timeBetweenFrame;
-	Scene currentScene;
+	
+	
+	Camera camera;
+	std::thread thread;
 public:
 	GameWindow(unsigned int _width, unsigned _height, Scene _scene);
-
-	int createWindow();
+	Scene currentScene;
+	void createWindow();
+	bool isRunning, isStart;
+	GLFWwindow glfwwindow;
+	
 };
 
 #endif

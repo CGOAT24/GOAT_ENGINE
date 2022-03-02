@@ -6,30 +6,34 @@ using std::chrono::milliseconds;
 using std::chrono::seconds;
 using std::chrono::system_clock;
 
-GameWindow::GameWindow(unsigned int _width, unsigned _height, Scene _scene): width(_width), height(_height), currentFps(0), maxFps(60), timeBetweenFrame(1000000 / maxFps), currentScene(_scene){
+GameWindow::GameWindow(unsigned int _width, unsigned _height, Scene _scene) : width(_width), height(_height), currentFps(0), maxFps(60), timeBetweenFrame(1000000 / maxFps), currentScene(_scene), camera(Camera(width, height, glm::vec3(0.0f, 0.0f, 5.0f))) {
+	isRunning = true;
+	thread = std::thread(&GameWindow::createWindow,this);
+	isStart = false;
+	while(isStart)
+		std::this_thread::sleep_for(std::chrono::microseconds(100));
 }
 
 /// <summary>
 /// Créer la fenêtre et démarer le jeux
 /// </summary>
 /// <returns>Code de réponse</returns>
-int GameWindow::createWindow() {
+void GameWindow::createWindow() {
 	//Créer la fenêtre
 	glfwInit();
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-	GLFWwindow* window = glfwCreateWindow(width, height, "GOAT_ENGINE", NULL, NULL);
-
+	glfwwindow = glfwCreateWindow(width, height, "GOAT_ENGINE", NULL, NULL);
 	//Si erreur durant la création de la fenêtre
-	if (window == NULL) {
+	if (glfwwindow == NULL) {
 		std::cout << "Failed to create Window" << std::endl;
 		glfwTerminate();
-		return -1;
+		return;
 	}
 
-	glfwMakeContextCurrent(window);
+	glfwMakeContextCurrent(glfwwindow);
 
 	gladLoadGL();
 	glViewport(0, 0, width, height);
@@ -38,15 +42,16 @@ int GameWindow::createWindow() {
 	auto lastFpsUpdate = std::chrono::high_resolution_clock::now();
 
 	unsigned int frame = 0;
-
-	while (!glfwWindowShouldClose(window)) {
+	isStart = true;
+	while (!glfwWindowShouldClose(glfwwindow)) {
 		auto startFrame = std::chrono::high_resolution_clock::now();
 
 		glfwPollEvents();
 		
+		camera.updateMatrix(60.0f, 1.0f, 100.0f);
 		//Update et render la scène
 		currentScene.update();
-		currentScene.draw();
+		currentScene.draw(camera);
 
 		frame++;
 
@@ -76,9 +81,8 @@ int GameWindow::createWindow() {
 		std::this_thread::sleep_for(std::chrono::microseconds(nextFrame));
 	}
 
-	glfwDestroyWindow(window);
+	glfwDestroyWindow(glfwwindow);
 	glfwTerminate();
-
-	return 0;
+	isRunning = false;
+	return;
 }
-
