@@ -1,5 +1,16 @@
 #include "GameObject.h"
 
+void GameObject::transform() {
+	glm::mat4 model(1.0f);
+	model = glm::scale(model, this->scale);
+	model = glm::rotate(model, glm::radians(this->rotation.x), glm::vec3(1.0f, 0.0f, 0.0f));
+	model = glm::rotate(model, glm::radians(this->rotation.y), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::rotate(model, glm::radians(this->rotation.z), glm::vec3(0.0f, 0.0f, 1.0f));
+	model = glm::translate(model, this->position);
+	shader.Activate();
+	glUniformMatrix4fv(glGetUniformLocation(shader.ID, "model"), 1, GL_FALSE, glm::value_ptr(model));
+}
+
 GameObject::GameObject(glm::vec2 _position, glm::vec2 _scale, glm::vec3 _rotation, const char* _texName): position(_position.x, _position.y, 0.0f), scale(_scale.x, _scale.y, 0.0f), rotation(_rotation), texture(_texName, "diffuse", 0, GL_UNSIGNED_BYTE), mesh(), shader("default.vert", "default.frag"), light(glm::vec3(_position.x, _position.y, 0.0f)) {
 	Vertex vertices[4];
 
@@ -40,6 +51,11 @@ GameObject::GameObject(glm::vec2 _position, glm::vec2 _scale, glm::vec3 _rotatio
 	this->rotateX(_rotation.x);
 	this->rotateY(_rotation.y);
 	this->rotateZ(_rotation.z);
+
+	glm::mat4 model(1.0f);
+	model = glm::translate(model, this->position);
+	shader.Activate();
+	glUniformMatrix4fv(glGetUniformLocation(shader.ID, "model"), 1, GL_FALSE, glm::value_ptr(model));
 }
 
 glm::vec3 GameObject::getPosition() const {
@@ -62,41 +78,30 @@ void GameObject::render(Camera& camera) {
 void GameObject::translate(glm::vec2 movement) {
 	this->position.x += movement.x / 1000;
 	this->position.y += movement.y / 1000;
-	glm::mat4 model(1.0f);
 
-	model = glm::translate(model, this->position);
-	shader.Activate();
-	glUniformMatrix4fv(glGetUniformLocation(shader.ID, "model"), 1, GL_FALSE, glm::value_ptr(model));
+	this->transform();
 }
 
 void GameObject::setScale(glm::vec2 scale) {
-	this->scale = glm::vec3(scale.x, scale.y, 1.0f);	//à tester
-	glm::mat4 model(1.0f);
-	model = glm::scale(model, this->scale);
-	shader.Activate();
-	glUniformMatrix4fv(glGetUniformLocation(shader.ID, "model"), 1, GL_FALSE, glm::value_ptr(model));
+	this->scale = glm::vec3(scale.x, scale.y, 1.0f);
+
+	this->transform();
 }
 
 void GameObject::rotateX(float rotation) {
 	this->rotation.x += rotation;
-	glm::mat4 model(1.0f);
-	model = glm::rotate(model, glm::radians(this->rotation.x), glm::vec3(1.0f, 0.0f, 0.0f));
-	shader.Activate();
-	glUniformMatrix4fv(glGetUniformLocation(shader.ID, "model"), 1, GL_FALSE, glm::value_ptr(model));
+
+	this->transform();
 }
 
 void GameObject::rotateY(float rotation) {
 	this->rotation.y += rotation;
-	glm::mat4 model(1.0f);
-	model = glm::rotate(model, glm::radians(this->rotation.y), glm::vec3(0.0f, 1.0f, 0.0f));
-	shader.Activate();
-	glUniformMatrix4fv(glGetUniformLocation(shader.ID, "model"), 1, GL_FALSE, glm::value_ptr(model));
+
+	this->transform();
 }
 
 void GameObject::rotateZ(float rotation) {
 	this->rotation.z += rotation;
-	glm::mat4 model(1.0f);
-	model = glm::rotate(model, glm::radians(this->rotation.z), glm::vec3(0.0f, 0.0f, 1.0f));
-	shader.Activate();
-	glUniformMatrix4fv(glGetUniformLocation(shader.ID, "model"), 1, GL_FALSE, glm::value_ptr(model));
+
+	this->transform();
 }
