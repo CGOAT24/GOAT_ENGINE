@@ -7,6 +7,7 @@
 #include <glm/gtc/type_ptr.hpp>
 
 #include "GameObject.h"
+#include "Event.h"
 
 int main() {
 
@@ -32,23 +33,43 @@ int main() {
 	glViewport(0, 0, WIN_WIDTH, WIN_HEIGHT);
 
 	GameObject plank(glm::vec2(0.0f, 0.0f), glm::vec2(1.0f, 1.0f), glm::vec3(0.0f, 0.0f, 0.0f), "planks.png");
-	GameObject fella(glm::vec2(1.0f, 1.0f), glm::vec2(1.0f, 2.0f), glm::vec3(0.0f, 0.0f, 0.0f), "character.png");
+	GameObject fella(glm::vec2(1.0f, 1.0f), glm::vec2(1.0f, 1.0f), glm::vec3(0.0f, 0.0f, 0.0f), "character.png");
 	Camera camera(WIN_WIDTH, WIN_HEIGHT, glm::vec3(0.0f, 0.0f, 5.0f));
 
 	glfwSwapBuffers(window);
 	glEnable(GL_DEPTH_TEST);
+
+	Event e(window);
 
 	//Main loop
 	while (!glfwWindowShouldClose(window)) {
 		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-		camera.Inputs(window);
+		//camera.Inputs(window);
 		camera.updateMatrix(60.0f, MIN_DRAW_DISTANCE, MAX_DRAW_DISTANCE);
+
+		e.onPress(GLFW_KEY_A, fella, [](GameObject& g) {
+			g.translate(glm::vec2(-1.0f, 0.0f));
+		});
+
+		e.onPress(GLFW_KEY_D, fella, [](GameObject& g) {
+			g.translate(glm::vec2(1.0f, 0.0f));
+		});
+
+		e.onPress(GLFW_KEY_W, fella, [](GameObject& g) {
+			g.translate(glm::vec2(0.0f, 1.0f));
+		});
+
+		e.onPress(GLFW_KEY_S, fella, [](GameObject& g) {
+			g.translate(glm::vec2(0.0f, -1.0f));
+		});
+
+		e.onMouseClick(GLFW_MOUSE_BUTTON_LEFT, fella, [](GameObject& g) {
+			g.rotateX(0.1f);
+		});
 		
 		fella.render(camera);
-
-		plank.setScale(glm::vec3(0.1f, 2.0f, 1.0f));
 		plank.render(camera);
 
 		glfwSwapBuffers(window);

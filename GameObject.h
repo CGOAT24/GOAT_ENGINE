@@ -14,6 +14,8 @@ protected:
 	glm::vec3 scale;
 	glm::vec3 rotation;
 
+	void transform();
+
 public:
 	GameObject(glm::vec2 _position, glm::vec2 _scale, glm::vec3 _rotation, const char* _texName);
 	glm::vec3 getPosition() const;
