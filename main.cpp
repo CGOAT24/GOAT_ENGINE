@@ -5,17 +5,20 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
+#include <filesystem>
+namespace fs = std::filesystem;
 
 #include "GameObject.h"
-<<<<<<< Updated upstream
 #include "Event.h"
-=======
 #include "GameWindow.h"
->>>>>>> Stashed changes
+
 
 int main() {
+	std::string parent = (fs::current_path()).string();
 	GameWindow window = GameWindow(800,800,Scene());
-	GameObject fella(glm::vec2(1.0f, 1.0f), glm::vec2(1.0f, 2.0f), glm::vec3(0.0f, 0.0f, 0.0f), "character.png");
+	std::cout << window.isRunning;
+	GameObject fella(glm::vec2(1.0f, 1.0f), glm::vec2(1.0f, 2.0f), glm::vec3(0.0f, 0.0f, 0.0f), (parent+"/roblox.png").c_str());
+	printf("hello");
 	window.currentScene.addGameObject(fella,1);
 	std::cout << "Hello World!";
 	/*const unsigned int WIN_HEIGHT(800);
@@ -92,10 +95,7 @@ int main() {
 		std::this_thread::sleep_for(std::chrono::seconds(1));
 	return 0;
 }
-<<<<<<< Updated upstream
-=======
 
 void startWindow() {
 
 }
->>>>>>> Stashed changes

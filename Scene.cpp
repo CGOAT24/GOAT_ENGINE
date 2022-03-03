@@ -10,7 +10,7 @@ void Scene::draw(Camera &camera) {
 	for (int layer = 9; layer >= 0; layer--) {
 		
 		for (GameObject& obj : gameObjets[layer]) {
-			
+			std::cout << "Render";
 			obj.render(camera);
 		}
 	}

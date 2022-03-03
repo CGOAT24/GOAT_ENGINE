@@ -8,6 +8,9 @@ Texture::Texture(const char* image, const char* texType, GLuint slot, GLenum pix
 	stbi_set_flip_vertically_on_load(true);
 	unsigned char* bytes = stbi_load(image, &widthImg, &heightImg, &numColCh, 0);
 
+	if (bytes == NULL)
+		std::cout << "Error loading";
+
 	switch(numColCh) {
 		case 1:
 			format = GL_RED;

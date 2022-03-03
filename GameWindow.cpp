@@ -44,6 +44,7 @@ void GameWindow::createWindow() {
 	unsigned int frame = 0;
 	isStart = true;
 	while (!glfwWindowShouldClose(glfwwindow)) {
+		glClearColor(0.0f, 0.0f, 0.0f, 1);
 		auto startFrame = std::chrono::high_resolution_clock::now();
 
 		glfwPollEvents();
@@ -77,7 +78,8 @@ void GameWindow::createWindow() {
 			nextFrame = (((1000000)-(std::chrono::duration_cast<std::chrono::microseconds>(elapsed).count())))/(maxFps-frame);
 			//cout << nextFrame << endl;
 		}
-		
+		glfwSwapBuffers(glfwwindow);
+		glfwPollEvents();
 		std::this_thread::sleep_for(std::chrono::microseconds(nextFrame));
 	}
 
