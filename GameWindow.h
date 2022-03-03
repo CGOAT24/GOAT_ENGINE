@@ -19,8 +19,9 @@
 #include "Texture.h"
 #include "Camera.h"
 
-class GameWindow
-{
+#include "GameObject.h"
+
+class GameWindow {
 private:
 	unsigned int width, height, currentFps, maxFps;
 	unsigned long timeBetweenFrame;
@@ -33,7 +34,7 @@ public:
 	Scene currentScene;
 	void createWindow();
 	bool isRunning, isStart;
-	GLFWwindow glfwwindow;
+	GLFWwindow* glfwwindow;
 	
 };
 

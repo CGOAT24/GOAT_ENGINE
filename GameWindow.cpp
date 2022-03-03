@@ -51,7 +51,7 @@ void GameWindow::createWindow() {
 		camera.updateMatrix(60.0f, 1.0f, 100.0f);
 		//Update et render la scène
 		currentScene.update();
-		currentScene.draw(camera);
+		currentScene.draw();
 
 		frame++;
 

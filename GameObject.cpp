@@ -1,16 +1,12 @@
 #include "GameObject.h"
 
-void GameObject::transform() {
-	glm::mat4 model(1.0f);
-	model = glm::scale(model, this->scale);
-	model = glm::rotate(model, glm::radians(this->rotation.x), glm::vec3(1.0f, 0.0f, 0.0f));
-	model = glm::rotate(model, glm::radians(this->rotation.y), glm::vec3(0.0f, 1.0f, 0.0f));
-	model = glm::rotate(model, glm::radians(this->rotation.z), glm::vec3(0.0f, 0.0f, 1.0f));
-	model = glm::translate(model, this->position);
-	shader.Activate();
-	glUniformMatrix4fv(glGetUniformLocation(shader.ID, "model"), 1, GL_FALSE, glm::value_ptr(model));
-}
-
+/// <summary>
+/// Constructeur pour la classe GameObject
+/// </summary>
+/// <param name="_position"></param>
+/// <param name="_scale"></param>
+/// <param name="_rotation"></param>
+/// <param name="_texName"></param>
 GameObject::GameObject(glm::vec2 _position, glm::vec2 _scale, glm::vec3 _rotation, const char* _texName): position(_position.x, _position.y, 0.0f), scale(_scale.x, _scale.y, 0.0f), rotation(_rotation), texture(_texName, "diffuse", 0, GL_UNSIGNED_BYTE), mesh(), shader("default.vert", "default.frag"), light(glm::vec3(_position.x, _position.y, 0.0f)) {
 	Vertex vertices[4];
 
@@ -33,7 +29,7 @@ GameObject::GameObject(glm::vec2 _position, glm::vec2 _scale, glm::vec3 _rotatio
 		glm::vec3 normal(0.0f, 0.0f, -1.0f);
 		glm::vec3 color(0.0f, 0.0f, 0.0f);
 
-		Vertex vi{ position, normal, color, texCoords.at(i) };
+		Vertex vi{position, normal, color, texCoords.at(i)};
 		vertices[i] = vi;
 	}
 
@@ -104,4 +100,15 @@ void GameObject::rotateZ(float rotation) {
 	this->rotation.z += rotation;
 
 	this->transform();
+}
+
+void GameObject::transform() {
+	glm::mat4 model(1.0f);
+	model = glm::scale(model, this->scale);
+	model = glm::rotate(model, glm::radians(this->rotation.x), glm::vec3(1.0f, 0.0f, 0.0f));
+	model = glm::rotate(model, glm::radians(this->rotation.y), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::rotate(model, glm::radians(this->rotation.z), glm::vec3(0.0f, 0.0f, 1.0f));
+	model = glm::translate(model, this->position);
+	shader.Activate();
+	glUniformMatrix4fv(glGetUniformLocation(shader.ID, "model"), 1, GL_FALSE, glm::value_ptr(model));
 }
