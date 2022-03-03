@@ -14,16 +14,16 @@ namespace fs = std::filesystem;
 
 int main() {
 	const unsigned int WIN_HEIGHT(800);
-	GameWindow window = GameWindow(800,800,Scene());
-	GameObject fella(glm::vec2(1.0f, 1.0f), glm::vec2(1.0f, 2.0f), glm::vec3(0.0f, 0.0f, 0.0f), "character.png");
-	window.currentScene.addGameObject(fella,1);
-	std::cout << "Hello World!";
 	const unsigned int WIN_HEIGHT(800);
-
 	const unsigned int WIN_WIDTH(800);
 	const float MIN_DRAW_DISTANCE(1.0f);
 	const float MAX_DRAW_DISTANCE(100.0f);
-
+	
+	/*
+	GameWindow window = GameWindow(800,800,Scene());
+	window.currentScene.addGameObject(fella,1);
+	*/
+	
 	std::string parentDir = (fs::current_path()).string();
 
 	glfwInit();
