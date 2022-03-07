@@ -16,6 +16,8 @@ public:
 	void draw(Camera &camera);
 	void update();
 	void addGameObject(GameObject& obj, unsigned int layer);
+	void onCreate();
+	void onUpdate();
 };
 
 #endif

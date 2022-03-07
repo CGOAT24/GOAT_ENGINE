@@ -10,7 +10,10 @@ void Scene::draw(Camera &camera) {
 	for (int layer = 9; layer >= 0; layer--) {
 		
 		for (GameObject& obj : gameObjets[layer]) {
+<<<<<<< Updated upstream
 			std::cout << "Render";
+=======
+>>>>>>> Stashed changes
 			obj.render(camera);
 		}
 	}
@@ -27,6 +30,5 @@ void Scene::update() {
 }
 
 void Scene::addGameObject(GameObject& obj, unsigned int layer) {
-	std::cout << "new obj ";
 	gameObjets[layer].push_back(obj);
 }

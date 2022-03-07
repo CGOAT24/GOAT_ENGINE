@@ -1,5 +1,6 @@
 #include "GameObject.h"
 
+<<<<<<< Updated upstream
 void GameObject::transform() {
 	glm::mat4 model(1.0f);
 	model = glm::scale(model, this->scale);
@@ -12,6 +13,16 @@ void GameObject::transform() {
 }
 
 GameObject::GameObject(glm::vec2 _position, glm::vec2 _scale, glm::vec3 _rotation, const char* _texName): position(_position.x, _position.y, 0.0f), scale(_scale.x, _scale.y, 0.0f), rotation(_rotation), texture(_texName, "diffuse", 0, GL_UNSIGNED_BYTE), mesh(), shader("default.vert", "default.frag"), light(glm::vec3(_position.x, _position.y, 0.0f)) {
+=======
+/// <summary>
+/// Constructeur pour la classe GameObject
+/// </summary>
+/// <param name="_position"></param>
+/// <param name="_scale"></param>
+/// <param name="_rotation"></param>
+/// <param name="_texName"></param>
+GameObject::GameObject(glm::vec2 _position, glm::vec2 _scale, glm::vec3 _rotation, const char* _texName): position(_position.x, _position.y, 0.0f), scale(_scale.x, _scale.y, 0.0f), rotation(_rotation), texture(_texName, "diffuse", GL_TEXTURE0, GL_UNSIGNED_BYTE), mesh(), shader("default.vert", "default.frag"), light(glm::vec3(_position.x, _position.y, 0.0f)) {
+>>>>>>> Stashed changes
 	Vertex vertices[4];
 
 	std::vector<glm::vec2> vertPos = {

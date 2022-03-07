@@ -14,6 +14,7 @@ namespace fs = std::filesystem;
 
 
 int main() {
+<<<<<<< Updated upstream
 	std::string parent = (fs::current_path()).string();
 	GameWindow window = GameWindow(800,800,Scene());
 	std::cout << window.isRunning;
@@ -25,6 +26,22 @@ int main() {
 	const unsigned int WIN_WIDTH(800);
 	const float MIN_DRAW_DISTANCE(1.0f);
 	const float MAX_DRAW_DISTANCE(100.0f);
+=======
+	/*const unsigned int WIN_HEIGHT(800);
+	const unsigned int WIN_HEIGHT(800);
+	const unsigned int WIN_WIDTH(800);
+	const float MIN_DRAW_DISTANCE(1.0f);
+	const float MAX_DRAW_DISTANCE(100.0f);
+	
+	*/
+	GameWindow window = GameWindow(800, 800, Scene());
+	//GameObject fella(glm::vec2(1.0f, 1.0f), glm::vec2(1.0f, 2.0f), glm::vec3(0.0f, 0.0f, 0.0f), path.c_str());
+	printf("hello");
+	//window.currentScene.addGameObject(fella, 1);
+
+	/*
+	std::string parentDir = (fs::current_path()).string();
+>>>>>>> Stashed changes
 
 	glfwInit();
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
@@ -88,9 +105,13 @@ int main() {
 
 	glfwDestroyWindow(window);
 	glfwTerminate();
+<<<<<<< Updated upstream
 
 	return 0;*/
 
+=======
+	*/
+>>>>>>> Stashed changes
 	while (window.isRunning)
 		std::this_thread::sleep_for(std::chrono::seconds(1));
 	return 0;

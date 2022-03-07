@@ -8,10 +8,8 @@ using std::chrono::system_clock;
 
 GameWindow::GameWindow(unsigned int _width, unsigned _height, Scene _scene) : width(_width), height(_height), currentFps(0), maxFps(60), timeBetweenFrame(1000000 / maxFps), currentScene(_scene), camera(Camera(width, height, glm::vec3(0.0f, 0.0f, 5.0f))) {
 	isRunning = true;
-	thread = std::thread(&GameWindow::createWindow,this);
-	isStart = false;
-	while(!isStart)
-		std::this_thread::sleep_for(std::chrono::microseconds(100));
+	isStart = true;
+	createWindow();
 }
 
 /// <summary>
@@ -43,6 +41,8 @@ void GameWindow::createWindow() {
 
 	unsigned int frame = 0;
 	isStart = true;
+	GameObject fella(glm::vec2(1.0f, 1.0f), glm::vec2(1.0f, 2.0f), glm::vec3(0.0f, 0.0f, 0.0f), "planks.png");
+	currentScene.addGameObject(fella,1);
 	while (!glfwWindowShouldClose(glfwwindow)) {
 		glClearColor(0.0f, 0.0f, 0.0f, 1);
 		auto startFrame = std::chrono::high_resolution_clock::now();

@@ -7,6 +7,8 @@ Texture::Texture(const char* image, const char* texType, GLuint slot, GLenum pix
 	unit = slot;
 	stbi_set_flip_vertically_on_load(true);
 	unsigned char* bytes = stbi_load(image, &widthImg, &heightImg, &numColCh, 0);
+	if (stbi_failure_reason())
+		std::cout << stbi_failure_reason();
 
 	if (bytes == NULL)
 		std::cout << "Error loading";
@@ -27,7 +29,10 @@ Texture::Texture(const char* image, const char* texType, GLuint slot, GLenum pix
 	}
 
 	glGenTextures(1, &ID);
+
+
 	glActiveTexture(GL_TEXTURE + slot);
+
 	
 	glBindTexture(GL_TEXTURE_2D, ID);
 
