@@ -147,6 +147,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="Collider.cpp" />
     <ClCompile Include="EBO.cpp" />
     <ClCompile Include="Event.cpp" />
     <ClCompile Include="GameObject.cpp" />
@@ -164,6 +165,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="Collider.h" />
     <ClInclude Include="EBO.h" />
     <ClInclude Include="Event.h" />
     <ClInclude Include="GameObject.h" />

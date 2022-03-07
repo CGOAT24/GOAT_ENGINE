@@ -12,9 +12,11 @@ public:
 	std::vector<Vertex> vertices;
 	std::vector<GLuint> indices;
 	Texture texture;
+	std::vector<Texture> textures;
 
 	VAO VAO;
 	Mesh();
+	Mesh(std::vector<Vertex>& _vertices, std::vector<GLuint>& _indices, std::vector<Texture>& _textures);
 	Mesh(std::vector<Vertex>& vertices, std::vector<GLuint>& indices, Texture& textures);
 
 	void Draw(Shader& shader, Camera& camera);

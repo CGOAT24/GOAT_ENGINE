@@ -1,13 +1,12 @@
 #include "Mesh.h"
 
-
 Mesh::Mesh() : texture("planks.png", "diffuse", 0, GL_UNSIGNED_BYTE), vertices({
 		{glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 0.0f, -1.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec2(0.0f, 0.0f)},
 		{glm::vec3(1.0f, 0.0f, 0.0f), glm::vec3(0.0f, 0.0f, -1.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec2(1.0f, 0.0f)},
 		{glm::vec3(0.0f, 1.0f, 0.0f), glm::vec3(0.0f, 0.0f, -1.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec2(0.0f, 1.0f)},
 		{glm::vec3(1.0f, 1.0f, 0.0f), glm::vec3(0.0f, 0.0f, -1.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec2(1.0f, 1.0f)}
-		}), indices({ 0, 1, 2, 1, 2, 3 }) {
-	
+	}), indices({ 0, 1, 2, 1, 2, 3 }) {
+
 	VAO.Bind();
 
 	VBO VBO(vertices);
@@ -23,8 +22,8 @@ Mesh::Mesh() : texture("planks.png", "diffuse", 0, GL_UNSIGNED_BYTE), vertices({
 	EBO.Unbind();
 }
 
-Mesh::Mesh(std::vector<Vertex>& _vertices, std::vector<GLuint>& _indices, Texture& _texture): vertices(_vertices), indices(_indices), texture(_texture) {
-	
+Mesh::Mesh(std::vector<Vertex>& _vertices, std::vector<GLuint>& _indices, Texture& _texture) : vertices(_vertices), indices(_indices), texture(_texture) {
+
 	VAO.Bind();
 
 	VBO VBO(vertices);
@@ -46,18 +45,18 @@ void Mesh::Draw(Shader& shader, Camera& camera) {
 
 	unsigned int numDiffuse = 0;
 	unsigned int numSpecular = 0;
-	
+
 	std::string num;
 	std::string type = texture.type;
-	if(type == "diffuse") {
+	if (type == "diffuse") {
 		num = std::to_string(numDiffuse++);
 	}
-	else if(type == "specular") {
+	else if (type == "specular") {
 		num = std::to_string(numSpecular++);
 	}
 	texture.texUnit(shader, (type + num).c_str(), 0);
 	texture.Bind();
-	
+
 	glUniform3f(glGetUniformLocation(shader.ID, "camPos"), camera.position.x, camera.position.y, camera.position.z);
 	camera.matrix(shader, "camMatrix");
 
