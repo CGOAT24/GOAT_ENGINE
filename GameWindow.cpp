@@ -41,8 +41,9 @@ void GameWindow::createWindow() {
 
 	unsigned int frame = 0;
 	isStart = true;
-	GameObject fella(glm::vec2(1.0f, 1.0f), glm::vec2(1.0f, 2.0f), glm::vec3(0.0f, 0.0f, 0.0f), "planks.png");
+	GameObject fella(glm::vec2(1.0f, 1.0f), glm::vec2(1.0f, 2.0f), glm::vec3(0.0f, 0.0f, 0.0f), "background.jpeg");
 	currentScene.addGameObject(fella,1);
+	long timeFrame = 1000000 / 60;
 	while (!glfwWindowShouldClose(glfwwindow)) {
 		glClearColor(0.0f, 0.0f, 0.0f, 1);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -62,27 +63,14 @@ void GameWindow::createWindow() {
 
 		if (std::chrono::duration_cast<std::chrono::microseconds>(elapsed).count() >= 1000000) {
 			currentFps = frame;
-			frame = 0;
 			lastFpsUpdate = std::chrono::high_resolution_clock::now();
 			cout << currentFps << " fps" << std::endl;
 			elapsed = std::chrono::high_resolution_clock::now() - lastFpsUpdate;
 		}
-		unsigned long nextFrame;
-		if (frame >= maxFps) {
-			nextFrame = (1000000 - (std::chrono::duration_cast<std::chrono::microseconds>(elapsed).count()));
-		}
-		else {
-			auto elapsedFrame = std::chrono::high_resolution_clock::now() - startFrame;
-			/*long frameLenght = std::chrono::duration_cast<std::chrono::microseconds>(elapsedFrame).count();
-			if ((((1000000 - (frameLenght * (maxFps - frame))) - (std::chrono::duration_cast<std::chrono::microseconds>(elapsed).count()))) < 0) {
-				frameLenght = (((1000000 - (std::chrono::duration_cast<std::chrono::microseconds>(elapsed).count()))) / (maxFps - frame));
-			}*/
-			nextFrame = (((1000000)-(std::chrono::duration_cast<std::chrono::microseconds>(elapsed).count())))/(maxFps-frame);
-			//cout << nextFrame << endl;
-		}
+
 		glfwSwapBuffers(glfwwindow);
 		glfwPollEvents();
-		std::this_thread::sleep_for(std::chrono::microseconds(nextFrame));
+		std::this_thread::sleep_for(std::chrono::microseconds(timeFrame));
 	}
 
 	glfwDestroyWindow(glfwwindow);

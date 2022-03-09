@@ -7,20 +7,7 @@ Mesh::Mesh() : texture("planks.png", "diffuse", 0, GL_UNSIGNED_BYTE), vertices({
 		{glm::vec3(0.0f, 1.0f, 0.0f), glm::vec3(0.0f, 0.0f, -1.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec2(0.0f, 1.0f)},
 		{glm::vec3(1.0f, 1.0f, 0.0f), glm::vec3(0.0f, 0.0f, -1.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec2(1.0f, 1.0f)}
 		}), indices({ 0, 1, 2, 1, 2, 3 }) {
-	
-	VAO.Bind();
 
-	VBO VBO(vertices);
-	EBO EBO(indices);
-
-	VAO.LinkAttrib(VBO, 0, 3, GL_FLOAT, sizeof(Vertex), (void*)0);
-	VAO.LinkAttrib(VBO, 1, 3, GL_FLOAT, sizeof(Vertex), (void*)(3 * sizeof(float)));
-	VAO.LinkAttrib(VBO, 2, 3, GL_FLOAT, sizeof(Vertex), (void*)(6 * sizeof(float)));
-	VAO.LinkAttrib(VBO, 3, 2, GL_FLOAT, sizeof(Vertex), (void*)(9 * sizeof(float)));
-
-	VAO.Unbind();
-	VBO.Unbind();
-	EBO.Unbind();
 }
 
 Mesh::Mesh(std::vector<Vertex>& _vertices, std::vector<GLuint>& _indices, Texture& _texture): vertices(_vertices), indices(_indices), texture(_texture) {

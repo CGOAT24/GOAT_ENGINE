@@ -6,7 +6,6 @@
 class GameObject {
 protected:
 	Mesh mesh;
-	Texture texture;
 	Shader shader;
 	Light light;
 

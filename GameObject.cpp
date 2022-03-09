@@ -19,8 +19,8 @@ void GameObject::transform() {
 /// <param name="_scale"></param>
 /// <param name="_rotation"></param>
 /// <param name="_texName"></param>
-GameObject::GameObject(glm::vec2 _position, glm::vec2 _scale, glm::vec3 _rotation, const char* _texName): position(_position.x, _position.y, 0.0f), scale(_scale.x, _scale.y, 0.0f), rotation(_rotation), texture(_texName, "diffuse", GL_TEXTURE0, GL_UNSIGNED_BYTE), mesh(), shader("default.vert", "default.frag"), light(glm::vec3(_position.x, _position.y, 0.0f)) {
-
+GameObject::GameObject(glm::vec2 _position, glm::vec2 _scale, glm::vec3 _rotation, const char* _texName): position(_position.x, _position.y, 0.0f), scale(_scale.x, _scale.y, 0.0f), rotation(_rotation), mesh(), shader("default.vert", "default.frag"), light(glm::vec3(_position.x, _position.y, 0.0f)) {
+	std::cout << "Render start" << _texName << std::endl;
 	Vertex vertices[4];
 
 	std::vector<glm::vec2> vertPos = {
@@ -53,8 +53,12 @@ GameObject::GameObject(glm::vec2 _position, glm::vec2 _scale, glm::vec3 _rotatio
 
 	std::vector<Vertex> verts(vertices, vertices + sizeof(vertices) / sizeof(Vertex));
 	std::vector<GLuint> ind(indices, indices + sizeof(indices) / sizeof(GLuint));
+	std::cout << "Render start"<< _texName <<std::endl;
 
+	Texture texture(_texName, "diffuse", GL_TEXTURE0, GL_UNSIGNED_BYTE);
 	this->mesh = Mesh(verts, ind, texture);
+	std::cout << "Render start" << _texName << std::endl;
+	std::cout << "Render stop" << std::endl;
 	this->light.Activate(shader);
 
 	this->rotateX(_rotation.x);
