@@ -14,13 +14,14 @@ namespace fs = std::filesystem;
 
 
 int main() {
-<<<<<<< Updated upstream
 	std::string parent = (fs::current_path()).string();
 	GameWindow window = GameWindow(800,800,Scene());
 	std::cout << window.isRunning;
 	GameObject fella(glm::vec2(1.0f, 1.0f), glm::vec2(1.0f, 2.0f), glm::vec3(0.0f, 0.0f, 0.0f), (parent+"/roblox.png").c_str());
+	GameObject fella2(glm::vec2(0.0f, 2.0f), glm::vec2(1.0f, 2.0f), glm::vec3(0.0f, 0.0f, 0.0f), (parent + "/roblox.png").c_str());
 	printf("hello");
 	window.currentScene.addGameObject(fella,1);
+	window.currentScene.addGameObject(fella2, 1);
 	std::cout << "Hello World!";
 	/*const unsigned int WIN_HEIGHT(800);
 	const unsigned int WIN_WIDTH(800);
@@ -34,7 +35,7 @@ int main() {
 	const float MAX_DRAW_DISTANCE(100.0f);
 	
 	*/
-	GameWindow window = GameWindow(800, 800, Scene());
+
 	//GameObject fella(glm::vec2(1.0f, 1.0f), glm::vec2(1.0f, 2.0f), glm::vec3(0.0f, 0.0f, 0.0f), path.c_str());
 	printf("hello");
 	//window.currentScene.addGameObject(fella, 1);
@@ -109,11 +110,6 @@ int main() {
 
 	return 0;*/
 
-=======
-	*/
->>>>>>> Stashed changes
-	while (window.isRunning)
-		std::this_thread::sleep_for(std::chrono::seconds(1));
 	return 0;
 }
 

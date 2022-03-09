@@ -45,11 +45,13 @@ void GameWindow::createWindow() {
 	currentScene.addGameObject(fella,1);
 	while (!glfwWindowShouldClose(glfwwindow)) {
 		glClearColor(0.0f, 0.0f, 0.0f, 1);
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		auto startFrame = std::chrono::high_resolution_clock::now();
 
-		glfwPollEvents();
 		
+		camera.Inputs(glfwwindow);
 		camera.updateMatrix(60.0f, 1.0f, 100.0f);
+		
 		//Update et render la scène
 		currentScene.update();
 		currentScene.draw(camera);

@@ -10,10 +10,6 @@ void Scene::draw(Camera &camera) {
 	for (int layer = 9; layer >= 0; layer--) {
 		
 		for (GameObject& obj : gameObjets[layer]) {
-<<<<<<< Updated upstream
-			std::cout << "Render";
-=======
->>>>>>> Stashed changes
 			obj.render(camera);
 		}
 	}
