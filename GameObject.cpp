@@ -1,6 +1,6 @@
 #include "GameObject.h"
 
-GameObject::GameObject(glm::vec2 _position, glm::vec2 _scale, glm::vec3 _rotation, const char* _texName, bool _collider): position(_position.x, _position.y, 0.0f), scale(_scale.x, _scale.y, 0.0f), rotation(_rotation), texture(_texName, "diffuse", 0, GL_UNSIGNED_BYTE), mesh(), shader("default.vert", "default.frag"), light(glm::vec3(_position.x, _position.y, 0.0f)) {
+GOAT_ENGINE::GameObject::GameObject(glm::vec2 _position, glm::vec2 _scale, glm::vec3 _rotation, const char* _texName, bool _collider): position(_position.x, _position.y, 0.0f), scale(_scale.x, _scale.y, 0.0f), rotation(_rotation), mesh(), shader("default.vert", "default.frag"), light(glm::vec3(_position.x, _position.y, 0.0f)) {
 	Vertex vertices[4];
 
 	std::vector<glm::vec2> vertPos = {
@@ -36,71 +36,70 @@ GameObject::GameObject(glm::vec2 _position, glm::vec2 _scale, glm::vec3 _rotatio
 
 	this->collider = Collider(_position, _scale, _collider);
 
+	Texture texture(_texName, "diffuse", 0, GL_UNSIGNED_BYTE);
+
 	this->mesh = Mesh(verts, ind, texture);
 	this->light.Activate(shader);
-
-	this->rotateX(_rotation.x);
-	this->rotateY(_rotation.y);
-	this->rotateZ(_rotation.z);
 
 	transform();
 }
 
-glm::vec3 GameObject::getPosition() const {
+glm::vec3 GOAT_ENGINE::GameObject::getPosition() const {
 	return this->position;
 }
 
-glm::vec2 GameObject::getScale() const {
+glm::vec2 GOAT_ENGINE::GameObject::getScale() const {
 	return glm::vec2(this->scale.x, this->scale.y);
 }
 
-glm::vec3 GameObject::getRotation() const
+glm::vec3 GOAT_ENGINE::GameObject::getRotation() const
 {
 	return this->rotation;
 }
 
-void GameObject::render(Camera& camera) {
+void GOAT_ENGINE::GameObject::render(Camera& camera) {
 	this->mesh.Draw(this->shader, camera);
 }
 
-void GameObject::translate(glm::vec2 movement) {
-	this->position.x += movement.x / 1000;
-	this->position.y += movement.y / 1000;
+void GOAT_ENGINE::GameObject::translate(glm::vec2 movement) {
+	this->position.x += movement.x / 1000.0f;
+	this->position.y += movement.y / 1000.0f;
 
 	this->transform();
 }
 
-void GameObject::setScale(glm::vec2 scale) {
+void GOAT_ENGINE::GameObject::setScale(glm::vec2 scale) {
 	this->scale = glm::vec3(scale.x, scale.y, 1.0f);
 
 	this->transform();
 }
 
-void GameObject::rotateX(float rotation) {
+void GOAT_ENGINE::GameObject::rotateX(float rotation) {
 	this->rotation.x += rotation;
 
 	this->transform();
 }
 
-void GameObject::rotateY(float rotation) {
+void GOAT_ENGINE::GameObject::rotateY(float rotation) {
 	this->rotation.y += rotation;
 
 	this->transform();
 }
 
-void GameObject::rotateZ(float rotation) {
+void GOAT_ENGINE::GameObject::rotateZ(float rotation) {
 	this->rotation.z += rotation;
 
 	this->transform();
 }
 
-void GameObject::transform() {
+void GOAT_ENGINE::GameObject::transform() {
 	glm::mat4 model(1.0f);
 	model = glm::scale(model, this->scale);
 	model = glm::rotate(model, glm::radians(this->rotation.x), glm::vec3(1.0f, 0.0f, 0.0f));
 	model = glm::rotate(model, glm::radians(this->rotation.y), glm::vec3(0.0f, 1.0f, 0.0f));
 	model = glm::rotate(model, glm::radians(this->rotation.z), glm::vec3(0.0f, 0.0f, 1.0f));
-	model = glm::translate(model, this->position);
+	model = glm::translate(model, this->position * GOAT_ENGINE::CAM_DISTANCE);
+
 	shader.Activate();
 	glUniformMatrix4fv(glGetUniformLocation(shader.ID, "model"), 1, GL_FALSE, glm::value_ptr(model));
 

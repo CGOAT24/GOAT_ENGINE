@@ -1,6 +1,6 @@
 #include "Mesh.h"
 
-Mesh::Mesh() : texture("planks.png", "diffuse", 0, GL_UNSIGNED_BYTE), vertices({
+GOAT_ENGINE::Mesh::Mesh() : texture("planks.png", "diffuse", 0, GL_UNSIGNED_BYTE), vertices({
 		{glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 0.0f, -1.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec2(0.0f, 0.0f)},
 		{glm::vec3(1.0f, 0.0f, 0.0f), glm::vec3(0.0f, 0.0f, -1.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec2(1.0f, 0.0f)},
 		{glm::vec3(0.0f, 1.0f, 0.0f), glm::vec3(0.0f, 0.0f, -1.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec2(0.0f, 1.0f)},
@@ -22,7 +22,7 @@ Mesh::Mesh() : texture("planks.png", "diffuse", 0, GL_UNSIGNED_BYTE), vertices({
 	EBO.Unbind();
 }
 
-Mesh::Mesh(std::vector<Vertex>& _vertices, std::vector<GLuint>& _indices, Texture& _texture) : vertices(_vertices), indices(_indices), texture(_texture) {
+GOAT_ENGINE::Mesh::Mesh(std::vector<Vertex>& _vertices, std::vector<GLuint>& _indices, Texture& _texture) : vertices(_vertices), indices(_indices), texture(_texture) {
 
 	VAO.Bind();
 
@@ -39,7 +39,7 @@ Mesh::Mesh(std::vector<Vertex>& _vertices, std::vector<GLuint>& _indices, Textur
 	EBO.Unbind();
 }
 
-void Mesh::Draw(Shader& shader, Camera& camera) {
+void GOAT_ENGINE::Mesh::Draw(Shader& shader, Camera& camera) {
 	shader.Activate();
 	VAO.Bind();
 
