@@ -1,28 +1,32 @@
 #include "GameObject.h"
 
+/*
+Position du gameobject lors de la création à revoir
+*/
+
 GOAT_ENGINE::GameObject::GameObject(glm::vec2 _position, glm::vec2 _scale, glm::vec3 _rotation, const char* _texName, bool _collider): position(_position.x, _position.y, 0.0f), scale(_scale.x, _scale.y, 0.0f), rotation(_rotation), mesh(), shader("default.vert", "default.frag"), light(glm::vec3(_position.x, _position.y, 0.0f)) {
 	Vertex vertices[4];
 
-	std::vector<glm::vec2> vertPos = {
-		glm::vec2(_position.x - (scale.x / 2.0f), _position.y - (scale.y / 2.0f)),
-		glm::vec2(_position.x + (scale.x / 2.0f), _position.y - (scale.y / 2.0f)),
-		glm::vec2(_position.x + (scale.x / 2.0f), _position.y  + (scale.y / 2.0f)),
-		glm::vec2(_position.x - (scale.x / 2.0f), _position.y + (scale.y / 2.0f))
+	glm::vec2 vertPos[] = {
+		glm::vec2(position.x - (scale.x / 2.0f), position.y - (scale.y / 2.0f)),
+		glm::vec2(position.x + (scale.x / 2.0f), position.y - (scale.y / 2.0f)),
+		glm::vec2(position.x + (scale.x / 2.0f), position.y  + (scale.y / 2.0f)),
+		glm::vec2(position.x - (scale.x / 2.0f), position.y + (scale.y / 2.0f))
 	};
 
-	std::vector<glm::vec2> texCoords = {
+	glm::vec2 texCoords[] = {
 		glm::vec2(0.0f, 0.0f),													//bottom left
 		glm::vec2(1.0f, 0.0f),													//bottom right
 		glm::vec2(1.0f, 1.0f),													//top right
 		glm::vec2(0.0f, 1.0f)													//top left
 	};
 
-	for(int i(0); i < vertPos.size(); i++) {
-		glm::vec3 position(vertPos.at(i).x, vertPos.at(i).y, 0.0f);
+	for(int i(0); i < 4; i++) {
+		glm::vec3 position(vertPos[i].x, vertPos[i].y, 0.0f);
 		glm::vec3 normal(0.0f, 0.0f, -1.0f);
 		glm::vec3 color(0.0f, 0.0f, 0.0f);
 
-		Vertex vi{position, normal, color, texCoords.at(i)};
+		Vertex vi{position, normal, color, texCoords[i]};
 		vertices[i] = vi;
 	}
 
@@ -34,7 +38,7 @@ GOAT_ENGINE::GameObject::GameObject(glm::vec2 _position, glm::vec2 _scale, glm::
 	std::vector<Vertex> verts(vertices, vertices + sizeof(vertices) / sizeof(Vertex));
 	std::vector<GLuint> ind(indices, indices + sizeof(indices) / sizeof(GLuint));
 
-	this->collider = Collider(_position, _scale, _collider);
+	this->collider = Collider(position, scale, _collider);
 
 	Texture texture(_texName, "diffuse", 0, GL_UNSIGNED_BYTE);
 
@@ -98,7 +102,7 @@ void GOAT_ENGINE::GameObject::transform() {
 	model = glm::rotate(model, glm::radians(this->rotation.x), glm::vec3(1.0f, 0.0f, 0.0f));
 	model = glm::rotate(model, glm::radians(this->rotation.y), glm::vec3(0.0f, 1.0f, 0.0f));
 	model = glm::rotate(model, glm::radians(this->rotation.z), glm::vec3(0.0f, 0.0f, 1.0f));
-	model = glm::translate(model, this->position * GOAT_ENGINE::CAM_DISTANCE);
+	model = glm::translate(model, this->position);
 
 	shader.Activate();
 	glUniformMatrix4fv(glGetUniformLocation(shader.ID, "model"), 1, GL_FALSE, glm::value_ptr(model));

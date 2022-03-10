@@ -30,26 +30,35 @@ bool Collider::isColliding(Collider other) {
 		glm::vec2(other.position.x - (other.size.x / 2.0f), other.position.y + (other.size.y / 2.0f))
 	};
 
-	if (otherPoints[2].x >= points[0].x && otherPoints[2].y >= points[0].y && otherPoints[2].x <= points[2].x && otherPoints[2].y <= points[2].y) {	//problématique
-		std::cout << "henlo1" << std::endl;
+	//std::cout << std::to_string(otherPoints[0].x) << " " << std::to_string(otherPoints[0].y) << std::endl;
+
+	if (otherPoints[2].y >= points[0].y && otherPoints[2].x >= points[0].x && otherPoints[2].y <= points[2].y && otherPoints[2].x <= points[2].x) {
+		std::cout << "Colliding - 1" << std::endl;
 		isColliding = true;
 	}
-	else if (otherPoints[3].x >= points[1].x && otherPoints[3].y >= points[1].y && otherPoints[3].x <= points[3].x && otherPoints[3].y <= points[3].y) {
-		std::cout << "henlo2" << std::endl;
+	else if (otherPoints[3].y >= points[1].y && otherPoints[3].x <= points[1].x && otherPoints[3].y <= points[3].y && otherPoints[3].x >= points[3].x) {
+		std::cout << "Colliding - 2" << std::endl;
 		isColliding = true;
 	}
-	else if (otherPoints[0].x >= points[2].x && otherPoints[0].y >= points[2].y && otherPoints[0].x <= points[0].x && otherPoints[0].y <= points[0].x) {
-		std::cout << "henlo3" << std::endl;
+	else if (otherPoints[0].y <= points[2].y && otherPoints[0].x <= points[2].x && otherPoints[0].y >= points[0].y && otherPoints[0].x >= points[0].x) {
+		std::cout << "Colliding - 3" << std::endl;
 		isColliding = true;
 	}
-	else if (otherPoints[1].x >= points[3].x && otherPoints[1].y >= points[3].y && otherPoints[1].x <= points[1].x && otherPoints[1].y <= points[1].y) {
-		std::cout << "henlo4" << std::endl;
+	else if (otherPoints[1].y <= points[3].y && otherPoints[1].x >= points[3].x && otherPoints[1].y >= points[1].y && otherPoints[1].x <= points[1].x) {
+		std::cout << "Colliding - 4" << std::endl;
 		isColliding = true;
 	}
-	std::cout << std::endl;
+
+	std::cout << std::endl;				//TEMP
+
 	return isColliding;
 }
 
 void Collider::setActive(bool active) {
 	this->isActive = active;
+}
+
+glm::vec2 Collider::getPosition() const
+{
+	return this->position;
 }

@@ -7,6 +7,7 @@ GOAT_ENGINE::Camera::Camera(int _width, int _height, glm::vec3 _position) {
 }
 
 void GOAT_ENGINE::Camera::updateMatrix(float FOVdeg, float nearPlane, float farPlane) {
+	
 	glm::mat4 view = glm::mat4(1.0f);
 	glm::mat4 projection = glm::mat4(1.0f);
 
@@ -20,7 +21,6 @@ void GOAT_ENGINE::Camera::matrix(Shader& shader, const char* uniform) {
 	glUniformMatrix4fv(glGetUniformLocation(shader.ID, uniform), 1, GL_FALSE, glm::value_ptr(cameraMatrix));
 }
 
-// À enlever éventuellement
 void GOAT_ENGINE::Camera::Inputs(GLFWwindow* window) {
 	glm::vec3 up(0.0f, 1.0f, 0.0f);
 	glm::vec3 orientation(0.0f, 0.0f, -1.0f);

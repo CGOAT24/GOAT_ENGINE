@@ -44,7 +44,7 @@ int main() {
 		true
 	);
 	GOAT_ENGINE::GameObject plank(
-		glm::vec2(0.5f, 0.5f),
+		glm::vec2(1.0f, 1.0f),
 		glm::vec2(1.0f, 1.0f),
 		glm::vec3(0.0f, 0.0f, 0.0f),
 		"planks.png",
@@ -86,7 +86,7 @@ int main() {
 			g.translate(glm::vec2(1.0f, 0.0f));
 		});
 
-		fella.collider.isColliding(plank.collider);
+		std::cout << std::to_string(plank.getPosition().x) << std::endl;
 
 		glfwSwapBuffers(window);
 		glfwPollEvents();
