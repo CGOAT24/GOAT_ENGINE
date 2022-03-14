@@ -16,6 +16,18 @@
     <Filter Include="Resource Files\Shader">
       <UniqueIdentifier>{69bc2515-5959-4be7-8d7f-dee11a1be70d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files\Audio">
+      <UniqueIdentifier>{a0a1e8b7-1254-4781-8b8f-32feb7543785}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Audio\Music">
+      <UniqueIdentifier>{4e333568-d272-4e41-90b8-65eb56552cce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Audio\Sound Effects">
+      <UniqueIdentifier>{e773559d-c8d6-4618-beb9-b7aa8f0b3ad9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Textures">
+      <UniqueIdentifier>{76f72a6d-7a33-46a5-8b3d-7aacb025bc22}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="glad.c">
@@ -66,7 +78,7 @@
     <ClCompile Include="Collider.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Values.cpp">
+    <ClCompile Include="Sound.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -104,9 +116,6 @@
     <ClInclude Include="Light.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="MouseEvent.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Event.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -114,6 +123,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Values.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sound.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -130,5 +142,30 @@
     <None Include="light.vert">
       <Filter>Resource Files\Shader</Filter>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="Audio\Music\security.mp3">
+      <Filter>Resource Files\Audio\Music</Filter>
+    </Media>
+    <Media Include="Audio\Sound Effects\impact.mp3">
+      <Filter>Resource Files\Audio\Sound Effects</Filter>
+    </Media>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Textures\background.jpeg">
+      <Filter>Resource Files\Textures</Filter>
+    </Image>
+    <Image Include="Textures\background.png">
+      <Filter>Resource Files\Textures</Filter>
+    </Image>
+    <Image Include="Textures\character.png">
+      <Filter>Resource Files\Textures</Filter>
+    </Image>
+    <Image Include="Textures\planks.png">
+      <Filter>Resource Files\Textures</Filter>
+    </Image>
+    <Image Include="Textures\default.png">
+      <Filter>Resource Files\Textures</Filter>
+    </Image>
   </ItemGroup>
 </Project>

@@ -11,6 +11,7 @@
 #include "GameObject.h"
 #include "Event.h"
 #include "GameWindow.h"
+#include "Sound.h"
 
 using namespace GOAT_ENGINE;
 
@@ -20,7 +21,6 @@ int main() {
 	window.currentScene.addGameObject(fella,1);
 	*/
 	
-	std::string rootDir = (std::filesystem::current_path()).string();
 
 	glfwInit();
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
@@ -38,11 +38,13 @@ int main() {
 	gladLoadGL();
 	glViewport(0, 0, GOAT_ENGINE::WIN_WIDTH, GOAT_ENGINE::WIN_HEIGHT);
 
+	std::string texPath((std::filesystem::current_path().string() + "\\Textures\\").c_str());
+
 	GameObject fella(
-		glm::vec2(0.0f, 0.0f), 
-		glm::vec2(1.0f, 1.0f), 
-		glm::vec3(0.0f, 0.0f, 0.0f), 
-		"character.png", 
+		glm::vec2(0.0f, 0.0f),
+		glm::vec2(1.0f, 1.0f),
+		glm::vec3(0.0f, 0.0f, 0.0f),
+		(texPath + "character.png").c_str(),
 		true
 	);
 
@@ -50,12 +52,14 @@ int main() {
 		glm::vec2(1.0f, 1.0f),
 		glm::vec2(1.0f, 1.0f),
 		glm::vec3(0.0f, 0.0f, 0.0f),
-		"planks.png",
+		(texPath + "planks.png").c_str(),
 		true
 	);
 
 	Camera cam(WIN_WIDTH, WIN_HEIGHT, glm::vec3(0.0f, 0.0f, CAM_DISTANCE));
 	Event eventHandler(window);
+
+	Sound player = Sound();
 
 	glfwSwapBuffers(window);
 	glEnable(GL_DEPTH_TEST);
@@ -85,6 +89,10 @@ int main() {
 		eventHandler.onPress(GLFW_KEY_D, fella, [](GameObject& g) {
 			g.translate(glm::vec2(2.0f, 0.0f));
 		});
+
+		if (fella.collider.isColliding(plank.collider)) {
+			player.play("Audio/Sound Effects/impact.mp3", 0.5f, false);
+		}
 
 		glfwSwapBuffers(window);
 		glfwPollEvents();
