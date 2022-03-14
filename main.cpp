@@ -12,6 +12,8 @@
 #include "Event.h"
 #include "GameWindow.h"
 
+using namespace GOAT_ENGINE;
+
 int main() {
 	/*
 	GameWindow window = GameWindow(800,800,Scene());
@@ -36,14 +38,15 @@ int main() {
 	gladLoadGL();
 	glViewport(0, 0, GOAT_ENGINE::WIN_WIDTH, GOAT_ENGINE::WIN_HEIGHT);
 
-	GOAT_ENGINE::GameObject fella(
+	GameObject fella(
 		glm::vec2(0.0f, 0.0f), 
 		glm::vec2(1.0f, 1.0f), 
 		glm::vec3(0.0f, 0.0f, 0.0f), 
 		"character.png", 
 		true
 	);
-	GOAT_ENGINE::GameObject plank(
+
+	GameObject plank(
 		glm::vec2(1.0f, 1.0f),
 		glm::vec2(1.0f, 1.0f),
 		glm::vec3(0.0f, 0.0f, 0.0f),
@@ -51,43 +54,37 @@ int main() {
 		true
 	);
 
-	GOAT_ENGINE::Camera cam(GOAT_ENGINE::WIN_WIDTH, GOAT_ENGINE::WIN_HEIGHT, glm::vec3(0.0f, 0.0f, GOAT_ENGINE::CAM_DISTANCE));
-	GOAT_ENGINE::Event eventHandler(window);
+	Camera cam(WIN_WIDTH, WIN_HEIGHT, glm::vec3(0.0f, 0.0f, CAM_DISTANCE));
+	Event eventHandler(window);
 
 	glfwSwapBuffers(window);
 	glEnable(GL_DEPTH_TEST);
-
-
-
+	
 	//Main loop
 	while (!glfwWindowShouldClose(window)) {
 		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-		cam.updateMatrix(90.0f, GOAT_ENGINE::MIN_DRAW_DISTANCE, GOAT_ENGINE::MAX_DRAW_DISTANCE);
+		cam.updateMatrix(CAM_FOV, MIN_DRAW_DISTANCE, MAX_DRAW_DISTANCE);
 
 		fella.render(cam);
 		plank.render(cam);
 
-		eventHandler.onPress(GLFW_KEY_W, fella, [](GOAT_ENGINE::GameObject& g) {
+		eventHandler.onPress(GLFW_KEY_W, fella, [](GameObject& g) {
 			g.translate(glm::vec2(0.0f, 2.0f));
 		});
 
-		eventHandler.onPress(GLFW_KEY_S, fella, [](GOAT_ENGINE::GameObject& g) {
+		eventHandler.onPress(GLFW_KEY_S, fella, [](GameObject& g) {
 			g.translate(glm::vec2(0.0f, -2.0f));
 		});
 
-		eventHandler.onPress(GLFW_KEY_A, fella, [](GOAT_ENGINE::GameObject& g) {
+		eventHandler.onPress(GLFW_KEY_A, fella, [](GameObject& g) {
 			g.translate(glm::vec2(-2.0f, 0.0f));
 		});
 
-		eventHandler.onPress(GLFW_KEY_D, fella, [](GOAT_ENGINE::GameObject& g) {
+		eventHandler.onPress(GLFW_KEY_D, fella, [](GameObject& g) {
 			g.translate(glm::vec2(2.0f, 0.0f));
 		});
-
-		if (fella.collider.isColliding(plank.collider)) {
-			
-		}
 
 		glfwSwapBuffers(window);
 		glfwPollEvents();
@@ -95,6 +92,5 @@ int main() {
 
 	glfwDestroyWindow(window);
 	glfwTerminate();
-
 	return 0;
 }

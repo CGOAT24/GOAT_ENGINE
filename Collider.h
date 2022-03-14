@@ -17,7 +17,5 @@ public:
 	void update(glm::vec2 newPos, glm::vec2 newSize);
 	bool isColliding(Collider other);
 	void setActive(bool active);
-
-	glm::vec2 getPosition() const;
 };
 #endif
