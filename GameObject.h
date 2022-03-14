@@ -17,18 +17,18 @@ namespace GOAT_ENGINE {
 		glm::vec3 rotation;
 
 		void transform();
+		void initialize();
 
 	public:
 		Collider collider;
 
 		GameObject(glm::vec2 _position, glm::vec2 _scale, glm::vec3 _rotation, const char* _texName, bool _collider);
+		void render(Camera& camera);
 
 		//Getters
 		glm::vec3 getPosition() const;
 		glm::vec2 getScale() const;
 		glm::vec3 getRotation() const;
-
-		void render(Camera& camera);
 
 		//Setters
 		void translate(glm::vec2 movement);

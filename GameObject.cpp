@@ -44,8 +44,6 @@ GOAT_ENGINE::GameObject::GameObject(glm::vec2 _position, glm::vec2 _scale, glm::
 
 	this->mesh = Mesh(verts, ind, texture);
 	this->light.Activate(shader);
-
-	transform();
 }
 
 glm::vec3 GOAT_ENGINE::GameObject::getPosition() const {
@@ -108,4 +106,8 @@ void GOAT_ENGINE::GameObject::transform() {
 	glUniformMatrix4fv(glGetUniformLocation(shader.ID, "model"), 1, GL_FALSE, glm::value_ptr(model));
 
 	this->collider.update(glm::vec2(this->position.x, this->position.y), glm::vec2(this->scale.x, this->scale.y));
+}
+
+void GOAT_ENGINE::GameObject::initialize(){
+
 }

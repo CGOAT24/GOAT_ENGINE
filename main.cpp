@@ -51,42 +51,43 @@ int main() {
 		true
 	);
 
-	GOAT_ENGINE::Camera camera(GOAT_ENGINE::WIN_WIDTH, GOAT_ENGINE::WIN_HEIGHT, glm::vec3(0.0f, 0.0f, GOAT_ENGINE::CAM_DISTANCE));
+	GOAT_ENGINE::Camera cam(GOAT_ENGINE::WIN_WIDTH, GOAT_ENGINE::WIN_HEIGHT, glm::vec3(0.0f, 0.0f, GOAT_ENGINE::CAM_DISTANCE));
+	GOAT_ENGINE::Event eventHandler(window);
 
 	glfwSwapBuffers(window);
 	glEnable(GL_DEPTH_TEST);
 
-	GOAT_ENGINE::Event e(window);
-	
+
 
 	//Main loop
 	while (!glfwWindowShouldClose(window)) {
 		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-		//camera.Inputs(window);
-		camera.updateMatrix(90.0f, GOAT_ENGINE::MIN_DRAW_DISTANCE, GOAT_ENGINE::MAX_DRAW_DISTANCE);
+		cam.updateMatrix(90.0f, GOAT_ENGINE::MIN_DRAW_DISTANCE, GOAT_ENGINE::MAX_DRAW_DISTANCE);
 
-		fella.render(camera);
-		plank.render(camera);
+		fella.render(cam);
+		plank.render(cam);
 
-		e.onPress(GLFW_KEY_W, fella, [](GOAT_ENGINE::GameObject& g) {
-			g.translate(glm::vec2(0.0f, 1.0f));
+		eventHandler.onPress(GLFW_KEY_W, fella, [](GOAT_ENGINE::GameObject& g) {
+			g.translate(glm::vec2(0.0f, 2.0f));
 		});
 
-		e.onPress(GLFW_KEY_S, fella, [](GOAT_ENGINE::GameObject& g) {
-			g.translate(glm::vec2(0.0f, -1.0f));
+		eventHandler.onPress(GLFW_KEY_S, fella, [](GOAT_ENGINE::GameObject& g) {
+			g.translate(glm::vec2(0.0f, -2.0f));
 		});
 
-		e.onPress(GLFW_KEY_A, fella, [](GOAT_ENGINE::GameObject& g) {
-			g.translate(glm::vec2(-1.0f, 0.0f));
+		eventHandler.onPress(GLFW_KEY_A, fella, [](GOAT_ENGINE::GameObject& g) {
+			g.translate(glm::vec2(-2.0f, 0.0f));
 		});
 
-		e.onPress(GLFW_KEY_D, fella, [](GOAT_ENGINE::GameObject& g) {
-			g.translate(glm::vec2(1.0f, 0.0f));
+		eventHandler.onPress(GLFW_KEY_D, fella, [](GOAT_ENGINE::GameObject& g) {
+			g.translate(glm::vec2(2.0f, 0.0f));
 		});
 
-		std::cout << std::to_string(plank.getPosition().x) << std::endl;
+		if (fella.collider.isColliding(plank.collider)) {
+			
+		}
 
 		glfwSwapBuffers(window);
 		glfwPollEvents();

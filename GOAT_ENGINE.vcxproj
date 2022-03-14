@@ -72,16 +72,16 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\Users\Chad\Documents\Projects\GOAT_ENGINE\GOAT_ENGINE\Libraries\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\Chad\Documents\Projects\GOAT_ENGINE\GOAT_ENGINE\Libraries\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Users\Chad\Documents\Projects\GOAT_ENGINE\Libraries\include;C:\Users\Chad\Documents\Projects\GOAT_ENGINE\GOAT_ENGINE\Libraries\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\Chad\Documents\Projects\GOAT_ENGINE\Libraries\lib;C:\Users\Chad\Documents\Projects\GOAT_ENGINE\GOAT_ENGINE\Libraries\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\Users\1848921\Documents\GOAT_ENGINE\Libraries\include;C:\Users\1952754\source\repos\GOAT_ENGINE\Libraries\include;C:\Users\Chad\Documents\Projects\GOAT_ENGINE\GOAT_ENGINE\Libraries\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\1848921\Documents\GOAT_ENGINE\Libraries\lib;C:\Users\1952754\source\repos\GOAT_ENGINE\Libraries\lib;C:\Users\Chad\Documents\Projects\GOAT_ENGINE\GOAT_ENGINE\Libraries\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Users\Chad\Documents\Projects\GOAT_ENGINE\Libraries\include;C:\Users\1848921\Documents\GOAT_ENGINE\Libraries\include;C:\Users\1952754\source\repos\GOAT_ENGINE\Libraries\include;C:\Users\Chad\Documents\Projects\GOAT_ENGINE\GOAT_ENGINE\Libraries\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\Chad\Documents\Projects\GOAT_ENGINE\Libraries\lib;C:\Users\1848921\Documents\GOAT_ENGINE\Libraries\lib;C:\Users\1952754\source\repos\GOAT_ENGINE\Libraries\lib;C:\Users\Chad\Documents\Projects\GOAT_ENGINE\GOAT_ENGINE\Libraries\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
