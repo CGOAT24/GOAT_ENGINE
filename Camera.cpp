@@ -1,27 +1,27 @@
 #include "Camera.h"
 
-Camera::Camera(int _width, int _height, glm::vec3 _position) {
+GOAT_ENGINE::Camera::Camera(int _width, int _height, glm::vec3 _position) {
 	Camera::width = _width;
 	Camera::height = _height;
 	position = _position;
 }
 
-void Camera::updateMatrix(float FOVdeg, float nearPlane, float farPlane) {
+void GOAT_ENGINE::Camera::updateMatrix(float FOVdeg, float nearPlane, float farPlane) {
+	
 	glm::mat4 view = glm::mat4(1.0f);
 	glm::mat4 projection = glm::mat4(1.0f);
 
-	view = glm::lookAt(position, position + Orientation, Up);
+	view = glm::lookAt(position, glm::vec3(0.0f, 0.0f, 0.0f), Up);
 	projection = glm::perspective(glm::radians(FOVdeg), (float)(width / height), nearPlane, farPlane);
 
 	cameraMatrix = projection * view;
 }
 
-void Camera::matrix(Shader& shader, const char* uniform) {
+void GOAT_ENGINE::Camera::matrix(Shader& shader, const char* uniform) {
 	glUniformMatrix4fv(glGetUniformLocation(shader.ID, uniform), 1, GL_FALSE, glm::value_ptr(cameraMatrix));
 }
 
-// À enlever éventuellement
-void Camera::Inputs(GLFWwindow* window) {
+void GOAT_ENGINE::Camera::Inputs(GLFWwindow* window) {
 	glm::vec3 up(0.0f, 1.0f, 0.0f);
 	glm::vec3 orientation(0.0f, 0.0f, -1.0f);
 	float speed(0.001f);

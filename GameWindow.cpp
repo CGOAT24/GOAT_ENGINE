@@ -6,7 +6,7 @@ using std::chrono::milliseconds;
 using std::chrono::seconds;
 using std::chrono::system_clock;
 
-GameWindow::GameWindow(unsigned int _width, unsigned _height, Scene _scene) : width(_width), height(_height), currentFps(0), maxFps(60), timeBetweenFrame(1000000 / maxFps), currentScene(_scene), camera(Camera(width, height, glm::vec3(0.0f, 0.0f, 5.0f))) {
+GOAT_ENGINE::GameWindow::GameWindow(unsigned int _width, unsigned _height, Scene _scene) : width(_width), height(_height), currentFps(0), maxFps(60), timeBetweenFrame(1000000 / maxFps), currentScene(_scene), camera(Camera(width, height, glm::vec3(0.0f, 0.0f, 5.0f))) {
 	isRunning = true;
 	thread = std::thread(&GameWindow::createWindow,this);
 	isStart = false;
@@ -18,7 +18,7 @@ GameWindow::GameWindow(unsigned int _width, unsigned _height, Scene _scene) : wi
 /// Créer la fenêtre et démarer le jeux
 /// </summary>
 /// <returns>Code de réponse</returns>
-void GameWindow::createWindow() {
+void GOAT_ENGINE::GameWindow::createWindow() {
 	//Créer la fenêtre
 	glfwInit();
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
@@ -51,7 +51,7 @@ void GameWindow::createWindow() {
 		camera.updateMatrix(60.0f, 1.0f, 100.0f);
 		//Update et render la scène
 		currentScene.update();
-		currentScene.draw();
+		currentScene.draw(this->camera);
 
 		frame++;
 
