@@ -85,6 +85,7 @@ Utiliser la puissance de OpenGL et du c++ pour créer votre jeux vidéo sans la 
 * [OpenGL](https://www.opengl.org/)
 * [OpenGL Mathematics (GLM)](https://github.com/g-truc/glm)
 * [STB](https://github.com/nothings/stb)
+* [irrKlang](https://www.ambiera.com/irrklang/)
 
 <p align="right">(<a href="#top">retour au début</a>)</p>
 
