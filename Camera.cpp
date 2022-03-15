@@ -21,7 +21,7 @@ void GOAT_ENGINE::Camera::matrix(Shader& shader, const char* uniform) {
 	glUniformMatrix4fv(glGetUniformLocation(shader.ID, uniform), 1, GL_FALSE, glm::value_ptr(cameraMatrix));
 }
 
-void GOAT_ENGINE::Camera::Inputs(GLFWwindow* window) {
+void GOAT_ENGINE::Camera::move(GLFWwindow* window) {
 	glm::vec3 up(0.0f, 1.0f, 0.0f);
 	glm::vec3 orientation(0.0f, 0.0f, -1.0f);
 	float speed(0.001f);

@@ -61,6 +61,10 @@ void GOAT_ENGINE::GameObject::render(Camera& camera) {
 	this->mesh.Draw(this->shader, camera);
 }
 
+void GOAT_ENGINE::GameObject::updateTexture(Texture tex) {
+	this->mesh.texture = tex;
+}
+
 void GOAT_ENGINE::GameObject::translate(glm::vec2 movement) {
 	this->position.x += movement.x / 1000.0f;
 	this->position.y += movement.y / 1000.0f;
@@ -104,8 +108,4 @@ void GOAT_ENGINE::GameObject::transform() {
 	glUniformMatrix4fv(glGetUniformLocation(shader.ID, "model"), 1, GL_FALSE, glm::value_ptr(model));
 
 	this->collider.update(glm::vec2(this->position.x, this->position.y), glm::vec2(this->scale.x, this->scale.y));
-}
-
-void GOAT_ENGINE::GameObject::initialize(){
-
 }

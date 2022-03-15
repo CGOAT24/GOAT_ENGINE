@@ -61,20 +61,21 @@ int main() {
 
 	Sound player = Sound();
 
+	int counter(0);
+
 	glfwSwapBuffers(window);
 	glEnable(GL_DEPTH_TEST);
 	
 	//Main loop
 	while (!glfwWindowShouldClose(window)) {
-		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+		glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 		cam.updateMatrix(CAM_FOV, MIN_DRAW_DISTANCE, MAX_DRAW_DISTANCE);
 
-		fella.render(cam);
-		plank.render(cam);
-
 		eventHandler.onPress(GLFW_KEY_W, fella, [](GameObject& g) {
+			std::string texPath((std::filesystem::current_path().string() + "\\Textures\\").c_str());
+			g.updateTexture(Texture((texPath + "background.jpeg").c_str()));
 			g.translate(glm::vec2(0.0f, 2.0f));
 		});
 
@@ -93,6 +94,9 @@ int main() {
 		if (fella.collider.isColliding(plank.collider)) {
 			player.play("Audio/Sound Effects/impact.mp3", 0.5f, false);
 		}
+
+		fella.render(cam);
+		plank.render(cam);
 
 		glfwSwapBuffers(window);
 		glfwPollEvents();
