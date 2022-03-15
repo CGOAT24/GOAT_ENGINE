@@ -25,7 +25,7 @@ namespace GOAT_ENGINE {
 		Camera(int width, int height, glm::vec3 position);
 		void updateMatrix(float FOVdeg, float nearPlane, float farPlane);
 		void matrix(Shader& shader, const char* uniform);
-		void Inputs(GLFWwindow* window);
+		void move(GLFWwindow* window);
 	};
 }
 

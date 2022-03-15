@@ -11,19 +11,20 @@ namespace GOAT_ENGINE {
 		Mesh mesh;
 		Shader shader;
 		Light light;
+		
 
 		glm::vec3 position;
 		glm::vec3 scale;
 		glm::vec3 rotation;
 
 		void transform();
-		void initialize();
 
-	public:
+	public:		
 		Collider collider;
 
 		GameObject(glm::vec2 _position, glm::vec2 _scale, glm::vec3 _rotation, const char* _texName, bool _collider);
 		void render(Camera& camera);
+		void updateTexture(Texture tex);
 
 		//Getters
 		glm::vec3 getPosition() const;
