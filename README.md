@@ -19,7 +19,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/CGOAT24/GOAT_ENGINE">
-    <img src="utils/logo.png" alt="Logo" width="80" height="80">
+    <img src="utils/thumbnail.png" alt="Logo" width="80" height="80">
   </a>
 
 <h3 align="center">GOAT ENGINE</h3>
