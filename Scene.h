@@ -6,6 +6,7 @@
 
 #include "GameObject.h"
 
+namespace GOAT_ENGINE {
 
 class Scene {
 private:

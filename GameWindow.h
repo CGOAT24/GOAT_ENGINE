@@ -19,23 +19,25 @@
 #include "Texture.h"
 #include "Camera.h"
 
-class GameWindow
-{
-private:
-	unsigned int width, height, currentFps, maxFps;
-	unsigned long timeBetweenFrame;
-	
-	
-	Camera camera;
-	std::thread thread;
-public:
-	GameWindow(unsigned int _width, unsigned _height, Scene _scene);
-	Scene currentScene;
-	void createWindow();
-	bool isRunning, isStart;
-	GLFWwindow* glfwwindow;
-	
-};
+#include "GameObject.h"
 
+namespace GOAT_ENGINE {
+	class GameWindow {
+	private:
+		unsigned int width, height, currentFps, maxFps;
+		unsigned long timeBetweenFrame;
+
+
+		Camera camera;
+		std::thread thread;
+	public:
+		GameWindow(unsigned int _width, unsigned _height, Scene _scene);
+		Scene currentScene;
+		void createWindow();
+		bool isRunning, isStart;
+		GLFWwindow* glfwwindow;
+
+	};
+}
 #endif
 

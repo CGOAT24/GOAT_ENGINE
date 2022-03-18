@@ -1,11 +1,11 @@
 #include "Scene.h"
 
-Scene::Scene() {
+GOAT_ENGINE::Scene::Scene() {
 
 }
 
 
-void Scene::draw(Camera &camera) {
+void GOAT_ENGINE::Scene::draw(Camera &camera) {
 	
 	for (int layer = 9; layer >= 0; layer--) {
 		
@@ -17,7 +17,7 @@ void Scene::draw(Camera &camera) {
 	
 }
 
-void Scene::update() {
+void GOAT_ENGINE::Scene::update() {
 	for (int layer = 0; layer < 10; layer++)
 		for (GameObject& obj : gameObjets[layer]) {
 			
