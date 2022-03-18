@@ -18,8 +18,8 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/GOAT_ENGINE/repo_name">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
+  <a href="https://github.com/CGOAT24/GOAT_ENGINE">
+    <img src="utils/logo.png" alt="Logo" width="80" height="80">
   </a>
 
 <h3 align="center">GOAT ENGINE</h3>
@@ -70,13 +70,9 @@
 <!-- ABOUT THE PROJECT -->
 ## À propos du projet
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
-
-Utiliser la puissance de OpenGL et du c++ pour créer votre jeux vidéo sans la complexité d'openGl. Goat engine vous fournis une structure simple a utiliser sans sacrifier de la puissance. 
+Utiliser la puissance de OpenGL et du C++ pour créer votre jeux vidéo sans la complexité d'openGl. Goat engine vous fournis une structure simple a utiliser sans sacrifier de la puissance. 
 
 <p align="right">(<a href="#top">retour au début</a>)</p>
-
-
 
 ### Construit avec
 
@@ -89,21 +85,13 @@ Utiliser la puissance de OpenGL et du c++ pour créer votre jeux vidéo sans la 
 
 <p align="right">(<a href="#top">retour au début</a>)</p>
 
-
-
-<!-- GETTING STARTED -->
 ## Commencer
 
 This is an example of how you may give instructions on setting up your project locally.
 To get a local copy up and running follow these simple example steps.
 
 ### Préalables
-
-This is an example of how to list things you need to use the software and how to install them.
-* npm
-  ```sh
-  npm install npm@latest -g
-  ```
+L'utilisation du GOAT_ENGINE requiert Visual Studio 2019 ou plus récent ainsi que C++17. 
 
 ### Installation
 
