@@ -8,10 +8,8 @@ using std::chrono::system_clock;
 
 GOAT_ENGINE::GameWindow::GameWindow(unsigned int _width, unsigned _height, Scene _scene) : width(_width), height(_height), currentFps(0), maxFps(60), timeBetweenFrame(1000000 / maxFps), currentScene(_scene), camera(Camera(width, height, glm::vec3(0.0f, 0.0f, 5.0f))) {
 	isRunning = true;
-	thread = std::thread(&GameWindow::createWindow,this);
-	isStart = false;
-	while(!isStart)
-		std::this_thread::sleep_for(std::chrono::microseconds(100));
+	isStart = true;
+	createWindow();
 }
 
 /// <summary>
@@ -43,12 +41,18 @@ void GOAT_ENGINE::GameWindow::createWindow() {
 
 	unsigned int frame = 0;
 	isStart = true;
+	GameObject fella(glm::vec2(1.0f, 1.0f), glm::vec2(1.0f, 2.0f), glm::vec3(0.0f, 0.0f, 0.0f), "background.jpeg");
+	currentScene.addGameObject(fella,1);
+	long timeFrame = 1000000 / 60;
 	while (!glfwWindowShouldClose(glfwwindow)) {
+		glClearColor(0.0f, 0.0f, 0.0f, 1);
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		auto startFrame = std::chrono::high_resolution_clock::now();
 
-		glfwPollEvents();
 		
+		camera.Inputs(glfwwindow);
 		camera.updateMatrix(60.0f, 1.0f, 100.0f);
+		
 		//Update et render la scène
 		currentScene.update();
 		currentScene.draw(this->camera);
@@ -59,26 +63,14 @@ void GOAT_ENGINE::GameWindow::createWindow() {
 
 		if (std::chrono::duration_cast<std::chrono::microseconds>(elapsed).count() >= 1000000) {
 			currentFps = frame;
-			frame = 0;
 			lastFpsUpdate = std::chrono::high_resolution_clock::now();
 			cout << currentFps << " fps" << std::endl;
 			elapsed = std::chrono::high_resolution_clock::now() - lastFpsUpdate;
 		}
-		unsigned long nextFrame;
-		if (frame >= maxFps) {
-			nextFrame = (1000000 - (std::chrono::duration_cast<std::chrono::microseconds>(elapsed).count()));
-		}
-		else {
-			auto elapsedFrame = std::chrono::high_resolution_clock::now() - startFrame;
-			/*long frameLenght = std::chrono::duration_cast<std::chrono::microseconds>(elapsedFrame).count();
-			if ((((1000000 - (frameLenght * (maxFps - frame))) - (std::chrono::duration_cast<std::chrono::microseconds>(elapsed).count()))) < 0) {
-				frameLenght = (((1000000 - (std::chrono::duration_cast<std::chrono::microseconds>(elapsed).count()))) / (maxFps - frame));
-			}*/
-			nextFrame = (((1000000)-(std::chrono::duration_cast<std::chrono::microseconds>(elapsed).count())))/(maxFps-frame);
-			//cout << nextFrame << endl;
-		}
-		
-		std::this_thread::sleep_for(std::chrono::microseconds(nextFrame));
+
+		glfwSwapBuffers(glfwwindow);
+		glfwPollEvents();
+		std::this_thread::sleep_for(std::chrono::microseconds(timeFrame));
 	}
 
 	glfwDestroyWindow(glfwwindow);

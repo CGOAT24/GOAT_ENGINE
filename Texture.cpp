@@ -7,9 +7,13 @@ GOAT_ENGINE::Texture::Texture(const char* image, const char* texType, GLuint slo
 	unit = slot;
 	stbi_set_flip_vertically_on_load(true);
 	unsigned char* bytes = stbi_load(image, &widthImg, &heightImg, &numColCh, 0);
+
+	if (stbi_failure_reason())
+		std::cout << stbi_failure_reason();
 	if (!bytes) {
-		throw std::exception("Le fichier n'a pas été trouvé");
+		throw std::exception("Le fichier n'a pas Ã©tÃ© trouvÃ©");
 	}
+
 
 	switch (numColCh) {
 	case 1:
@@ -22,11 +26,13 @@ GOAT_ENGINE::Texture::Texture(const char* image, const char* texType, GLuint slo
 		format = GL_RGBA;
 		break;
 	default:
-		throw std::invalid_argument("le type de texture n'a pas pu être reconnu");	//Message d'erreur à revoir
+		throw std::invalid_argument("le type de texture n'a pas pu Ãªtre reconnu");	//Message d'erreur Ã  revoir
 		break;
 	}
 
 	glGenTextures(1, &ID);
+
+
 	glActiveTexture(GL_TEXTURE + slot);
 
 	glBindTexture(GL_TEXTURE_2D, ID);
@@ -52,7 +58,7 @@ GOAT_ENGINE::Texture::Texture(const char* texPath) {
 	stbi_set_flip_vertically_on_load(true);
 	unsigned char* bytes = stbi_load(texPath, &widthImg, &heightImg, &numColCh, 0);
 	if (!bytes) {
-		throw std::exception("Le fichier n'a pas été trouvé");
+		throw std::exception("Le fichier n'a pas Ã©tÃ© trouvÃ©");
 	}
 
 	switch (numColCh) {
@@ -66,7 +72,7 @@ GOAT_ENGINE::Texture::Texture(const char* texPath) {
 		format = GL_RGBA;
 		break;
 	default:
-		throw std::invalid_argument("le type de texture n'a pas pu être reconnu");	//Message d'erreur à revoir
+		throw std::invalid_argument("le type de texture n'a pas pu Ãªtre reconnu");	//Message d'erreur Ã  revoir
 		break;
 	}
 

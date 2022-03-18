@@ -39,6 +39,4 @@ namespace GOAT_ENGINE {
 		void rotateZ(float rotation);
 	};
 }
-
-
 #endif
