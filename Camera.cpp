@@ -1,11 +1,23 @@
 #include "Camera.h"
 
+/// <summary>
+/// Constructeur pour la classe caméra
+/// </summary>
+/// <param name="_width">largeur de la caméra</param>
+/// <param name="_height">hauteur de la caméra</param>
+/// <param name="_position">position de la caméra</param>
 GOAT_ENGINE::Camera::Camera(int _width, int _height, glm::vec3 _position) {
 	Camera::width = _width;
 	Camera::height = _height;
 	position = _position;
 }
 
+/// <summary>
+/// 
+/// </summary>
+/// <param name="FOVdeg"></param>
+/// <param name="nearPlane"></param>
+/// <param name="farPlane"></param>
 void GOAT_ENGINE::Camera::updateMatrix(float FOVdeg, float nearPlane, float farPlane) {
 	
 	glm::mat4 view = glm::mat4(1.0f);
@@ -17,10 +29,19 @@ void GOAT_ENGINE::Camera::updateMatrix(float FOVdeg, float nearPlane, float farP
 	cameraMatrix = projection * view;
 }
 
+/// <summary>
+/// Ne pas toucher sous peine de mort!!!
+/// 
+/// Cette méthode sert à render la scène en fonction de la position et l'angle de la caméra
+/// </summary>
 void GOAT_ENGINE::Camera::matrix(Shader& shader, const char* uniform) {
 	glUniformMatrix4fv(glGetUniformLocation(shader.ID, uniform), 1, GL_FALSE, glm::value_ptr(cameraMatrix));
 }
 
+/// <summary>
+/// Cette méthode sert à gêrer les déplacements de la caméra
+/// </summary>
+/// <param name="window">la fenêtre à écouter les touches du claviers</param>
 void GOAT_ENGINE::Camera::move(GLFWwindow* window) {
 	glm::vec3 up(0.0f, 1.0f, 0.0f);
 	glm::vec3 orientation(0.0f, 0.0f, -1.0f);

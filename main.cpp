@@ -11,8 +11,12 @@
 #include "GameObject.h"
 #include "Event.h"
 #include "GameWindow.h"
+#include "Sound.h"
+
+using namespace GOAT_ENGINE;
 
 int main() {
+
 	glfwInit();
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
@@ -95,5 +99,5 @@ int main() {
 
 	glfwDestroyWindow(window);
 	glfwTerminate();
-  return 0;
+	return 0;
 }

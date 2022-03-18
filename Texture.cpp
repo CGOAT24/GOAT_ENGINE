@@ -8,12 +8,9 @@ GOAT_ENGINE::Texture::Texture(const char* image, const char* texType, GLuint slo
 	stbi_set_flip_vertically_on_load(true);
 	unsigned char* bytes = stbi_load(image, &widthImg, &heightImg, &numColCh, 0);
 
-	if (stbi_failure_reason())
-		std::cout << stbi_failure_reason();
-	if (!bytes) {
-		throw std::exception("Le fichier n'a pas été trouvé");
+	if (stbi_failure_reason()) {
+		throw std::exception(stbi_failure_reason());
 	}
-
 
 	switch (numColCh) {
 	case 1:
@@ -57,8 +54,9 @@ GOAT_ENGINE::Texture::Texture(const char* texPath) {
 	unit = 0;
 	stbi_set_flip_vertically_on_load(true);
 	unsigned char* bytes = stbi_load(texPath, &widthImg, &heightImg, &numColCh, 0);
-	if (!bytes) {
-		throw std::exception("Le fichier n'a pas été trouvé");
+
+	if (stbi_failure_reason()) {
+		throw std::exception(stbi_failure_reason());
 	}
 
 	switch (numColCh) {

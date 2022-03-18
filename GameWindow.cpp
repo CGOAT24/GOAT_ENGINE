@@ -41,8 +41,6 @@ void GOAT_ENGINE::GameWindow::createWindow() {
 
 	unsigned int frame = 0;
 	isStart = true;
-	GameObject fella(glm::vec2(1.0f, 1.0f), glm::vec2(1.0f, 2.0f), glm::vec3(0.0f, 0.0f, 0.0f), "background.jpeg");
-	currentScene.addGameObject(fella,1);
 	long timeFrame = 1000000 / 60;
 	while (!glfwWindowShouldClose(glfwwindow)) {
 		glClearColor(0.0f, 0.0f, 0.0f, 1);
@@ -50,7 +48,7 @@ void GOAT_ENGINE::GameWindow::createWindow() {
 		auto startFrame = std::chrono::high_resolution_clock::now();
 
 		
-		camera.Inputs(glfwwindow);
+		camera.move(glfwwindow);
 		camera.updateMatrix(60.0f, 1.0f, 100.0f);
 		
 		//Update et render la scène
