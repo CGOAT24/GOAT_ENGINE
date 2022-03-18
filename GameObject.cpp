@@ -36,13 +36,10 @@ GOAT_ENGINE::GameObject::GameObject(glm::vec2 _position, glm::vec2 _scale, glm::
 
 	std::vector<Vertex> verts(vertices, vertices + sizeof(vertices) / sizeof(Vertex));
 	std::vector<GLuint> ind(indices, indices + sizeof(indices) / sizeof(GLuint));
-	std::cout << "Render start"<< _texName <<std::endl;
 
 	Texture texture(_texName, "diffuse", 0, GL_UNSIGNED_BYTE);
 
 	this->mesh = Mesh(verts, ind, texture);
-	std::cout << "Render start" << _texName << std::endl;
-	std::cout << "Render stop" << std::endl;
 	this->light.Activate(shader);
 }
 

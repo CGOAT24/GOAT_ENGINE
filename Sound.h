@@ -13,7 +13,4 @@ namespace GOAT_ENGINE {
 		void play(const char* file, float volume, bool loop);
 	};
 }
-
-
-
 #endif
