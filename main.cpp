@@ -14,18 +14,11 @@ namespace fs = std::filesystem;
 
 
 int main() {
-	std::string parent = (fs::current_path()).string();
 	GameWindow window = GameWindow(800,800,Scene());
-	std::cout << window.isRunning;
-	GameObject fella(glm::vec2(1.0f, 1.0f), glm::vec2(1.0f, 2.0f), glm::vec3(0.0f, 0.0f, 0.0f), ("background.jpeg"));
-	printf("hello");
-	window.currentScene.addGameObject(fella,1);
-	std::cout << "Hello World!";
 	/*const unsigned int WIN_HEIGHT(800);
 	const unsigned int WIN_WIDTH(800);
 	const float MIN_DRAW_DISTANCE(1.0f);
 	const float MAX_DRAW_DISTANCE(100.0f);
-=======
 	/*const unsigned int WIN_HEIGHT(800);
 	const unsigned int WIN_HEIGHT(800);
 	const unsigned int WIN_WIDTH(800);
@@ -35,7 +28,6 @@ int main() {
 	*/
 
 	//GameObject fella(glm::vec2(1.0f, 1.0f), glm::vec2(1.0f, 2.0f), glm::vec3(0.0f, 0.0f, 0.0f), path.c_str());
-	printf("hello");
 	//window.currentScene.addGameObject(fella, 1);
 
 	/*

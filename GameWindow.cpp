@@ -9,13 +9,11 @@ using std::chrono::system_clock;
 GameWindow::GameWindow(unsigned int _width, unsigned _height, Scene _scene) : width(_width), height(_height), currentFps(0), maxFps(60), timeBetweenFrame(1000000 / maxFps), currentScene(_scene), camera(Camera(width, height, glm::vec3(0.0f, 0.0f, 5.0f))) {
 	isRunning = true;
 	isStart = true;
-	createWindow();
 }
 
 /// <summary>
 /// Créer la fenêtre et démarer le jeux
 /// </summary>
-/// <returns>Code de réponse</returns>
 void GameWindow::createWindow() {
 	//Créer la fenêtre
 	glfwInit();
@@ -43,7 +41,8 @@ void GameWindow::createWindow() {
 	isStart = true;
 	GameObject fella(glm::vec2(1.0f, 1.0f), glm::vec2(1.0f, 2.0f), glm::vec3(0.0f, 0.0f, 0.0f), "background.jpeg");
 	currentScene.addGameObject(fella,1);
-	long timeFrame = 1000000 / 60;
+	long sleepTime = 1000000 / (maxFps*2);
+	long timeFrame = 0;
 	while (!glfwWindowShouldClose(glfwwindow)) {
 		glClearColor(0.0f, 0.0f, 0.0f, 1);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -66,11 +65,20 @@ void GameWindow::createWindow() {
 			lastFpsUpdate = std::chrono::high_resolution_clock::now();
 			cout << currentFps << " fps" << std::endl;
 			elapsed = std::chrono::high_resolution_clock::now() - lastFpsUpdate;
+			frame = 0;
 		}
 
 		glfwSwapBuffers(glfwwindow);
 		glfwPollEvents();
-		std::this_thread::sleep_for(std::chrono::microseconds(timeFrame));
+		
+		long fluidTime = timeFrame;
+		if (fluidTime > sleepTime)
+			fluidTime = sleepTime;
+
+		timeFrame = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::high_resolution_clock::now() - startFrame).count();
+
+
+		std::this_thread::sleep_for(std::chrono::microseconds(sleepTime-fluidTime));
 	}
 
 	glfwDestroyWindow(glfwwindow);
