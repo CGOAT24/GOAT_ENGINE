@@ -1,5 +1,6 @@
 #ifndef GAMEWINDOW_CLASS_H
 #define GAMEWINDOW_CLASS_H
+
 #include <iostream>
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
@@ -26,18 +27,15 @@ namespace GOAT_ENGINE {
 	private:
 		unsigned int width, height, currentFps, maxFps;
 		unsigned long timeBetweenFrame;
-
-
 		Camera camera;
 		std::thread thread;
+
 	public:
-		GameWindow(unsigned int _width, unsigned _height, Scene _scene);
 		Scene currentScene;
-		void createWindow();
 		bool isRunning, isStart;
 		GLFWwindow* glfwwindow;
-
+		void createWindow();
+		GameWindow(unsigned int _width, unsigned _height, Scene _scene);
 	};
 }
 #endif
-

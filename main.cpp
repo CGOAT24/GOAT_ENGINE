@@ -16,11 +16,6 @@
 using namespace GOAT_ENGINE;
 
 int main() {
-	/*
-	GameWindow window = GameWindow(800,800,Scene());
-	window.currentScene.addGameObject(fella,1);
-	*/
-	
 
 	glfwInit();
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
