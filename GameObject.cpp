@@ -1,9 +1,6 @@
 #include "GameObject.h"
-/*
-Position du gameobject lors de la création à revoir
-*/
 
-GOAT_ENGINE::GameObject::GameObject(glm::vec2 _position, glm::vec2 _scale, glm::vec3 _rotation, const char* _texName, bool _collider): position(_position.x, _position.y, 0.0f), scale(_scale.x, _scale.y, 0.0f), rotation(_rotation), mesh(), shader("default.vert", "default.frag"), light(glm::vec3(_position.x, _position.y, 0.0f)), collider(position, scale, _collider) {
+GOAT_ENGINE::GameObject::GameObject(glm::vec2 _position, glm::vec2 _scale, glm::vec3 _rotation, const char* _texName, bool _collider): position(_position.x, _position.y, 0.0f), scale(_scale.x, _scale.y, 0.0f), rotation(_rotation), mesh(), shader("default.vert", "default.frag"), light(glm::vec3(_position.x, _position.y, 0.0f)), collider(position, scale, _collider), tag("") {
 	Vertex vertices[4];
 
 	glm::vec2 vertPos[] = {
@@ -51,9 +48,12 @@ glm::vec2 GOAT_ENGINE::GameObject::getScale() const {
 	return glm::vec2(this->scale.x, this->scale.y);
 }
 
-glm::vec3 GOAT_ENGINE::GameObject::getRotation() const
-{
+glm::vec3 GOAT_ENGINE::GameObject::getRotation() const {
 	return this->rotation;
+}
+
+const char* GOAT_ENGINE::GameObject::getTag() const {
+	return this->tag;
 }
 
 void GOAT_ENGINE::GameObject::render(Camera& camera) {
@@ -93,6 +93,10 @@ void GOAT_ENGINE::GameObject::rotateZ(float rotation) {
 	this->rotation.z += rotation;
 
 	this->transform();
+}
+
+void GOAT_ENGINE::GameObject::setTag(const char* tag) {
+	this->tag = tag;
 }
 
 void GOAT_ENGINE::GameObject::transform() {

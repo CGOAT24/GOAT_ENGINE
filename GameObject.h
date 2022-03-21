@@ -11,11 +11,11 @@ namespace GOAT_ENGINE {
 		Mesh mesh;
 		Shader shader;
 		Light light;
-		
 
 		glm::vec3 position;
 		glm::vec3 scale;
 		glm::vec3 rotation;
+		const char* tag;
 
 		void transform();
 
@@ -30,6 +30,8 @@ namespace GOAT_ENGINE {
 		glm::vec3 getPosition() const;
 		glm::vec2 getScale() const;
 		glm::vec3 getRotation() const;
+		const char* getTag() const;
+
 
 		//Setters
 		void translate(glm::vec2 movement);
@@ -37,6 +39,7 @@ namespace GOAT_ENGINE {
 		void rotateX(float rotation);
 		void rotateY(float rotation);
 		void rotateZ(float rotation);
+		void setTag(const char* tag);
 	};
 }
 #endif

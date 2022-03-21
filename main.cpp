@@ -43,6 +43,8 @@ int main() {
 		true
 	);
 
+	fella.setTag("player");
+
 	GameObject plank(
 		glm::vec2(1.0f, 1.0f),
 		glm::vec2(1.0f, 1.0f),
@@ -55,8 +57,6 @@ int main() {
 	Event eventHandler(window);
 
 	Sound player = Sound();
-
-	int counter(0);
 
 	glfwSwapBuffers(window);
 	glEnable(GL_DEPTH_TEST);
@@ -89,6 +89,8 @@ int main() {
 		if (fella.collider.isColliding(plank.collider)) {
 			player.play("Audio/Sound Effects/impact.mp3", 0.5f, false);
 		}
+
+		std::cout << fella.getTag() << std::endl;
 
 		fella.render(cam);
 		plank.render(cam);
