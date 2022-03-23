@@ -5,18 +5,20 @@
 #include <stb/stb_image.h>
 #include "shaderClass.h"
 
-class Texture {
-public:
-	GLuint ID;
-	const char* type;
-	GLuint unit;
+namespace GOAT_ENGINE {
+	class Texture {
+	public:
+		GLuint ID;
+		const char* type;
+		GLuint unit;
 
-	Texture(const char* image, const char* texType, GLuint slot, GLenum pixelType);
+		Texture(const char* image, const char* texType, GLuint slot, GLenum pixelType);
+		Texture(const char* texPath);
 
-	void texUnit(Shader& shader, const char* uniform, GLuint unit);
-	void Bind();
-	void Unbind();
-	void Delete();
-};
-
+		void texUnit(Shader& shader, const char* uniform, GLuint unit);
+		void Bind();
+		void Unbind();
+		void Delete();
+	};
+}
 #endif

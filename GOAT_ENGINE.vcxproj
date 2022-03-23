@@ -72,16 +72,16 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\Users\Chad\Documents\Projects\GOAT_ENGINE\GOAT_ENGINE\Libraries\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\Chad\Documents\Projects\GOAT_ENGINE\GOAT_ENGINE\Libraries\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Users\Chad\Documents\Projects\GOAT_ENGINE\Libraries\include;C:\Users\Chad\Documents\Projects\GOAT_ENGINE\GOAT_ENGINE\Libraries\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\Chad\Documents\Projects\GOAT_ENGINE\Libraries\lib;C:\Users\Chad\Documents\Projects\GOAT_ENGINE\GOAT_ENGINE\Libraries\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\Users\1848921\Documents\GOAT_ENGINE\Libraries\include;C:\Users\1952754\source\repos\GOAT_ENGINE\Libraries\include;C:\Users\Chad\Documents\Projects\GOAT_ENGINE\GOAT_ENGINE\Libraries\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\1848921\Documents\GOAT_ENGINE\Libraries\lib;C:\Users\1952754\source\repos\GOAT_ENGINE\Libraries\lib;C:\Users\Chad\Documents\Projects\GOAT_ENGINE\GOAT_ENGINE\Libraries\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Users\Chad\Documents\Projects\GOAT_ENGINE\Libraries\include;C:\Users\1848921\Documents\GOAT_ENGINE\Libraries\include;C:\Users\1952754\source\repos\GOAT_ENGINE\Libraries\include;C:\Users\Chad\Documents\Projects\GOAT_ENGINE\GOAT_ENGINE\Libraries\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\Chad\Documents\Projects\GOAT_ENGINE\Libraries\lib;C:\Users\1848921\Documents\GOAT_ENGINE\Libraries\lib;C:\Users\1952754\source\repos\GOAT_ENGINE\Libraries\lib;C:\Users\Chad\Documents\Projects\GOAT_ENGINE\GOAT_ENGINE\Libraries\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
@@ -92,6 +92,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -147,6 +148,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="Collider.cpp" />
     <ClCompile Include="EBO.cpp" />
     <ClCompile Include="Event.cpp" />
     <ClCompile Include="GameObject.cpp" />
@@ -157,6 +159,7 @@
     <ClCompile Include="glad.c" />
     <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="shaderClass.cpp" />
+    <ClCompile Include="Sound.cpp" />
     <ClCompile Include="stb.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="VAO.cpp" />
@@ -164,16 +167,18 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="Collider.h" />
     <ClInclude Include="EBO.h" />
     <ClInclude Include="Event.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameWindow.h" />
     <ClInclude Include="Light.h" />
-    <ClInclude Include="MouseEvent.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="shaderClass.h" />
+    <ClInclude Include="Sound.h" />
     <ClInclude Include="Texture.h" />
+    <ClInclude Include="Values.h" />
     <ClInclude Include="VAO.h" />
     <ClInclude Include="VBO.h" />
   </ItemGroup>
@@ -182,6 +187,17 @@
     <None Include="default.vert" />
     <None Include="light.frag" />
     <None Include="light.vert" />
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="Audio\Music\security.mp3" />
+    <Media Include="Audio\Sound Effects\impact.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Textures\background.jpeg" />
+    <Image Include="Textures\background.png" />
+    <Image Include="Textures\character.png" />
+    <Image Include="Textures\default.png" />
+    <Image Include="Textures\planks.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

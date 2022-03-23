@@ -2,21 +2,25 @@
 #define MESH_CLASS_H
 
 #include <string>
+#include <filesystem>
 #include "VAO.h"
 #include "EBO.h"
 #include "Camera.h"
 #include "Texture.h"
+#include "Values.h"
 
-class Mesh {
-public:
-	std::vector<Vertex> vertices;
-	std::vector<GLuint> indices;
-	Texture texture;
+namespace GOAT_ENGINE {
+	class Mesh {
+	public:
+		std::vector<Vertex> vertices;
+		std::vector<GLuint> indices;
+		Texture texture;
 
-	VAO VAO;
-	Mesh();
-	Mesh(std::vector<Vertex>& vertices, std::vector<GLuint>& indices, Texture& textures);
+		VAO VAO;
+		Mesh();
+		Mesh(std::vector<Vertex>& vertices, std::vector<GLuint>& indices, Texture& textures);
 
-	void Draw(Shader& shader, Camera& camera);
-};
+		void Draw(Shader& shader, GOAT_ENGINE::Camera& camera);
+	};
+}
 #endif
