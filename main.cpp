@@ -15,11 +15,7 @@
 using namespace GOAT_ENGINE;
 
 int main() {
-<<<<<<< HEAD
 
-=======
-	/*
->>>>>>> c4dda07... update
 	glfwInit();
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
@@ -102,6 +98,6 @@ int main() {
 
 	glfwDestroyWindow(window);
 	glfwTerminate();
-	*/
+	
 	return 0;
 }
