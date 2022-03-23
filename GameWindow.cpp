@@ -40,7 +40,7 @@ void GOAT_ENGINE::GameWindow::createWindow() {
 
 	unsigned int frame = 0;
 	isStart = true;
-	GameObject fella(glm::vec2(1.0f, 1.0f), glm::vec2(1.0f, 2.0f), glm::vec3(0.0f, 0.0f, 0.0f), "background.jpeg");
+	GameObject fella(glm::vec2(1.0f, 1.0f), glm::vec2(1.0f, 2.0f), glm::vec3(0.0f, 0.0f, 0.0f), "background.jpeg", false);
 	currentScene.addGameObject(fella,1);
 	long sleepTime = 1000000 / (maxFps*2);
 	long timeFrame = 1000000 / 60;
