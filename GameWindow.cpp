@@ -9,22 +9,21 @@ using std::chrono::system_clock;
 GOAT_ENGINE::GameWindow::GameWindow(unsigned int _width, unsigned _height, Scene _scene) : width(_width), height(_height), currentFps(0), maxFps(60), timeBetweenFrame(1000000 / maxFps), currentScene(_scene), camera(Camera(width, height, glm::vec3(0.0f, 0.0f, 5.0f))) {
 	isRunning = true;
 	isStart = true;
-	createWindow();
 }
 
 /// <summary>
-/// Créer la fenêtre et démarer le jeux
+/// CrÃ©er la fenÃªtre et dÃ©marer le jeux
 /// </summary>
-/// <returns>Code de réponse</returns>
+/// <returns>Code de rÃ©ponse</returns>
 void GOAT_ENGINE::GameWindow::createWindow() {
-	//Créer la fenêtre
+	//CrÃ©er la fenÃªtre
 	glfwInit();
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
 	glfwwindow = glfwCreateWindow(width, height, "GOAT_ENGINE", NULL, NULL);
-	//Si erreur durant la création de la fenêtre
+	//Si erreur durant la crÃ©ation de la fenÃªtre
 	if (glfwwindow == NULL) {
 		std::cout << "Failed to create Window" << std::endl;
 		glfwTerminate();
@@ -41,6 +40,9 @@ void GOAT_ENGINE::GameWindow::createWindow() {
 
 	unsigned int frame = 0;
 	isStart = true;
+	GameObject fella(glm::vec2(1.0f, 1.0f), glm::vec2(1.0f, 2.0f), glm::vec3(0.0f, 0.0f, 0.0f), "background.jpeg");
+	currentScene.addGameObject(fella,1);
+	long sleepTime = 1000000 / (maxFps*2);
 	long timeFrame = 1000000 / 60;
 	while (!glfwWindowShouldClose(glfwwindow)) {
 		glClearColor(0.0f, 0.0f, 0.0f, 1);
@@ -51,7 +53,7 @@ void GOAT_ENGINE::GameWindow::createWindow() {
 		camera.move(glfwwindow);
 		camera.updateMatrix(60.0f, 1.0f, 100.0f);
 		
-		//Update et render la scène
+		//Update et render la scÃ¨ne
 		currentScene.update();
 		currentScene.draw(this->camera);
 
@@ -64,11 +66,20 @@ void GOAT_ENGINE::GameWindow::createWindow() {
 			lastFpsUpdate = std::chrono::high_resolution_clock::now();
 			cout << currentFps << " fps" << std::endl;
 			elapsed = std::chrono::high_resolution_clock::now() - lastFpsUpdate;
+			frame = 0;
 		}
 
 		glfwSwapBuffers(glfwwindow);
 		glfwPollEvents();
-		std::this_thread::sleep_for(std::chrono::microseconds(timeFrame));
+		
+		long fluidTime = timeFrame;
+		if (fluidTime > sleepTime)
+			fluidTime = sleepTime;
+
+		timeFrame = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::high_resolution_clock::now() - startFrame).count();
+
+
+		std::this_thread::sleep_for(std::chrono::microseconds(sleepTime-fluidTime));
 	}
 
 	glfwDestroyWindow(glfwwindow);
