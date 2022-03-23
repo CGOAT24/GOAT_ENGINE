@@ -1,5 +1,6 @@
 #ifndef GAMEWINDOW_CLASS_H
 #define GAMEWINDOW_CLASS_H
+
 #include <iostream>
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
@@ -35,7 +36,6 @@ namespace GOAT_ENGINE {
 			void createWindow();
 			bool isRunning, isStart;
 			GLFWwindow* glfwwindow;
-
 	};
 }
 #endif

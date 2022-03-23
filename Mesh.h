@@ -7,7 +7,6 @@
 #include "EBO.h"
 #include "Camera.h"
 #include "Texture.h"
-#include "Values.h"
 
 namespace GOAT_ENGINE {
 	class Mesh {

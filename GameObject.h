@@ -3,7 +3,6 @@
 
 #include "Light.h"
 #include "Collider.h"
-#include "Values.h"
 
 namespace GOAT_ENGINE {
 	class GameObject {
@@ -11,11 +10,11 @@ namespace GOAT_ENGINE {
 		Mesh mesh;
 		Shader shader;
 		Light light;
-		
 
 		glm::vec3 position;
 		glm::vec3 scale;
 		glm::vec3 rotation;
+		const char* tag;
 
 		void transform();
 
@@ -26,17 +25,20 @@ namespace GOAT_ENGINE {
 		void render(Camera& camera);
 		void updateTexture(Texture tex);
 
-		//Getters
+		//accesseurs
 		glm::vec3 getPosition() const;
 		glm::vec2 getScale() const;
 		glm::vec3 getRotation() const;
+		const char* getTag() const;
 
-		//Setters
+
+		//mutateurs
 		void translate(glm::vec2 movement);
 		void setScale(glm::vec2 scale);
 		void rotateX(float rotation);
 		void rotateY(float rotation);
 		void rotateZ(float rotation);
+		void setTag(const char* tag);
 	};
 }
 #endif

@@ -7,17 +7,24 @@
 #include <glm/gtc/type_ptr.hpp>
 #include <filesystem>
 
-#include "Values.h"
 #include "GameObject.h"
 #include "Event.h"
 #include "GameWindow.h"
+#include "Sound.h"
+
+using namespace GOAT_ENGINE;
 
 int main() {
+<<<<<<< HEAD
+
+=======
+	/*
+>>>>>>> c4dda07... update
 	glfwInit();
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-	GLFWwindow* window(glfwCreateWindow(GOAT_ENGINE::WIN_WIDTH, GOAT_ENGINE::WIN_HEIGHT, "GOAT_ENGINE", NULL, NULL));
+	GLFWwindow* window(glfwCreateWindow(800, 800, "GOAT_ENGINE", NULL, NULL));
 
 	if(window == NULL) {
 		std::cout << "Failed to create Window" << std::endl;
@@ -27,7 +34,7 @@ int main() {
 
 	glfwMakeContextCurrent(window);
 	gladLoadGL();
-	glViewport(0, 0, GOAT_ENGINE::WIN_WIDTH, GOAT_ENGINE::WIN_HEIGHT);
+	glViewport(0, 0, 800, 800);
 
 	std::string texPath((std::filesystem::current_path().string() + "\\Textures\\").c_str());
 
@@ -39,6 +46,8 @@ int main() {
 		true
 	);
 
+	fella.setTag("player");
+
 	GameObject plank(
 		glm::vec2(1.0f, 1.0f),
 		glm::vec2(1.0f, 1.0f),
@@ -47,12 +56,10 @@ int main() {
 		true
 	);
 
-	Camera cam(WIN_WIDTH, WIN_HEIGHT, glm::vec3(0.0f, 0.0f, CAM_DISTANCE));
+	Camera cam(800, 800, glm::vec3(0.0f, 0.0f, 5.0f));
 	Event eventHandler(window);
 
 	Sound player = Sound();
-
-	int counter(0);
 
 	glfwSwapBuffers(window);
 	glEnable(GL_DEPTH_TEST);
@@ -62,7 +69,7 @@ int main() {
 		glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-		cam.updateMatrix(CAM_FOV, MIN_DRAW_DISTANCE, MAX_DRAW_DISTANCE);
+		cam.updateMatrix(90.0f, 0.1f, 10.0f);
 
 		eventHandler.onPress(GLFW_KEY_W, fella, [](GameObject& g) {
 			std::string texPath((std::filesystem::current_path().string() + "\\Textures\\").c_str());
@@ -95,5 +102,6 @@ int main() {
 
 	glfwDestroyWindow(window);
 	glfwTerminate();
-  return 0;
+	*/
+	return 0;
 }

@@ -7,19 +7,18 @@
 #include "GameObject.h"
 
 namespace GOAT_ENGINE {
+	class Scene {
+	private:
+		std::vector<GameObject> gameObjets[10];
 
-class Scene {
-private:
-	std::vector<GameObject> gameObjets[10];
-
-public:
-	Scene();
-	void draw(Camera &camera);
-	void update();
-	void addGameObject(GameObject& obj, unsigned int layer);
-	void onCreate();
-	void onUpdate();
-};
-
+	public:
+		Scene();
+		void draw(Camera& camera);
+		void update();
+		void addGameObject(GameObject& obj, unsigned int layer);
+		void onCreate();
+		void onUpdate();
+	};
+}
 #endif
 

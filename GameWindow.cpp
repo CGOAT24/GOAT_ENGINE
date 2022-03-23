@@ -12,18 +12,18 @@ GOAT_ENGINE::GameWindow::GameWindow(unsigned int _width, unsigned _height, Scene
 }
 
 /// <summary>
-/// Créer la fenêtre et démarer le jeux
+/// CrÃ©er la fenÃªtre et dÃ©marer le jeux
 /// </summary>
-/// <returns>Code de réponse</returns>
+/// <returns>Code de rÃ©ponse</returns>
 void GOAT_ENGINE::GameWindow::createWindow() {
-	//Créer la fenêtre
+	//CrÃ©er la fenÃªtre
 	glfwInit();
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
 	glfwwindow = glfwCreateWindow(width, height, "GOAT_ENGINE", NULL, NULL);
-	//Si erreur durant la création de la fenêtre
+	//Si erreur durant la crÃ©ation de la fenÃªtre
 	if (glfwwindow == NULL) {
 		std::cout << "Failed to create Window" << std::endl;
 		glfwTerminate();
@@ -43,17 +43,17 @@ void GOAT_ENGINE::GameWindow::createWindow() {
 	GameObject fella(glm::vec2(1.0f, 1.0f), glm::vec2(1.0f, 2.0f), glm::vec3(0.0f, 0.0f, 0.0f), "background.jpeg");
 	currentScene.addGameObject(fella,1);
 	long sleepTime = 1000000 / (maxFps*2);
-	long timeFrame = 0;
+	long timeFrame = 1000000 / 60;
 	while (!glfwWindowShouldClose(glfwwindow)) {
 		glClearColor(0.0f, 0.0f, 0.0f, 1);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		auto startFrame = std::chrono::high_resolution_clock::now();
 
 		
-		camera.Inputs(glfwwindow);
+		camera.move(glfwwindow);
 		camera.updateMatrix(60.0f, 1.0f, 100.0f);
 		
-		//Update et render la scène
+		//Update et render la scÃ¨ne
 		currentScene.update();
 		currentScene.draw(this->camera);
 
