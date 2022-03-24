@@ -7,11 +7,7 @@ GOAT_ENGINE::Texture::Texture(const char* texPath) {
 	unit = 0;
 	stbi_set_flip_vertically_on_load(true);
 	unsigned char* bytes = stbi_load(texPath, &widthImg, &heightImg, &numColCh, 0);
-
-	if (stbi_failure_reason()) {
-		throw std::exception(stbi_failure_reason());
-	}
-
+	
 	switch (numColCh) {
 	case 1:
 		format = GL_RED;
