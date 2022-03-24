@@ -1,10 +1,8 @@
 #include "Texture.h"
 
-GOAT_ENGINE::Texture::Texture(const char* texPath) {
+GOAT_ENGINE::Texture::Texture(const char* texPath): name(texPath), type("diffuse"), unit(0) {
 	GLenum format;
 	int widthImg, heightImg, numColCh;
-	type = "diffuse";
-	unit = 0;
 	stbi_set_flip_vertically_on_load(true);
 	unsigned char* bytes = stbi_load(texPath, &widthImg, &heightImg, &numColCh, 0);
 	

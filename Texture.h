@@ -11,6 +11,7 @@ namespace GOAT_ENGINE {
 		GLuint ID;
 		const char* type;
 		GLuint unit;
+		const char* name;
 
 		Texture(const char* texPath);
 

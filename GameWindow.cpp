@@ -6,23 +6,22 @@ using std::chrono::milliseconds;
 using std::chrono::seconds;
 using std::chrono::system_clock;
 
-GOAT_ENGINE::GameWindow::GameWindow(unsigned int _width, unsigned _height, Scene _scene) : width(_width), height(_height), currentFps(0), maxFps(60), timeBetweenFrame(1000000 / maxFps), currentScene(_scene), camera(Camera(width, height, glm::vec3(0.0f, 0.0f, 5.0f))) {
-	isRunning = true;
-	isStart = true;
-}
-
-/// <summary>
-/// Créer la fenêtre et démarer le jeux
-/// </summary>
-/// <returns>Code de réponse</returns>
-void GOAT_ENGINE::GameWindow::createWindow() {
-	//Créer la fenêtre
+GOAT_ENGINE::GameWindow::GameWindow(unsigned int _width, unsigned int _height, Scene _scene) : width(_width), height(_height), currentFps(0), maxFps(60), timeBetweenFrame(1000000 / maxFps), currentScene(_scene), camera(Camera(width, height, glm::vec3(0.0f, 0.0f, 5.0f))), isRunning(true), isStart(true) {
 	glfwInit();
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
 	glfwwindow = glfwCreateWindow(width, height, "GOAT_ENGINE", NULL, NULL);
+	glfwMakeContextCurrent(glfwwindow);
+
+	gladLoadGL();
+	glViewport(0, 0, width, height);
+}
+
+void GOAT_ENGINE::GameWindow::createWindow() {
+	//Créer la fenêtre
+	
 	//Si erreur durant la création de la fenêtre
 	if (glfwwindow == NULL) {
 		std::cout << "Failed to create Window" << std::endl;
@@ -30,10 +29,7 @@ void GOAT_ENGINE::GameWindow::createWindow() {
 		return;
 	}
 
-	glfwMakeContextCurrent(glfwwindow);
-
-	gladLoadGL();
-	glViewport(0, 0, width, height);
+	
 	
 	//GameLoop
 	auto lastFpsUpdate = std::chrono::high_resolution_clock::now();

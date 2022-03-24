@@ -23,19 +23,18 @@
 namespace GOAT_ENGINE {
 	class GameWindow {
 		private:
-			
-			unsigned long timeBetweenFrame;
-
-
-			Camera camera;
-			std::thread thread;
-		public:
 			unsigned int width, height, currentFps, maxFps;
-			GameWindow(unsigned int _width, unsigned _height, Scene _scene);
-			Scene currentScene;
-			void createWindow();
+			unsigned long timeBetweenFrame;
+			std::thread thread;
+			Camera camera;
+			
+		public:
 			bool isRunning, isStart;
 			GLFWwindow* glfwwindow;
+			Scene currentScene;
+
+			GameWindow(unsigned int _width, unsigned int _height, Scene _scene);
+			void createWindow();
 	};
 }
 #endif
