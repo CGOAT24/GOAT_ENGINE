@@ -5,6 +5,7 @@
 #include "Camera.h"
 
 #include "GameObject.h"
+#include "Event.h"
 
 namespace GOAT_ENGINE {
 	class Scene {

@@ -1,9 +1,10 @@
-#ifndef TEXTURE_CLASS_H
+ #ifndef TEXTURE_CLASS_H
 #define TEXTURE_CLASS_H
 
 #include <glad/glad.h>
 #include <stb/stb_image.h>
 #include "shaderClass.h"
+#include <filesystem>
 
 namespace GOAT_ENGINE {
 	class Texture {
@@ -14,6 +15,7 @@ namespace GOAT_ENGINE {
 		const char* name;
 
 		Texture(const char* texPath);
+		Texture();
 
 		void texUnit(Shader& shader, const char* uniform, GLuint unit);
 		void Bind();

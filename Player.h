@@ -1,21 +1,19 @@
 #ifndef PLAYER_CLASS_H
 #define PLAYER_CLASS_H
-#include "GameObject.h"
 
-const char UP = 'u';
-const char DOWN = 'd';
-const char LEFT = 'l';
-const char RIGHT = 'r';
+#include "GameObject.h"
 
 class Player : public GOAT_ENGINE::GameObject {
 private:
-	GOAT_ENGINE::Texture textures[4];
+	GOAT_ENGINE::Texture textures[4][2];
 	char direction;
-	
+	int animCount;
+
 public:
-	Player();
+	Player(GOAT_ENGINE::Texture _textures[4][2]);
 	void updateDirection(char newDir);
 	char getDirection() const;
+	void updateTexture();
 };
 
 #endif

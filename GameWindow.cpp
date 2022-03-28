@@ -6,55 +6,36 @@ using std::chrono::milliseconds;
 using std::chrono::seconds;
 using std::chrono::system_clock;
 
-GOAT_ENGINE::GameWindow::GameWindow(unsigned int _width, unsigned int _height, Scene _scene) : width(_width), height(_height), currentFps(0), maxFps(60), timeBetweenFrame(1000000 / maxFps), currentScene(_scene), camera(Camera(width, height, glm::vec3(0.0f, 0.0f, 5.0f))), isRunning(true), isStart(true) {
+GOAT_ENGINE::GameWindow::GameWindow(unsigned int _width, unsigned int _height) : width(_width), height(_height), currentFps(0), maxFps(60), timeBetweenFrame(1000000 / maxFps), camera(Camera(width, height, glm::vec3(0.0f, 0.0f, 5.0f))), isRunning(true), isStart(true) {
 	glfwInit();
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-	glfwwindow = glfwCreateWindow(width, height, "GOAT_ENGINE", NULL, NULL);
+	this->glfwwindow = glfwCreateWindow(800, 800, "GOAT_ENGINE", NULL, NULL);
 	glfwMakeContextCurrent(glfwwindow);
-
 	gladLoadGL();
-	glViewport(0, 0, width, height);
+	glViewport(0, 0, 800, 800);
 }
 
-void GOAT_ENGINE::GameWindow::createWindow() {
-	//Créer la fenêtre
-	
-	//Si erreur durant la création de la fenêtre
-	if (glfwwindow == NULL) {
-		std::cout << "Failed to create Window" << std::endl;
-		glfwTerminate();
-		return;
-	}
-
-	
-	
-	//GameLoop
+void GOAT_ENGINE::GameWindow::createWindow() {	
 	auto lastFpsUpdate = std::chrono::high_resolution_clock::now();
-
+	long sleepTime = 1000000 / (maxFps * 2);
+	long timeFrame = 1000000 / 60;
 	unsigned int frame = 0;
 	isStart = true;
-	GameObject fella(glm::vec2(1.0f, 1.0f), glm::vec2(1.0f, 2.0f), glm::vec3(0.0f, 0.0f, 0.0f), "background.jpeg", false);
-	currentScene.addGameObject(fella,1);
-	long sleepTime = 1000000 / (maxFps*2);
-	long timeFrame = 1000000 / 60;
+
 	while (!glfwWindowShouldClose(glfwwindow)) {
 		glClearColor(0.0f, 0.0f, 0.0f, 1);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
 		auto startFrame = std::chrono::high_resolution_clock::now();
 
-		
-		camera.move(glfwwindow);
 		camera.updateMatrix(60.0f, 1.0f, 100.0f);
-		
-		//Update et render la scène
 		currentScene.update();
 		currentScene.draw(this->camera);
 
 		frame++;
-
 		auto elapsed = std::chrono::high_resolution_clock::now() - lastFpsUpdate;
 
 		if (std::chrono::duration_cast<std::chrono::microseconds>(elapsed).count() >= 1000000) {
@@ -69,17 +50,19 @@ void GOAT_ENGINE::GameWindow::createWindow() {
 		glfwPollEvents();
 		
 		long fluidTime = timeFrame;
-		if (fluidTime > sleepTime)
+		if (fluidTime > sleepTime) {
 			fluidTime = sleepTime;
+		}
 
 		timeFrame = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::high_resolution_clock::now() - startFrame).count();
-
-
 		std::this_thread::sleep_for(std::chrono::microseconds(sleepTime-fluidTime));
 	}
 
 	glfwDestroyWindow(glfwwindow);
 	glfwTerminate();
 	isRunning = false;
-	return;
+}
+
+void GOAT_ENGINE::GameWindow::setScene(Scene scene) {
+	this->currentScene = scene;
 }

@@ -3,7 +3,6 @@
 GOAT_ENGINE::Scene::Scene() {
 }
 
-
 void GOAT_ENGINE::Scene::draw(Camera &camera) {
 	for (int layer = 9; layer >= 0; layer--) {
 		for (GameObject& obj : gameObjets[layer]) {
@@ -21,5 +20,5 @@ void GOAT_ENGINE::Scene::update() {
 }
 
 void GOAT_ENGINE::Scene::addGameObject(GameObject& obj, unsigned int layer) {
-	gameObjets[layer].push_back(obj);
+	this->gameObjets[layer].push_back(obj);
 }

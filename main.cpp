@@ -16,11 +16,22 @@
 using namespace GOAT_ENGINE;
 
 int main() {
-
-	GameObject player();
-
+	const std::string texPath((std::filesystem::current_path().string() + "\\textures\\").c_str());
 	Scene mainScene = Scene();
-	GameWindow window(800, 800, mainScene);
+	GameWindow window(1000, 1000);
+	
+	Texture pacmanTexs[4][2] = {
+		{ Texture((texPath + "pacman\\pacman_1_up.png").c_str()),	 Texture((texPath + "pacman\\pacman_2_up.png").c_str())    },
+		{ Texture((texPath + "pacman\\pacman_1_down.png").c_str()),	 Texture((texPath + "pacman\\pacman_2_down.png").c_str())  },
+		{ Texture((texPath + "pacman\\pacman_1_left.png").c_str()),	 Texture((texPath + "pacman\\pacman_2_left.png").c_str())  },
+		{ Texture((texPath + "pacman\\pacman_1_right.png").c_str()), Texture((texPath + "pacman\\pacman_2_right.png").c_str()) }
+	};
+
+	Player pacman(pacmanTexs);
+
+	mainScene.addGameObject(pacman, 0);
+	
+	window.currentScene = mainScene;
 	window.createWindow();
 
 	return 0;

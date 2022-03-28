@@ -3,20 +3,19 @@
 
 #include "GameObject.h"
 
-const char UP = 'u';
-const char DOWN = 'd';
-const char LEFT = 'l';
-const char RIGHT = 'r';
-
 class Ennemy : public GOAT_ENGINE::GameObject {
 private:
-	char direction;
+	GOAT_ENGINE::Texture textures[4][2];
+	int direction;
 	bool canBeEaten;
+	char color;
+
+	std::string getTexPath();
 
 public:
-	Ennemy();
+	Ennemy(glm::vec2 position, char color, GOAT_ENGINE::Texture _textures[4][2]);
 	char getDirection() const;
 	void updateCanBeEaten(bool eaten);
-	void updateDirection(char newDir);
+	void move();
 };
 #endif

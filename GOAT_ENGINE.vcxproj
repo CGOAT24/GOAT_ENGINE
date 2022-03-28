@@ -196,11 +196,34 @@
     <Media Include="Audio\Sound Effects\impact.mp3" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="Textures\background.jpeg" />
-    <Image Include="Textures\background.png" />
-    <Image Include="Textures\character.png" />
     <Image Include="Textures\default.png" />
-    <Image Include="Textures\planks.png" />
+    <Image Include="textures\ennemies\cyan_down.png" />
+    <Image Include="textures\ennemies\cyan_left.png" />
+    <Image Include="textures\ennemies\cyan_right.png" />
+    <Image Include="textures\ennemies\cyan_up.png" />
+    <Image Include="textures\ennemies\dead.png" />
+    <Image Include="textures\ennemies\orange_down.png" />
+    <Image Include="textures\ennemies\orange_left.png" />
+    <Image Include="textures\ennemies\orange_right.png" />
+    <Image Include="textures\ennemies\orange_up.png" />
+    <Image Include="textures\ennemies\pink_down.png" />
+    <Image Include="textures\ennemies\pink_left.png" />
+    <Image Include="textures\ennemies\pink_right.png" />
+    <Image Include="textures\ennemies\pink_up.png" />
+    <Image Include="textures\ennemies\red_down.png" />
+    <Image Include="textures\ennemies\red_left.png" />
+    <Image Include="textures\ennemies\red_right.png" />
+    <Image Include="textures\ennemies\red_up.png" />
+    <Image Include="textures\other\cherry.png" />
+    <Image Include="textures\other\pacgum.png" />
+    <Image Include="Textures\pacman\pacman_1_down.png" />
+    <Image Include="Textures\pacman\pacman_1_left.png" />
+    <Image Include="Textures\pacman\pacman_1_right.png" />
+    <Image Include="Textures\pacman\pacman_1_up.png" />
+    <Image Include="Textures\pacman\pacman_2_down.png" />
+    <Image Include="Textures\pacman\pacman_2_left.png" />
+    <Image Include="Textures\pacman\pacman_2_right.png" />
+    <Image Include="Textures\pacman\pacman_2_up.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

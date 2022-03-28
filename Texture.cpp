@@ -4,7 +4,7 @@ GOAT_ENGINE::Texture::Texture(const char* texPath): name(texPath), type("diffuse
 	GLenum format;
 	int widthImg, heightImg, numColCh;
 	stbi_set_flip_vertically_on_load(true);
-	unsigned char* bytes = stbi_load(texPath, &widthImg, &heightImg, &numColCh, 0);
+	unsigned char* bytes = stbi_load(name, &widthImg, &heightImg, &numColCh, 0);
 	
 	switch (numColCh) {
 	case 1:
@@ -37,6 +37,10 @@ GOAT_ENGINE::Texture::Texture(const char* texPath): name(texPath), type("diffuse
 	glGenerateMipmap(GL_TEXTURE_2D);
 	stbi_image_free(bytes);
 	glBindTexture(GL_TEXTURE_2D, 0);
+}
+
+GOAT_ENGINE::Texture::Texture() {
+
 }
 
 void GOAT_ENGINE::Texture::texUnit(Shader& shader, const char* uniform, GLuint unit) {

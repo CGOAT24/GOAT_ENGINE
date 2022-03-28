@@ -20,6 +20,7 @@
 #include "Texture.h"
 #include "Camera.h"
 #include "GameObject.h"
+
 namespace GOAT_ENGINE {
 	class GameWindow {
 		private:
@@ -33,8 +34,9 @@ namespace GOAT_ENGINE {
 			GLFWwindow* glfwwindow;
 			Scene currentScene;
 
-			GameWindow(unsigned int _width, unsigned int _height, Scene _scene);
+			GameWindow(unsigned int _width, unsigned int _height);
 			void createWindow();
+			void setScene(Scene scene);
 	};
 }
 #endif

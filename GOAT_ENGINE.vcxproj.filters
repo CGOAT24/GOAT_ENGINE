@@ -28,6 +28,15 @@
     <Filter Include="Resource Files\Textures">
       <UniqueIdentifier>{76f72a6d-7a33-46a5-8b3d-7aacb025bc22}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files\Textures\pacman">
+      <UniqueIdentifier>{2769a647-95b8-48a6-b403-6939232231b9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Textures\powerups">
+      <UniqueIdentifier>{4cf51a9c-121b-47b5-9488-9a50be0e8b36}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Textures\ennemies">
+      <UniqueIdentifier>{bc85df69-9b28-4e11-ae80-e69d4b9e83f6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="glad.c">
@@ -161,20 +170,89 @@
     </Media>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="Textures\background.jpeg">
-      <Filter>Resource Files\Textures</Filter>
-    </Image>
-    <Image Include="Textures\background.png">
-      <Filter>Resource Files\Textures</Filter>
-    </Image>
-    <Image Include="Textures\character.png">
-      <Filter>Resource Files\Textures</Filter>
-    </Image>
-    <Image Include="Textures\planks.png">
-      <Filter>Resource Files\Textures</Filter>
-    </Image>
     <Image Include="Textures\default.png">
       <Filter>Resource Files\Textures</Filter>
+    </Image>
+    <Image Include="Textures\pacman\pacman_1_down.png">
+      <Filter>Resource Files\Textures\pacman</Filter>
+    </Image>
+    <Image Include="Textures\pacman\pacman_1_left.png">
+      <Filter>Resource Files\Textures\pacman</Filter>
+    </Image>
+    <Image Include="Textures\pacman\pacman_1_right.png">
+      <Filter>Resource Files\Textures\pacman</Filter>
+    </Image>
+    <Image Include="Textures\pacman\pacman_1_up.png">
+      <Filter>Resource Files\Textures\pacman</Filter>
+    </Image>
+    <Image Include="Textures\pacman\pacman_2_down.png">
+      <Filter>Resource Files\Textures\pacman</Filter>
+    </Image>
+    <Image Include="Textures\pacman\pacman_2_left.png">
+      <Filter>Resource Files\Textures\pacman</Filter>
+    </Image>
+    <Image Include="Textures\pacman\pacman_2_right.png">
+      <Filter>Resource Files\Textures\pacman</Filter>
+    </Image>
+    <Image Include="Textures\pacman\pacman_2_up.png">
+      <Filter>Resource Files\Textures\pacman</Filter>
+    </Image>
+    <Image Include="textures\other\cherry.png">
+      <Filter>Resource Files\Textures\powerups</Filter>
+    </Image>
+    <Image Include="textures\other\pacgum.png">
+      <Filter>Resource Files\Textures\powerups</Filter>
+    </Image>
+    <Image Include="textures\ennemies\cyan_down.png">
+      <Filter>Resource Files\Textures\ennemies</Filter>
+    </Image>
+    <Image Include="textures\ennemies\cyan_left.png">
+      <Filter>Resource Files\Textures\ennemies</Filter>
+    </Image>
+    <Image Include="textures\ennemies\cyan_right.png">
+      <Filter>Resource Files\Textures\ennemies</Filter>
+    </Image>
+    <Image Include="textures\ennemies\cyan_up.png">
+      <Filter>Resource Files\Textures\ennemies</Filter>
+    </Image>
+    <Image Include="textures\ennemies\dead.png">
+      <Filter>Resource Files\Textures\ennemies</Filter>
+    </Image>
+    <Image Include="textures\ennemies\orange_down.png">
+      <Filter>Resource Files\Textures\ennemies</Filter>
+    </Image>
+    <Image Include="textures\ennemies\orange_left.png">
+      <Filter>Resource Files\Textures\ennemies</Filter>
+    </Image>
+    <Image Include="textures\ennemies\orange_right.png">
+      <Filter>Resource Files\Textures\ennemies</Filter>
+    </Image>
+    <Image Include="textures\ennemies\orange_up.png">
+      <Filter>Resource Files\Textures\ennemies</Filter>
+    </Image>
+    <Image Include="textures\ennemies\pink_down.png">
+      <Filter>Resource Files\Textures\ennemies</Filter>
+    </Image>
+    <Image Include="textures\ennemies\pink_left.png">
+      <Filter>Resource Files\Textures\ennemies</Filter>
+    </Image>
+    <Image Include="textures\ennemies\pink_right.png">
+      <Filter>Resource Files\Textures\ennemies</Filter>
+    </Image>
+    <Image Include="textures\ennemies\pink_up.png">
+      <Filter>Resource Files\Textures\ennemies</Filter>
+    </Image>
+    <Image Include="textures\ennemies\red_down.png">
+      <Filter>Resource Files\Textures\ennemies</Filter>
+    </Image>
+    <Image Include="textures\ennemies\red_left.png">
+      <Filter>Resource Files\Textures\ennemies</Filter>
+    </Image>
+    <Image Include="textures\ennemies\red_right.png">
+      <Filter>Resource Files\Textures\ennemies</Filter>
+    </Image>
+    <Image Include="textures\ennemies\red_up.png">
+      <Filter>Resource Files\Textures\ennemies</Filter>
     </Image>
   </ItemGroup>
 </Project>
