@@ -1,10 +1,8 @@
 #include "Ennemy.h"
 
-Ennemy::Ennemy(glm::vec2 position, char _color, GOAT_ENGINE::Texture _textures[4][2]): GameObject(position, glm::vec2(1.0f, 1.0f), glm::vec3(0.0f, 0.0f, 0.0f), (std::filesystem::current_path().string() + "\\textures\\default.png").c_str(), true), direction(0), canBeEaten(false), color(_color) {
+Ennemy::Ennemy(glm::vec2 position, char _color, GOAT_ENGINE::Texture _textures[4]): GameObject(position, glm::vec2(1.0f, 1.0f), glm::vec3(0.0f, 0.0f, 0.0f), (std::filesystem::current_path().string() + "\\textures\\default.png").c_str(), true), direction(0), canBeEaten(false), color(_color) {
 	for (int i(0); i < 4; i++) {
-		for (int j(0); j < 2; j++) {
-			this->textures[i][j] = _textures[i][j];
-		}
+		this->textures[i] = _textures[i];
 	}
 }
 
@@ -46,6 +44,7 @@ void Ennemy::move() {
 	}
 }
 
+//à updater
 std::string Ennemy::getTexPath() {
 	const std::string path((std::filesystem::current_path().string() + "\\textures\\ennemies\\").c_str());
 	std::string texName = "";

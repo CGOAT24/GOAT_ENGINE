@@ -27,6 +27,39 @@ int main() {
 		{ Texture((texPath + "pacman\\pacman_1_right.png").c_str()), Texture((texPath + "pacman\\pacman_2_right.png").c_str()) }
 	};
 
+	Texture cyanTexs[4] = {
+		Texture((texPath + "ennemies\\cyan_up.png").c_str()),
+		Texture((texPath + "ennemies\\cyan_down.png").c_str()),
+		Texture((texPath + "ennemies\\cyan_left.png").c_str()),
+		Texture((texPath + "ennemies\\cyan_right.png").c_str())
+	};
+
+	Texture orangeTexs[4] = {
+		Texture((texPath + "ennemies\\orange_up.png").c_str()),
+		Texture((texPath + "ennemies\\orange_down.png").c_str()),
+		Texture((texPath + "ennemies\\orange_left.png").c_str()),
+		Texture((texPath + "ennemies\\orange_right.png").c_str())
+	};
+
+	Texture pinkTexs[4] = {
+		Texture((texPath + "ennemies\\pink_up.png").c_str()),
+		Texture((texPath + "ennemies\\pink_down.png").c_str()),
+		Texture((texPath + "ennemies\\pink_left.png").c_str()),
+		Texture((texPath + "ennemies\\pink_right.png").c_str())
+	};
+
+	Texture redTexs[4] = {
+		Texture((texPath + "ennemies\\pink_up.png").c_str()),
+		Texture((texPath + "ennemies\\pink_down.png").c_str()),
+		Texture((texPath + "ennemies\\pink_left.png").c_str()),
+		Texture((texPath + "ennemies\\pink_right.png").c_str())
+	};
+
+	Ennemy red(glm::vec2(-1.0f, 1.0f), 'r', redTexs);
+	Ennemy pink(glm::vec2(1.0f, 1.0f), 'p', pinkTexs);
+	Ennemy orange(glm::vec2(1.0f, -1.0f), 'o', orangeTexs);
+	Ennemy cyan(glm::vec2(-1.0f, -1.0f), 'c', cyanTexs);
+
 	Player pacman(pacmanTexs);
 
 	mainScene.addGameObject(pacman, 0);

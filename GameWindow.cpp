@@ -25,6 +25,8 @@ void GOAT_ENGINE::GameWindow::createWindow() {
 	unsigned int frame = 0;
 	isStart = true;
 
+	this->currentScene.onCreate();
+
 	while (!glfwWindowShouldClose(glfwwindow)) {
 		glClearColor(0.0f, 0.0f, 0.0f, 1);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
