@@ -162,14 +162,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Media Include="Audio\Music\security.mp3">
-      <Filter>Resource Files\Audio\Music</Filter>
-    </Media>
-    <Media Include="Audio\Sound Effects\impact.mp3">
-      <Filter>Resource Files\Audio\Sound Effects</Filter>
-    </Media>
-  </ItemGroup>
-  <ItemGroup>
     <Image Include="Textures\default.png">
       <Filter>Resource Files\Textures</Filter>
     </Image>

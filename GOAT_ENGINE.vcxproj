@@ -192,10 +192,6 @@
     <None Include="light.vert" />
   </ItemGroup>
   <ItemGroup>
-    <Media Include="Audio\Music\security.mp3" />
-    <Media Include="Audio\Sound Effects\impact.mp3" />
-  </ItemGroup>
-  <ItemGroup>
     <Image Include="Textures\default.png" />
     <Image Include="textures\ennemies\cyan_down.png" />
     <Image Include="textures\ennemies\cyan_left.png" />
