@@ -74,8 +74,7 @@ int main() {
 
 	const glm::vec2 POINTS_SIZE(0.5f, 0.5f);
 	const glm::vec3 POINTS_ROTATION(0.0f, 0.0f, 0.0f);
-	
-	
+
 	std::vector<GameObject> pacgums {
 		GameObject(glm::vec2(0.0f, 2.0f), POINTS_SIZE, POINTS_ROTATION, POINTS_TEXTURE_NAME.c_str(), true),
 		GameObject(glm::vec2(-2.0f, 2.0f), POINTS_SIZE, POINTS_ROTATION, POINTS_TEXTURE_NAME.c_str(), true),
@@ -86,7 +85,8 @@ int main() {
 		GameObject(glm::vec2(0.0f, -2.0f), POINTS_SIZE, POINTS_ROTATION, POINTS_TEXTURE_NAME.c_str(), true),
 		GameObject(glm::vec2(2.0f, -2.0f), POINTS_SIZE, POINTS_ROTATION, POINTS_TEXTURE_NAME.c_str(), true),
 		GameObject(glm::vec2(4.0f, -2.0f), POINTS_SIZE, POINTS_ROTATION, POINTS_TEXTURE_NAME.c_str(), true),
-		GameObject(glm::vec2(4.0f, 0.0f), POINTS_SIZE, POINTS_ROTATION, POINTS_TEXTURE_NAME.c_str(), true)
+		GameObject(glm::vec2(4.0f, 0.0f), POINTS_SIZE, POINTS_ROTATION, POINTS_TEXTURE_NAME.c_str(), true),
+		GameObject(glm::vec2(4.0f, 2.0f), POINTS_SIZE, POINTS_ROTATION, POINTS_TEXTURE_NAME.c_str(), true)
 	};
 
 	GameObject* walls = {
@@ -196,7 +196,6 @@ int main() {
 
 	glfwDestroyWindow(window);
 	glfwTerminate();
-
 	return 0;
 }
 
