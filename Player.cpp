@@ -1,7 +1,7 @@
 #include "Player.h"
 
 //Constructeur
-Player::Player(GOAT_ENGINE::Texture _textures[4][2]): GameObject(glm::vec2(0.0f, 0.0f), glm::vec2(1.0f, 1.0f), glm::vec3(0.0f, 0.0f, 0.0f), ((std::filesystem::current_path().string() + "\\Textures\\pacman\\pacman_1_right.png").c_str()), true), direction('r'), textures(), animCount(0) {
+Player::Player(GOAT_ENGINE::Texture _textures[4][2]): GameObject(glm::vec2(0.0f, 0.0f), glm::vec2(0.75f, 0.75f), glm::vec3(0.0f, 0.0f, 0.0f), ((std::filesystem::current_path().string() + "\\Textures\\pacman\\pacman_1_right.png").c_str()), true), direction('r'), textures(), animCount(0) {
 	for (int i(0); i < 4; i++) {
 		for (int j(0); j < 2; j++) {
 			this->textures[i][j] = _textures[i][j];
@@ -15,16 +15,16 @@ void Player::updateDirection(char newDir) {
 		this->direction = newDir;
 		switch (this->direction) {
 		case 'u':	//up
-			this->mesh.texture = this->textures[0][0];	//à vérifier
+			this->mesh.texture = this->textures[0][0];
 			break;
 		case 'd':	//down
-			this->mesh.texture = this->textures[1][0];	//à vérifier
+			this->mesh.texture = this->textures[1][0];
 			break;
 		case 'l':	//left
-			this->mesh.texture = this->textures[2][0];	//à vérifier
+			this->mesh.texture = this->textures[2][0];
 			break;
 		case 'r':	//right
-			this->mesh.texture = this->textures[3][0];	//à vérifier
+			this->mesh.texture = this->textures[3][0];
 			break;
 		}
 	}

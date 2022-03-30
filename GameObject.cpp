@@ -1,6 +1,8 @@
 #include "GameObject.h"
 
-GOAT_ENGINE::GameObject::GameObject(glm::vec2 _position, glm::vec2 _scale, glm::vec3 _rotation, const char* _texName, bool _collider): position(_position.x, _position.y, 0.0f), scale(_scale.x, _scale.y, 0.0f), rotation(_rotation), mesh(), shader("default.vert", "default.frag"), light(glm::vec3(_position.x, _position.y, 0.0f)), collider(position, scale, _collider), tag("") {
+GOAT_ENGINE::GameObject::GameObject(glm::vec2 _position, glm::vec2 _scale, glm::vec3 _rotation, const char* _texName, bool _collider): 
+	position(_position.x, _position.y, 0.0f), scale(_scale.x, _scale.y, 0.0f), rotation(_rotation), mesh(), shader("default.vert", "default.frag"), 
+	light(glm::vec3(_position.x, _position.y, 0.0f)), collider(position, scale, _collider), tag("") {
 	Vertex vertices[4];
 
 	glm::vec2 vertPos[] = {
@@ -11,10 +13,10 @@ GOAT_ENGINE::GameObject::GameObject(glm::vec2 _position, glm::vec2 _scale, glm::
 	};
 
 	glm::vec2 texCoords[] = {
-		glm::vec2(0.0f, 0.0f),													//bottom left
-		glm::vec2(1.0f, 0.0f),													//bottom right
-		glm::vec2(1.0f, 1.0f),													//top right
-		glm::vec2(0.0f, 1.0f)													//top left
+		glm::vec2(0.0f, 0.0f),	//bottom left
+		glm::vec2(1.0f, 0.0f),	//bottom right
+		glm::vec2(1.0f, 1.0f),	//top right
+		glm::vec2(0.0f, 1.0f)	//top left
 	};
 
 	for(int i(0); i < 4; i++) {
@@ -106,6 +108,10 @@ void GOAT_ENGINE::GameObject::transform() {
 	model = glm::rotate(model, glm::radians(this->rotation.y), glm::vec3(0.0f, 1.0f, 0.0f));
 	model = glm::rotate(model, glm::radians(this->rotation.z), glm::vec3(0.0f, 0.0f, 1.0f));
 	model = glm::translate(model, this->position);
+
+	this->light.model = model;
+	this->light.position = this->position;
+	this->light.Activate(shader);
 
 	shader.Activate();
 	glUniformMatrix4fv(glGetUniformLocation(shader.ID, "model"), 1, GL_FALSE, glm::value_ptr(model));

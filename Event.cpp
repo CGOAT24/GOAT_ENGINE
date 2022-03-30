@@ -39,6 +39,12 @@ void GOAT_ENGINE::Event::onRelease(int key, void(*func)()) {
 		func();
 }
 
+bool GOAT_ENGINE::Event::isPressed(int key) {
+	int state(glfwGetKey(this->win, key));
+	return state == GLFW_PRESS;
+
+}
+
 glm::vec2 GOAT_ENGINE::Event::getMousePosition() {
 	double x, y;
 	glfwGetCursorPos(this->win, &x, &y);

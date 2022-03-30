@@ -18,6 +18,7 @@ namespace GOAT_ENGINE {
 		void onRepeat(int key, void (*func)());
 		void onRelease(int key, GameObject& g, void (*func)(GameObject& g));
 		void onRelease(int key, void (*func)());
+		bool isPressed(int key);
 
 		//Mouse event listeners
 		glm::vec2 getMousePosition();

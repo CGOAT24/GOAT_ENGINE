@@ -3,6 +3,7 @@
 
 #include "GameObject.h"
 
+//Classe héritée de GameObject créée par l'utilisateur 
 class Player : public GOAT_ENGINE::GameObject {
 private:
 	GOAT_ENGINE::Texture textures[4][2];

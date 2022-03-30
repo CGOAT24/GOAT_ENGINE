@@ -31,11 +31,11 @@
     <Filter Include="Resource Files\Textures\pacman">
       <UniqueIdentifier>{2769a647-95b8-48a6-b403-6939232231b9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Resource Files\Textures\powerups">
-      <UniqueIdentifier>{4cf51a9c-121b-47b5-9488-9a50be0e8b36}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Resource Files\Textures\ennemies">
       <UniqueIdentifier>{bc85df69-9b28-4e11-ae80-e69d4b9e83f6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Textures\other">
+      <UniqueIdentifier>{4cf51a9c-121b-47b5-9488-9a50be0e8b36}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -189,12 +189,6 @@
     <Image Include="Textures\pacman\pacman_2_up.png">
       <Filter>Resource Files\Textures\pacman</Filter>
     </Image>
-    <Image Include="textures\other\cherry.png">
-      <Filter>Resource Files\Textures\powerups</Filter>
-    </Image>
-    <Image Include="textures\other\pacgum.png">
-      <Filter>Resource Files\Textures\powerups</Filter>
-    </Image>
     <Image Include="textures\ennemies\cyan_down.png">
       <Filter>Resource Files\Textures\ennemies</Filter>
     </Image>
@@ -245,6 +239,12 @@
     </Image>
     <Image Include="textures\ennemies\red_up.png">
       <Filter>Resource Files\Textures\ennemies</Filter>
+    </Image>
+    <Image Include="textures\other\cherry.png">
+      <Filter>Resource Files\Textures\other</Filter>
+    </Image>
+    <Image Include="textures\other\pacgum.png">
+      <Filter>Resource Files\Textures\other</Filter>
     </Image>
   </ItemGroup>
 </Project>

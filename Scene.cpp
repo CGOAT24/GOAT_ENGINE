@@ -22,3 +22,11 @@ void GOAT_ENGINE::Scene::update() {
 void GOAT_ENGINE::Scene::addGameObject(GameObject& obj, unsigned int layer) {
 	this->gameObjets[layer].push_back(obj);
 }
+
+void GOAT_ENGINE::Scene::onCreate()
+{
+}
+
+void GOAT_ENGINE::Scene::onUpdate()
+{
+}
