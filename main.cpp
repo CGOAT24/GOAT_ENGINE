@@ -72,7 +72,7 @@ int main() {
 		Ennemy(glm::vec2(-1.0f, -1.0f), cyanTexs)
 	};
 
-	const glm::vec2 POINTS_SIZE(0.5f, 0.5f); //à vérifier
+	const glm::vec2 POINTS_SIZE(0.5f, 0.5f);
 	const glm::vec3 POINTS_ROTATION(0.0f, 0.0f, 0.0f);
 	
 	
@@ -89,13 +89,17 @@ int main() {
 		GameObject(glm::vec2(4.0f, 0.0f), POINTS_SIZE, POINTS_ROTATION, POINTS_TEXTURE_NAME.c_str(), true)
 	};
 
-	/*
 	GameObject* walls = {
-	
+		//TODO: Add walls
 	};
-	*/
 
-	GameObject cherry(glm::vec2(2.0f, 2.0f), glm::vec2(0.5f, 0.5f), glm::vec3(0.0f, 0.0f, 0.0f), (texPath + "other\\cherry.png").c_str(), true);
+	GameObject cherry(
+		glm::vec2(2.0f, 2.0f), 
+		glm::vec2(0.5f, 0.5f), 
+		glm::vec3(0.0f, 0.0f, 0.0f), 
+		(texPath + "other\\cherry.png").c_str(), 
+		true
+	);
 	Player pacman(pacmanTexs);
 
 	/**************************************************************************************************************************
@@ -104,9 +108,6 @@ int main() {
 
 	Camera cam(800, 800, glm::vec3(0.0f, 0.0f, 5.0f));
 	Event eventHandler(window);
-
-	Shader lightShader("light.vert", "light.frag");
-	Light light(glm::vec3(1.0f, 1.0f, 0.0f), glm::vec4(1.0f, 0.0f, 0.0f, 1.0f));
 
 	while (!glfwWindowShouldClose(window)) {
 		glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
@@ -136,29 +137,37 @@ int main() {
 			pacman.updateDirection('r');
 		}
 
-		light.Activate(lightShader);
-
 		pacman.render(cam);
 
 		//Gestion des pacgums
 		for (int i(0); i < pacgums.size(); i++) {
-			/*
 			if (pacgums.at(i).collider.isColliding(pacman.collider)) {
-				pacgums.erase(pacgums.begin() + i);
+				pacgums.erase(pacgums.begin() + i);	//à revoir
 			}
-			*/
-
 			pacgums.at(i).render(cam);
 		}
 
 		cherry.render(cam);
+
+		if (cherry.collider.isColliding(pacman.collider)) {
+			cherry.~GameObject();
+
+			//TODO: turn the ennemies undead for 30s
+		}
+
+		//Gestion des collisions avec les murs
+		for (int i(0); i < (sizeof(walls) / sizeof(walls[0])); i++) {
+			if (walls[i].collider.isColliding(pacman.collider)) {
+				//TODO: Prevent pacman from moving
+			}
+			walls[i].render(cam);
+		}
 
 		//Gestion des ennemies
 		for (int i(0); i < (sizeof(ennemies) / sizeof(ennemies[0])); i++) {
 			if (ennemies[i].getIsActive()) {
 				//ennemies[i].move();
 
-				/*
 				bool ennemyCollides(false);
 				for (int i(0); i < (sizeof(walls) / sizeof(walls[0])); i++) {
 
@@ -168,16 +177,18 @@ int main() {
 					}
 				}
 
+				if (ennemies[i].collider.isColliding(pacman.collider)) {
+					//TODO: Game over
+				}
+
 				if (ennemyCollides) {
 					ennemies[i].cancelMove();
 					ennemies[i].updateDirection();
 				}
-				*/
 
 				ennemies[i].render(cam);
 			}
 		}
-
 		
 		glfwSwapBuffers(window);
 		glfwPollEvents();
