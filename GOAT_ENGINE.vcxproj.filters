@@ -246,5 +246,8 @@
     <Image Include="textures\other\pacgum.png">
       <Filter>Resource Files\Textures\other</Filter>
     </Image>
+    <Image Include="textures\other\wall.png">
+      <Filter>Resource Files\Textures\other</Filter>
+    </Image>
   </ItemGroup>
 </Project>

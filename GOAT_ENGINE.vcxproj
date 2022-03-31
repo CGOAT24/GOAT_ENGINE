@@ -212,6 +212,7 @@
     <Image Include="textures\ennemies\red_up.png" />
     <Image Include="textures\other\cherry.png" />
     <Image Include="textures\other\pacgum.png" />
+    <Image Include="textures\other\wall.png" />
     <Image Include="Textures\pacman\pacman_1_down.png" />
     <Image Include="Textures\pacman\pacman_1_left.png" />
     <Image Include="Textures\pacman\pacman_1_right.png" />

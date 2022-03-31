@@ -2,7 +2,7 @@
 
 GOAT_ENGINE::GameObject::GameObject(glm::vec2 _position, glm::vec2 _scale, glm::vec3 _rotation, const char* _texName, bool _collider): 
 	position(_position.x, _position.y, 0.0f), scale(_scale.x, _scale.y, 0.0f), rotation(_rotation), mesh(), shader("default.vert", "default.frag"), 
-	light(glm::vec3(_position.x, _position.y, 0.0f)), collider(position, scale, _collider), tag("") {
+	light(glm::vec3(_position.x, _position.y, 0.0f)), collider(_position, _scale, _collider), tag("") {
 	Vertex vertices[4];
 
 	glm::vec2 vertPos[] = {
@@ -69,31 +69,26 @@ void GOAT_ENGINE::GameObject::updateTexture(Texture tex) {
 void GOAT_ENGINE::GameObject::translate(glm::vec2 movement) {
 	this->position.x += movement.x / 1000.0f;
 	this->position.y += movement.y / 1000.0f;
-
 	this->transform();
 }
 
 void GOAT_ENGINE::GameObject::setScale(glm::vec2 scale) {
 	this->scale = glm::vec3(scale.x, scale.y, 1.0f);
-
 	this->transform();
 }
 
 void GOAT_ENGINE::GameObject::rotateX(float rotation) {
 	this->rotation.x += rotation;
-
 	this->transform();
 }
 
 void GOAT_ENGINE::GameObject::rotateY(float rotation) {
 	this->rotation.y += rotation;
-
 	this->transform();
 }
 
 void GOAT_ENGINE::GameObject::rotateZ(float rotation) {
 	this->rotation.z += rotation;
-
 	this->transform();
 }
 

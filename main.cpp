@@ -25,6 +25,7 @@ int main() {
 	*****************************************************************************************************************************/
 	const std::string texPath((std::filesystem::current_path().string() + "\\textures\\").c_str());
 	const std::string POINTS_TEXTURE_NAME((texPath + "other\\pacgum.png").c_str());
+	const std::string WALLS_TEXTURE_NAME((texPath + "other\\wall.png").c_str());
 	
 	Texture pacmanTexs[4][2] = {
 		{ Texture((texPath + "pacman\\pacman_1_up.png").c_str()),	 Texture((texPath + "pacman\\pacman_2_up.png").c_str())    },
@@ -65,11 +66,11 @@ int main() {
 	*														GAMEOBJECTS														   *
 	***************************************************************************************************************************/
 
-	Ennemy ennemies[4] = {
-		Ennemy(glm::vec2(-1.0f, 1.0f), redTexs),
-		Ennemy(glm::vec2(1.0f, 1.0f), pinkTexs),
-		Ennemy(glm::vec2(1.0f, -1.0f), orangeTexs),
-		Ennemy(glm::vec2(-1.0f, -1.0f), cyanTexs)
+	Ennemy ennemies[] {
+		Ennemy(glm::vec2(-4.0f, 4.25f), redTexs),
+		Ennemy(glm::vec2(4.0f, 4.25f), pinkTexs),
+		Ennemy(glm::vec2(4.0f, -4.25f), orangeTexs),
+		Ennemy(glm::vec2(-4.0f, -4.25f), cyanTexs)
 	};
 
 	const glm::vec2 POINTS_SIZE(0.5f, 0.5f);
@@ -86,21 +87,43 @@ int main() {
 		GameObject(glm::vec2(2.0f, -2.0f), POINTS_SIZE, POINTS_ROTATION, POINTS_TEXTURE_NAME.c_str(), true),
 		GameObject(glm::vec2(4.0f, -2.0f), POINTS_SIZE, POINTS_ROTATION, POINTS_TEXTURE_NAME.c_str(), true),
 		GameObject(glm::vec2(4.0f, 0.0f), POINTS_SIZE, POINTS_ROTATION, POINTS_TEXTURE_NAME.c_str(), true),
-		GameObject(glm::vec2(4.0f, 2.0f), POINTS_SIZE, POINTS_ROTATION, POINTS_TEXTURE_NAME.c_str(), true)
+		GameObject(glm::vec2(4.0f, 2.0f), POINTS_SIZE, POINTS_ROTATION, POINTS_TEXTURE_NAME.c_str(), true),
+		GameObject(glm::vec2(0.0f, 4.25f), POINTS_SIZE, POINTS_ROTATION, POINTS_TEXTURE_NAME.c_str(), true),
+		GameObject(glm::vec2(0.0f, 3.25f), POINTS_SIZE, POINTS_ROTATION, POINTS_TEXTURE_NAME.c_str(), true),
+		GameObject(glm::vec2(-2.0f, 3.25f), POINTS_SIZE, POINTS_ROTATION, POINTS_TEXTURE_NAME.c_str(), true),
+		GameObject(glm::vec2(-4.0f, 3.25f), POINTS_SIZE, POINTS_ROTATION, POINTS_TEXTURE_NAME.c_str(), true),
+		GameObject(glm::vec2(2.0f, 3.25f), POINTS_SIZE, POINTS_ROTATION, POINTS_TEXTURE_NAME.c_str(), true),
+		GameObject(glm::vec2(4.0f, 3.25f), POINTS_SIZE, POINTS_ROTATION, POINTS_TEXTURE_NAME.c_str(), true),
+		GameObject(glm::vec2(-2.0f, 4.25f), POINTS_SIZE, POINTS_ROTATION, POINTS_TEXTURE_NAME.c_str(), true),
+		GameObject(glm::vec2(2.0f, 4.25f), POINTS_SIZE, POINTS_ROTATION, POINTS_TEXTURE_NAME.c_str(), true),
+		GameObject(glm::vec2(-2.0f, -3.25f), POINTS_SIZE, POINTS_ROTATION, POINTS_TEXTURE_NAME.c_str(), true),
+		GameObject(glm::vec2(-4.0f, -3.25f), POINTS_SIZE, POINTS_ROTATION, POINTS_TEXTURE_NAME.c_str(), true),
+		GameObject(glm::vec2(2.0f, -3.25f), POINTS_SIZE, POINTS_ROTATION, POINTS_TEXTURE_NAME.c_str(), true),
+		GameObject(glm::vec2(4.0f, -3.25f), POINTS_SIZE, POINTS_ROTATION, POINTS_TEXTURE_NAME.c_str(), true),
+		GameObject(glm::vec2(0.0f, -3.25f), POINTS_SIZE, POINTS_ROTATION, POINTS_TEXTURE_NAME.c_str(), true),
+		GameObject(glm::vec2(-2.0f, -4.25f), POINTS_SIZE, POINTS_ROTATION, POINTS_TEXTURE_NAME.c_str(), true),
+		GameObject(glm::vec2(2.0f, -4.25f), POINTS_SIZE, POINTS_ROTATION, POINTS_TEXTURE_NAME.c_str(), true),
+		GameObject(glm::vec2(0.0f, -4.25f), POINTS_SIZE, POINTS_ROTATION, POINTS_TEXTURE_NAME.c_str(), true),
 	};
 
-	GameObject* walls = {
-		//TODO: Add walls
+	const glm::vec3 WALLS_ROTATION(0.0f, 0.0f, 0.0f);
+	GameObject walls[] {
+		GameObject(glm::vec2(0.0f, -5.0f), glm::vec2(10.0f, 0.5f), WALLS_ROTATION, WALLS_TEXTURE_NAME.c_str(), true),
+		GameObject(glm::vec2(5.0f, 0.0f), glm::vec2(0.5f, 10.0f), WALLS_ROTATION, WALLS_TEXTURE_NAME.c_str(), true),
+		GameObject(glm::vec2(-5.0f, 0.0f), glm::vec2(0.5f, 10.0f), WALLS_ROTATION, WALLS_TEXTURE_NAME.c_str(), true),
+		GameObject(glm::vec2(0.0f, 5.0f), glm::vec2(10.0f, 0.5f), WALLS_ROTATION, WALLS_TEXTURE_NAME.c_str(), true)
 	};
-
-	GameObject cherry(
+	
+	Player pacman(pacmanTexs);
+	
+	GameObject cherry (
 		glm::vec2(2.0f, 2.0f), 
 		glm::vec2(0.5f, 0.5f), 
 		glm::vec3(0.0f, 0.0f, 0.0f), 
 		(texPath + "other\\cherry.png").c_str(), 
 		true
 	);
-	Player pacman(pacmanTexs);
+	
 
 	/**************************************************************************************************************************
 	*															GAME														  *
@@ -113,26 +136,26 @@ int main() {
 		glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-		cam.updateMatrix(90.0f, 0.1f, 10.0f);
+		cam.updateMatrix(90.0f, 0.1f, 15.0f);
 
 		//Gestion des déplacements
 		if (eventHandler.isPressed(GLFW_KEY_W)) {
-			if(pacman.getPosition().y < 6.0f)
+			if(pacman.getPosition().y < 5.75f)
 				pacman.translate(glm::vec2(0.0f, 1.0f));
 			pacman.updateDirection('u');
 		}
 		else if(eventHandler.isPressed(GLFW_KEY_S)) {
-			if(pacman.getPosition().y > -6.0f)
+			if(pacman.getPosition().y > -5.75f)
 				pacman.translate(glm::vec2(0.0f, -1.0f));
 			pacman.updateDirection('d');
 		}
 		else if (eventHandler.isPressed(GLFW_KEY_A)) {
-			if(pacman.getPosition().x > -6.0f)
+			if(pacman.getPosition().x > -5.75f)
 				pacman.translate(glm::vec2(-1.0f, 0.0f));
 			pacman.updateDirection('l');
 		}
 		else if (eventHandler.isPressed(GLFW_KEY_D)) {
-			if (pacman.getPosition().x < 6.0f)
+			if(pacman.getPosition().x < 5.75f)
 				pacman.translate(glm::vec2(1.0f, 0.0f));
 			pacman.updateDirection('r');
 		}
@@ -142,7 +165,7 @@ int main() {
 		//Gestion des pacgums
 		for (int i(0); i < pacgums.size(); i++) {
 			if (pacgums.at(i).collider.isColliding(pacman.collider)) {
-				pacgums.erase(pacgums.begin() + i);	//à revoir
+				//pacgums.erase(pacgums.begin() + i);	//à revoir
 			}
 			pacgums.at(i).render(cam);
 		}
@@ -155,18 +178,14 @@ int main() {
 			//TODO: turn the ennemies undead for 30s
 		}
 
-		//Gestion des collisions avec les murs
 		for (int i(0); i < (sizeof(walls) / sizeof(walls[0])); i++) {
-			if (walls[i].collider.isColliding(pacman.collider)) {
-				//TODO: Prevent pacman from moving
-			}
 			walls[i].render(cam);
 		}
 
 		//Gestion des ennemies
 		for (int i(0); i < (sizeof(ennemies) / sizeof(ennemies[0])); i++) {
 			if (ennemies[i].getIsActive()) {
-				//ennemies[i].move();
+				ennemies[i].move();
 
 				bool ennemyCollides(false);
 				for (int i(0); i < (sizeof(walls) / sizeof(walls[0])); i++) {
