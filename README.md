@@ -30,7 +30,6 @@
     <a href="https://github.com/CGOAT24/GOAT_ENGINE/wiki"><strong>Explorer la docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/CGOAT24/GOAT_ENGINE">Voir la démo</a>
     ·
     <a href="https://github.com/CGOAT24/GOAT_ENGINE/issues">Rapportez une erreur</a>
     ·
@@ -61,7 +60,6 @@
     <li><a href="#contribution">Contribution</a></li>
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
-    <li><a href="#remerciements">Remerciements</a></li>
   </ol>
 </details>
 
@@ -121,18 +119,6 @@ L'utilisation du GOAT_ENGINE requiert Visual Studio 2019 ou plus récent ainsi q
 
 <p align="right">(<a href="#top">retour au début</a>)</p>
 
-
-
-<!-- USAGE EXAMPLES -->
-## Usage
-
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
-
-_Pour plus d'exemples, veuillez consulter la [Documentation](https://github.com/CGOAT24/GOAT_ENGINE/wiki)_
-
-<p align="right">(<a href="#top">retour au début</a>)</p>
-
-
 <!-- CONTRIBUTING -->
 ## Contribution
 
@@ -170,15 +156,6 @@ Louka Gauthier - [@loukag05](https://twitter.com/loukag05) - loukagauthier55@gma
 Lien du projet: [https://github.com/CGOAT24/GOAT_ENGINE/](https://github.com/CGOAT24/GOAT_ENGINE/)
 
 <p align="right">(<a href="#top">retour au début</a>)</p>
-
-
-
-<!-- ACKNOWLEDGMENTS -->
-## Remerciements
-
-* []()
-* []()
-* []()
 
 <p align="right">(<a href="#top">retour au début</a>)</p>
 
