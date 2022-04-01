@@ -32,29 +32,10 @@ int main() {
 	gladLoadGL();
 	glViewport(0, 0, 800, 800);
 
-	std::string texPath((std::filesystem::current_path().string() + "\\Textures\\").c_str());
-
-	GameObject fella(
-		glm::vec2(0.0f, 0.0f),
-		glm::vec2(1.0f, 1.0f),
-		glm::vec3(0.0f, 0.0f, 0.0f),
-		(texPath + "character.png").c_str(),
-		true
-	);
-
-	fella.setTag("player");
-
-	GameObject plank(
-		glm::vec2(1.0f, 1.0f),
-		glm::vec2(1.0f, 1.0f),
-		glm::vec3(0.0f, 0.0f, 0.0f),
-		(texPath + "planks.png").c_str(),
-		true
-	);
+	//Create your variables here
 
 	Camera cam(800, 800, glm::vec3(0.0f, 0.0f, 5.0f));
 	Event eventHandler(window);
-
 	Sound player = Sound();
 
 	glfwSwapBuffers(window);
@@ -67,30 +48,7 @@ int main() {
 
 		cam.updateMatrix(90.0f, 0.1f, 10.0f);
 
-		eventHandler.onPress(GLFW_KEY_W, fella, [](GameObject& g) {
-			std::string texPath((std::filesystem::current_path().string() + "\\Textures\\").c_str());
-			g.updateTexture(Texture((texPath + "background.jpeg").c_str()));
-			g.translate(glm::vec2(0.0f, 2.0f));
-		});
-
-		eventHandler.onPress(GLFW_KEY_S, fella, [](GameObject& g) {
-			g.translate(glm::vec2(0.0f, -2.0f));
-		});
-
-		eventHandler.onPress(GLFW_KEY_A, fella, [](GameObject& g) {
-			g.translate(glm::vec2(-2.0f, 0.0f));
-		});
-
-		eventHandler.onPress(GLFW_KEY_D, fella, [](GameObject& g) {
-			g.translate(glm::vec2(2.0f, 0.0f));
-		});
-
-		if (fella.collider.isColliding(plank.collider)) {
-			player.play("Audio/Sound Effects/impact.mp3", 0.5f, false);
-		}
-
-		fella.render(cam);
-		plank.render(cam);
+		//Code goes here...
 
 		glfwSwapBuffers(window);
 		glfwPollEvents();
