@@ -157,8 +157,6 @@ Lien du projet: [https://github.com/CGOAT24/GOAT_ENGINE/](https://github.com/CGO
 
 <p align="right">(<a href="#top">retour au début</a>)</p>
 
-<p align="right">(<a href="#top">retour au début</a>)</p>
-
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
