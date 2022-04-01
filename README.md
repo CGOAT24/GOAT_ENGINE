@@ -99,7 +99,7 @@ L'utilisation du GOAT_ENGINE requiert Visual Studio 2019 ou plus récent ainsi q
    C:/Users/[Votre nom]/Documents/Visual Studio 2019/Templates/ProjectTemplates
    ```
 3. Ouvrir Visual Studio et créer un nouveau projet
-   <img src="utils/installation_guide/create_project.png" width="500" height="500">
+   <img src="utils/installation_guide/create_project.png">
 4. Dans la liste des projets, choisir GOAT_ENGINE
    <img src="utils/installation_guide/goat_engine_template.png">
 5. Une fois le projet créé, dans l'explorateur de solution, Faire un clique droit avec la souris sur le projet et appuyer sur `propriétées`
