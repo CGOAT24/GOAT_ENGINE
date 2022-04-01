@@ -95,19 +95,28 @@ L'utilisation du GOAT_ENGINE requiert Visual Studio 2019 ou plus récent ainsi q
 
 ### Installation
 
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
-   ```sh
-   git clone https://github.com/github_username/repo_name.git
+1. Télécharger la dernière version de [GOAT_ENGINE](https://github.com/CGOAT24/GOAT_ENGINE/releases)
+2. Déplacer le fichier zip à l'endroit suivant:
    ```
-3. Install NPM packages
-   ```sh
-   npm install
+   C:/Users/[Your name]/Documents/Visual Studio 2019/Templates/ProjectTemplates
    ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API';
+3. Ouvrr Visual Studio et créer un nouveau projet
+   <img src="utils/installation_guide/create_project.png" alt="create project" width="500" height="500">
+4. Dans la liste des projets, choisir GOAT_ENGINE
+5. Une fois le projet créé, dans l'explorateur de solution, Faire un clique droit avec la souris sur le projet et appuyer sur `propriétées`
+6. Dans `Propriétées de configuration`, appuyer sur `Répertoires VC++`
+7. Dans le champ `Répertoires Include`, inclure le chemin suivant:
    ```
+   [chemin vers le projet]/Libraries/include
+   ```
+8. Dans le champ `Répertoire Library`, inclure le chemin suivant:
+   ```
+   [chemin vers le projet]/Libraries/lib
+   ```
+9. Ensuite, télécharger le fichier suivant: https://www.ambiera.at/downloads/irrKlang-64bit-1.6.0.zip
+10. Une fois téléchargé, naviguer dans le fichier zip à l'endroit suivant: ``bin\winx64-visualStudio\`
+11. Copier les trois fichiers .dll vers le build de votre projet. Par défaut, le build se trouve à l'endroit suivant: `[chemin vers le projet]/x64/debug/`
+12. Vous êtes prêt à faire votre jeux
 
 <p align="right">(<a href="#top">retour au début</a>)</p>
 
