@@ -85,8 +85,6 @@ Utiliser la puissance de OpenGL et du C++ pour créer votre jeux vidéo sans la 
 
 ## Commencer
 
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
 
 ### Préalables
 L'utilisation du GOAT_ENGINE requiert Visual Studio 2019 ou plus récent ainsi que C++17. 
