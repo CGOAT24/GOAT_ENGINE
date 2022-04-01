@@ -14,15 +14,24 @@
 
 using namespace GOAT_ENGINE;
 
-GLFWwindow* initGLFW();
-
 int main() {
+	glfwInit();
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+	GLFWwindow* window(glfwCreateWindow(800, 800, "GOAT_ENGINE", NULL, NULL));
+	glfwMakeContextCurrent(window);
+	gladLoadGL();
+	glViewport(0, 0, 800, 800);
+	glfwSwapBuffers(window);
+	glEnable(GL_DEPTH_TEST);
 
-	GLFWwindow* window = initGLFW();
+	const std::string audioPath((std::filesystem::current_path().string() + "\\Audio\\").c_str());
 
 	/*****************************************************************************************************************************													
 	*												TEXTURES																	 *
 	*****************************************************************************************************************************/
+
 	const std::string texPath((std::filesystem::current_path().string() + "\\textures\\").c_str());
 	const std::string POINTS_TEXTURE_NAME((texPath + "other\\pacgum.png").c_str());
 	const std::string WALLS_TEXTURE_NAME((texPath + "other\\wall.png").c_str());
@@ -34,202 +43,100 @@ int main() {
 		{ Texture((texPath + "pacman\\pacman_1_right.png").c_str()), Texture((texPath + "pacman\\pacman_2_right.png").c_str()) }
 	};
 
-	Texture cyanTexs[4] = {
-		Texture((texPath + "ennemies\\cyan_up.png").c_str()),
-		Texture((texPath + "ennemies\\cyan_down.png").c_str()),
-		Texture((texPath + "ennemies\\cyan_left.png").c_str()),
-		Texture((texPath + "ennemies\\cyan_right.png").c_str())
-	};
-
-	Texture orangeTexs[4] = {
-		Texture((texPath + "ennemies\\orange_up.png").c_str()),
-		Texture((texPath + "ennemies\\orange_down.png").c_str()),
-		Texture((texPath + "ennemies\\orange_left.png").c_str()),
-		Texture((texPath + "ennemies\\orange_right.png").c_str())
-	};
-
-	Texture pinkTexs[4] = {
-		Texture((texPath + "ennemies\\pink_up.png").c_str()),
-		Texture((texPath + "ennemies\\pink_down.png").c_str()),
-		Texture((texPath + "ennemies\\pink_left.png").c_str()),
-		Texture((texPath + "ennemies\\pink_right.png").c_str())
-	};
-
-	Texture redTexs[4] = {
-		Texture((texPath + "ennemies\\red_up.png").c_str()),
-		Texture((texPath + "ennemies\\red_down.png").c_str()),
-		Texture((texPath + "ennemies\\red_left.png").c_str()),
-		Texture((texPath + "ennemies\\red_right.png").c_str())
-	};
-
 	/***************************************************************************************************************************
 	*														GAMEOBJECTS														   *
 	***************************************************************************************************************************/
 
-	Ennemy ennemies[] {
-		Ennemy(glm::vec2(-4.0f, 4.25f), redTexs),
-		Ennemy(glm::vec2(4.0f, 4.25f), pinkTexs),
-		Ennemy(glm::vec2(4.0f, -4.25f), orangeTexs),
-		Ennemy(glm::vec2(-4.0f, -4.25f), cyanTexs)
-	};
-
+	const glm::vec3 ROTATION(0.0f, 0.0f, 0.0f);
 	const glm::vec2 POINTS_SIZE(0.5f, 0.5f);
-	const glm::vec3 POINTS_ROTATION(0.0f, 0.0f, 0.0f);
 
-	std::vector<GameObject> pacgums {
-		GameObject(glm::vec2(0.0f, 2.0f), POINTS_SIZE, POINTS_ROTATION, POINTS_TEXTURE_NAME.c_str(), true),
-		GameObject(glm::vec2(-2.0f, 2.0f), POINTS_SIZE, POINTS_ROTATION, POINTS_TEXTURE_NAME.c_str(), true),
-		GameObject(glm::vec2(-4.0f, 2.0f), POINTS_SIZE, POINTS_ROTATION, POINTS_TEXTURE_NAME.c_str(), true),
-		GameObject(glm::vec2(-4.0f, 0.0f), POINTS_SIZE, POINTS_ROTATION, POINTS_TEXTURE_NAME.c_str(), true),
-		GameObject(glm::vec2(-4.0f, -2.0f), POINTS_SIZE, POINTS_ROTATION, POINTS_TEXTURE_NAME.c_str(), true),
-		GameObject(glm::vec2(-2.0f, -2.0f), POINTS_SIZE, POINTS_ROTATION, POINTS_TEXTURE_NAME.c_str(), true),
-		GameObject(glm::vec2(0.0f, -2.0f), POINTS_SIZE, POINTS_ROTATION, POINTS_TEXTURE_NAME.c_str(), true),
-		GameObject(glm::vec2(2.0f, -2.0f), POINTS_SIZE, POINTS_ROTATION, POINTS_TEXTURE_NAME.c_str(), true),
-		GameObject(glm::vec2(4.0f, -2.0f), POINTS_SIZE, POINTS_ROTATION, POINTS_TEXTURE_NAME.c_str(), true),
-		GameObject(glm::vec2(4.0f, 0.0f), POINTS_SIZE, POINTS_ROTATION, POINTS_TEXTURE_NAME.c_str(), true),
-		GameObject(glm::vec2(4.0f, 2.0f), POINTS_SIZE, POINTS_ROTATION, POINTS_TEXTURE_NAME.c_str(), true),
-		GameObject(glm::vec2(0.0f, 4.25f), POINTS_SIZE, POINTS_ROTATION, POINTS_TEXTURE_NAME.c_str(), true),
-		GameObject(glm::vec2(0.0f, 3.25f), POINTS_SIZE, POINTS_ROTATION, POINTS_TEXTURE_NAME.c_str(), true),
-		GameObject(glm::vec2(-2.0f, 3.25f), POINTS_SIZE, POINTS_ROTATION, POINTS_TEXTURE_NAME.c_str(), true),
-		GameObject(glm::vec2(-4.0f, 3.25f), POINTS_SIZE, POINTS_ROTATION, POINTS_TEXTURE_NAME.c_str(), true),
-		GameObject(glm::vec2(2.0f, 3.25f), POINTS_SIZE, POINTS_ROTATION, POINTS_TEXTURE_NAME.c_str(), true),
-		GameObject(glm::vec2(4.0f, 3.25f), POINTS_SIZE, POINTS_ROTATION, POINTS_TEXTURE_NAME.c_str(), true),
-		GameObject(glm::vec2(-2.0f, 4.25f), POINTS_SIZE, POINTS_ROTATION, POINTS_TEXTURE_NAME.c_str(), true),
-		GameObject(glm::vec2(2.0f, 4.25f), POINTS_SIZE, POINTS_ROTATION, POINTS_TEXTURE_NAME.c_str(), true),
-		GameObject(glm::vec2(-2.0f, -3.25f), POINTS_SIZE, POINTS_ROTATION, POINTS_TEXTURE_NAME.c_str(), true),
-		GameObject(glm::vec2(-4.0f, -3.25f), POINTS_SIZE, POINTS_ROTATION, POINTS_TEXTURE_NAME.c_str(), true),
-		GameObject(glm::vec2(2.0f, -3.25f), POINTS_SIZE, POINTS_ROTATION, POINTS_TEXTURE_NAME.c_str(), true),
-		GameObject(glm::vec2(4.0f, -3.25f), POINTS_SIZE, POINTS_ROTATION, POINTS_TEXTURE_NAME.c_str(), true),
-		GameObject(glm::vec2(0.0f, -3.25f), POINTS_SIZE, POINTS_ROTATION, POINTS_TEXTURE_NAME.c_str(), true),
-		GameObject(glm::vec2(-2.0f, -4.25f), POINTS_SIZE, POINTS_ROTATION, POINTS_TEXTURE_NAME.c_str(), true),
-		GameObject(glm::vec2(2.0f, -4.25f), POINTS_SIZE, POINTS_ROTATION, POINTS_TEXTURE_NAME.c_str(), true),
-		GameObject(glm::vec2(0.0f, -4.25f), POINTS_SIZE, POINTS_ROTATION, POINTS_TEXTURE_NAME.c_str(), true),
-	};
-
-	const glm::vec3 WALLS_ROTATION(0.0f, 0.0f, 0.0f);
-	GameObject walls[] {
-		GameObject(glm::vec2(0.0f, -5.0f), glm::vec2(10.0f, 0.5f), WALLS_ROTATION, WALLS_TEXTURE_NAME.c_str(), true),
-		GameObject(glm::vec2(5.0f, 0.0f), glm::vec2(0.5f, 10.0f), WALLS_ROTATION, WALLS_TEXTURE_NAME.c_str(), true),
-		GameObject(glm::vec2(-5.0f, 0.0f), glm::vec2(0.5f, 10.0f), WALLS_ROTATION, WALLS_TEXTURE_NAME.c_str(), true),
-		GameObject(glm::vec2(0.0f, 5.0f), glm::vec2(10.0f, 0.5f), WALLS_ROTATION, WALLS_TEXTURE_NAME.c_str(), true)
-	};
-	
 	Player pacman(pacmanTexs);
-	
-	GameObject cherry (
-		glm::vec2(2.0f, 2.0f), 
-		glm::vec2(0.5f, 0.5f), 
-		glm::vec3(0.0f, 0.0f, 0.0f), 
-		(texPath + "other\\cherry.png").c_str(), 
-		true
-	);
-	
+
+	GameObject pacgums[] {
+		GameObject(glm::vec2(0.0f, 2.0f), POINTS_SIZE, ROTATION, POINTS_TEXTURE_NAME.c_str(), true),
+		GameObject(glm::vec2(-2.0f, 2.0f), POINTS_SIZE, ROTATION, POINTS_TEXTURE_NAME.c_str(), true),
+		GameObject(glm::vec2(0.0f, -1.0f), POINTS_SIZE, ROTATION, POINTS_TEXTURE_NAME.c_str(), true),
+		GameObject(glm::vec2(-2.0f, 0.0f), POINTS_SIZE, ROTATION, POINTS_TEXTURE_NAME.c_str(), true),
+		GameObject(glm::vec2(2.0f, 0.0f), POINTS_SIZE, ROTATION, POINTS_TEXTURE_NAME.c_str(), true),
+		GameObject(glm::vec2(-4.0f, 1.0f),POINTS_SIZE, ROTATION, POINTS_TEXTURE_NAME.c_str(), true),
+		GameObject(glm::vec2(-2.0f, 1.0f),POINTS_SIZE, ROTATION, POINTS_TEXTURE_NAME.c_str(), true),
+		GameObject(glm::vec2(0.0f, 1.0f), POINTS_SIZE, ROTATION, POINTS_TEXTURE_NAME.c_str(), true),
+		GameObject(glm::vec2(2.0f, 1.0f), POINTS_SIZE, ROTATION, POINTS_TEXTURE_NAME.c_str(), true),
+		GameObject(glm::vec2(4.0f, 1.0f), POINTS_SIZE, ROTATION, POINTS_TEXTURE_NAME.c_str(), true)
+	};
+
+	bool isActive[10];
+	for (int i(0); i < 10; i++) {
+		isActive[i] = true;
+	}
+
+	GameObject walls[] {
+		GameObject(glm::vec2(0.0f, -5.0f), glm::vec2(10.0f, 0.5f), ROTATION, WALLS_TEXTURE_NAME.c_str(), true),
+		GameObject(glm::vec2(5.0f, 0.0f), glm::vec2(0.5f, 10.0f), ROTATION, WALLS_TEXTURE_NAME.c_str(), true),
+		GameObject(glm::vec2(-5.0f, 0.0f), glm::vec2(0.5f, 10.0f),ROTATION, WALLS_TEXTURE_NAME.c_str(), true),
+		GameObject(glm::vec2(0.0f, 5.0f), glm::vec2(10.0f, 0.5f), ROTATION, WALLS_TEXTURE_NAME.c_str(), true)
+	};
 
 	/**************************************************************************************************************************
 	*															GAME														  *
 	**************************************************************************************************************************/
 
 	Camera cam(800, 800, glm::vec3(0.0f, 0.0f, 5.0f));
+	Sound soundManager = Sound();
 	Event eventHandler(window);
+	const float speed(50.0f);
+	int pacgumsRemaining(sizeof(isActive) / sizeof(isActive[0]));
 
-	while (!glfwWindowShouldClose(window)) {
+	soundManager.play((audioPath + "theme_song.mp3").c_str(), 0.5f, true);
+
+	while (!glfwWindowShouldClose(window) && pacgumsRemaining > 0) {
 		glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
 		cam.updateMatrix(90.0f, 0.1f, 15.0f);
-
-		//Gestion des déplacements
 		if (eventHandler.isPressed(GLFW_KEY_W)) {
 			if(pacman.getPosition().y < 5.75f)
-				pacman.translate(glm::vec2(0.0f, 1.0f));
+				pacman.translate(glm::vec2(0.0f, 1.0f * speed));
 			pacman.updateDirection('u');
 		}
 		else if(eventHandler.isPressed(GLFW_KEY_S)) {
 			if(pacman.getPosition().y > -5.75f)
-				pacman.translate(glm::vec2(0.0f, -1.0f));
+				pacman.translate(glm::vec2(0.0f, -1.0f * speed));
 			pacman.updateDirection('d');
 		}
 		else if (eventHandler.isPressed(GLFW_KEY_A)) {
 			if(pacman.getPosition().x > -5.75f)
-				pacman.translate(glm::vec2(-1.0f, 0.0f));
+				pacman.translate(glm::vec2(-1.0f * speed, 0.0f));
 			pacman.updateDirection('l');
 		}
 		else if (eventHandler.isPressed(GLFW_KEY_D)) {
 			if(pacman.getPosition().x < 5.75f)
-				pacman.translate(glm::vec2(1.0f, 0.0f));
+				pacman.translate(glm::vec2(1.0f * speed, 0.0f));
 			pacman.updateDirection('r');
 		}
 
 		pacman.render(cam);
 
-		//Gestion des pacgums
-		for (int i(0); i < pacgums.size(); i++) {
-			if (pacgums.at(i).collider.isColliding(pacman.collider)) {
-				//pacgums.erase(pacgums.begin() + i);	//à revoir
+		for (int i(0); i < sizeof(pacgums) / sizeof(pacgums[0]); i++) {
+			if (pacman.collider.isColliding(pacgums[i].collider)) {
+				isActive[i] = false;
+				pacgums[i].collider.setActive(false);
+				soundManager.play((audioPath + "eat_gum.wav").c_str(), 0.5f, false);
 			}
-			pacgums.at(i).render(cam);
-		}
-
-		cherry.render(cam);
-
-		if (cherry.collider.isColliding(pacman.collider)) {
-			cherry.~GameObject();
-
-			//TODO: turn the ennemies undead for 30s
-		}
-
-		for (int i(0); i < (sizeof(walls) / sizeof(walls[0])); i++) {
-			walls[i].render(cam);
-		}
-
-		//Gestion des ennemies
-		for (int i(0); i < (sizeof(ennemies) / sizeof(ennemies[0])); i++) {
-			if (ennemies[i].getIsActive()) {
-				ennemies[i].move();
-
-				bool ennemyCollides(false);
-				for (int i(0); i < (sizeof(walls) / sizeof(walls[0])); i++) {
-
-					if (ennemies[i].collider.isColliding(walls[i].collider)) {
-						ennemyCollides = true;
-						break;
-					}
-				}
-
-				if (ennemies[i].collider.isColliding(pacman.collider)) {
-					//TODO: Game over
-				}
-
-				if (ennemyCollides) {
-					ennemies[i].cancelMove();
-					ennemies[i].updateDirection();
-				}
-
-				ennemies[i].render(cam);
+			
+			if (isActive[i]) {
+				pacgums[i].render(cam);
 			}
 		}
-		
+
+		pacgumsRemaining = 0;
+		for (int i(0); i < sizeof(isActive) / sizeof(isActive[0]); i++) {
+			pacgumsRemaining = isActive[i] ? ++pacgumsRemaining : pacgumsRemaining;
+		}
+
 		glfwSwapBuffers(window);
 		glfwPollEvents();
 	}
-
 	glfwDestroyWindow(window);
 	glfwTerminate();
 	return 0;
-}
-
-GLFWwindow* initGLFW() {
-	glfwInit();
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-	GLFWwindow* window(glfwCreateWindow(800, 800, "GOAT_ENGINE", NULL, NULL));
-
-	glfwMakeContextCurrent(window);
-	gladLoadGL();
-	glViewport(0, 0, 800, 800);
-	glfwSwapBuffers(window);
-	glEnable(GL_DEPTH_TEST);
-
-	return window;
 }
