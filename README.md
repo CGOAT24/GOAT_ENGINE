@@ -96,7 +96,7 @@ L'utilisation du GOAT_ENGINE requiert Visual Studio 2019 ou plus récent ainsi q
 1. Télécharger la dernière version de [GOAT_ENGINE](https://github.com/CGOAT24/GOAT_ENGINE/releases)
 2. Déplacer le fichier zip à l'endroit suivant:
    ```
-   C:/Users/[Your name]/Documents/Visual Studio 2019/Templates/ProjectTemplates
+   C:/Users/[Votre nom]/Documents/Visual Studio 2019/Templates/ProjectTemplates
    ```
 3. Ouvrir Visual Studio et créer un nouveau projet
    <img src="utils/installation_guide/create_project.png" width="500" height="500">
