@@ -57,9 +57,11 @@
         <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
+    <li><a href="#usage">Usage</a></li>
     <li><a href="#contribution">Contribution</a></li>
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
+    <li><a href="#remerciements">Remerciements</a></li>
   </ol>
 </details>
 
@@ -68,7 +70,7 @@
 <!-- ABOUT THE PROJECT -->
 ## À propos du projet
 
-Utiliser la puissance de OpenGL et du C++ pour créer votre jeux vidéo sans la complexité d'OpenGL. GOAT_ENGINE vous fournis une structure simple à utiliser afin de faire vos jeux 2D. 
+Utiliser la puissance de OpenGL et du C++ pour créer votre jeux vidéo sans la complexité d'openGl. Goat engine vous fournis une structure simple a utiliser sans sacrifier de la puissance. 
 
 <p align="right">(<a href="#top">retour au début</a>)</p>
 
@@ -85,6 +87,9 @@ Utiliser la puissance de OpenGL et du C++ pour créer votre jeux vidéo sans la 
 
 ## Commencer
 
+This is an example of how you may give instructions on setting up your project locally.
+To get a local copy up and running follow these simple example steps.
+
 ### Préalables
 L'utilisation du GOAT_ENGINE requiert Visual Studio 2019 ou plus récent ainsi que C++17. 
 
@@ -96,7 +101,7 @@ L'utilisation du GOAT_ENGINE requiert Visual Studio 2019 ou plus récent ainsi q
    C:/Users/[Your name]/Documents/Visual Studio 2019/Templates/ProjectTemplates
    ```
 3. Ouvrir Visual Studio et créer un nouveau projet
-   <img src="utils/installation_guide/create_project.png">
+   <img src="utils/installation_guide/create_project.png" width="500" height="500">
 4. Dans la liste des projets, choisir GOAT_ENGINE
    <img src="utils/installation_guide/goat_engine_template.png">
 5. Une fois le projet créé, dans l'explorateur de solution, Faire un clique droit avec la souris sur le projet et appuyer sur `propriétées`
@@ -115,6 +120,18 @@ L'utilisation du GOAT_ENGINE requiert Visual Studio 2019 ou plus récent ainsi q
 12. Vous êtes prêt à faire votre jeux!
 
 <p align="right">(<a href="#top">retour au début</a>)</p>
+
+
+
+<!-- USAGE EXAMPLES -->
+## Usage
+
+Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+
+_Pour plus d'exemples, veuillez consulter la [Documentation](https://github.com/CGOAT24/GOAT_ENGINE/wiki)_
+
+<p align="right">(<a href="#top">retour au début</a>)</p>
+
 
 <!-- CONTRIBUTING -->
 ## Contribution
@@ -137,9 +154,11 @@ N'oubliez pas de mettre une étoile au projet ! Merci encore!
 <!-- LICENSE -->
 ## License
 
-Distribué sous la licence Apache 2.0. Voir [LICENSE](https://github.com/CGOAT24/GOAT_ENGINE/blob/main/LICENSE) pour plus d'informations.
+Distribué sous la licence Apache 2.0. Voir `LICENSE.txt` pour plus d'informations.
 
 <p align="right">(<a href="#top">retour au début</a>)</p>
+
+
 
 <!-- CONTACT -->
 ## Contact
@@ -151,3 +170,32 @@ Louka Gauthier - [@loukag05](https://twitter.com/loukag05) - loukagauthier55@gma
 Lien du projet: [https://github.com/CGOAT24/GOAT_ENGINE/](https://github.com/CGOAT24/GOAT_ENGINE/)
 
 <p align="right">(<a href="#top">retour au début</a>)</p>
+
+
+
+<!-- ACKNOWLEDGMENTS -->
+## Remerciements
+
+* []()
+* []()
+* []()
+
+<p align="right">(<a href="#top">retour au début</a>)</p>
+
+
+
+<!-- MARKDOWN LINKS & IMAGES -->
+<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+[contributors-shield]: https://img.shields.io/github/contributors/CGOAT24/GOAT_ENGINE.svg?style=for-the-badge
+[contributors-url]: https://github.com/CGOAT24/GOAT_ENGINE/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/CGOAT24/GOAT_ENGINE.svg?style=for-the-badge
+[forks-url]: https://github.com/CGOAT24/GOAT_ENGINE/network/members
+[stars-shield]: https://img.shields.io/github/stars/CGOAT24/GOAT_ENGINE.svg?style=for-the-badge
+[stars-url]: https://github.com/CGOAT24/GOAT_ENGINE/stargazers
+[issues-shield]: https://img.shields.io/github/issues/CGOAT24/GOAT_ENGINE.svg?style=for-the-badge
+[issues-url]: https://github.com/CGOAT24/GOAT_ENGINE/issues
+[license-shield]: https://img.shields.io/github/license/CGOAT24/GOAT_ENGINE.svg?style=for-the-badge
+[license-url]: https://github.com/CGOAT24/GOAT_ENGINE/blob/master/LICENSE.txt
+[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
+[linkedin-url]: https://linkedin.com/in/linkedin_username
+[product-screenshot]: images/screenshot.png
