@@ -68,7 +68,7 @@
 <!-- ABOUT THE PROJECT -->
 ## À propos du projet
 
-Utiliser la puissance de OpenGL et du C++ pour créer votre jeux vidéo sans la complexité d'openGl. Goat engine vous fournis une structure simple a utiliser sans sacrifier de la puissance. 
+Utiliser la puissance de OpenGL et du C++ pour créer votre jeux vidéo sans la complexité d'openGl. Goat engine vous fournis une structure simple a utiliser sans sacrifier de la puissance. Ce projet a été réalisé dans le cadre du cours "Projet d'intégration - Phase II" au Cégep de Trois-Rivières
 
 <p align="right">(<a href="#top">retour au début</a>)</p>
 
